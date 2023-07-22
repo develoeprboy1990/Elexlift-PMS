@@ -1,0 +1,31 @@
+ALTER TABLE `user` ADD `BranchID` INT NULL DEFAULT NULL AFTER `UserID`;
+
+ALTER TABLE `user_role` ADD `BranchID` INT NULL DEFAULT NULL AFTER `RoleId`;
+
+UPDATE `user_role` SET `BranchID`='1' Where 1
+
+
+Export ALL tables from HRM exclude the following Tables
+company
+documents
+document_category
+migrations
+role
+user
+user_role
+
+rest of the tables sql file are located in project database folder.
+after that move HRM role table data into Accounting.role
+
+
+-------------------------------
+
+date: 22-7-2023
+
+ALTER TABLE `migrations` CHANGE `id` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT;
+
+
+php artisan migrate --path=database/migrations/2023_07_22_073017_create_jobs_table.php
+
+
+-----------------------------------
