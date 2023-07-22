@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 20, 2023 at 10:46 AM
+-- Generation Time: Jul 22, 2023 at 11:30 AM
 -- Server version: 8.0.27
 -- PHP Version: 8.1.0
 
@@ -1493,6 +1493,61 @@ INSERT INTO `country` (`CountryID`, `CountryName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `PartyID` int NOT NULL,
+  `PartyType` varchar(55) DEFAULT NULL,
+  `Salutation` varchar(5) DEFAULT NULL,
+  `FirstName` varchar(200) DEFAULT NULL,
+  `LastName` varchar(200) DEFAULT NULL,
+  `CompanyName` varchar(255) DEFAULT NULL,
+  `Email` varchar(155) DEFAULT NULL,
+  `WorkPhone` varchar(200) DEFAULT NULL,
+  `Mobile` varchar(200) DEFAULT NULL,
+  `SkypeID` varchar(200) DEFAULT NULL,
+  `Designation` varchar(200) DEFAULT NULL,
+  `Department` varchar(200) DEFAULT NULL,
+  `Website` varchar(200) DEFAULT NULL,
+  `TaxTreatment` varchar(200) DEFAULT NULL,
+  `TRN` varchar(200) DEFAULT NULL,
+  `PlaceOfSupply` varchar(200) DEFAULT NULL,
+  `Currency` varchar(150) DEFAULT NULL,
+  `OpeningBalance` double(12,2) DEFAULT NULL,
+  `Facebook` varchar(200) DEFAULT NULL,
+  `Twitter` varchar(200) DEFAULT NULL,
+  `BillingAttention` varchar(200) DEFAULT NULL,
+  `BillingCountry` varchar(200) DEFAULT NULL,
+  `BillingAddressLine1` varchar(255) DEFAULT NULL,
+  `BillingAddressLine2` varchar(255) DEFAULT NULL,
+  `BillingCity` varchar(200) DEFAULT NULL,
+  `BillingState` varchar(200) DEFAULT NULL,
+  `BillingZipCode` varchar(200) DEFAULT NULL,
+  `BillingPhone` varchar(200) DEFAULT NULL,
+  `BillingFax` varchar(200) DEFAULT NULL,
+  `ShippingAttention` varchar(200) DEFAULT NULL,
+  `ShippingCountry` varchar(200) DEFAULT NULL,
+  `ShippingAddressLine1` varchar(255) DEFAULT NULL,
+  `ShippingAddressLine2` varchar(255) DEFAULT NULL,
+  `ShippingCity` varchar(200) DEFAULT NULL,
+  `ShippingState` varchar(200) DEFAULT NULL,
+  `ShippingZipCode` varchar(200) DEFAULT NULL,
+  `ShippingPhone` varchar(200) DEFAULT NULL,
+  `ShippingFax` varchar(200) DEFAULT NULL,
+  `Remarks` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`PartyID`, `PartyType`, `Salutation`, `FirstName`, `LastName`, `CompanyName`, `Email`, `WorkPhone`, `Mobile`, `SkypeID`, `Designation`, `Department`, `Website`, `TaxTreatment`, `TRN`, `PlaceOfSupply`, `Currency`, `OpeningBalance`, `Facebook`, `Twitter`, `BillingAttention`, `BillingCountry`, `BillingAddressLine1`, `BillingAddressLine2`, `BillingCity`, `BillingState`, `BillingZipCode`, `BillingPhone`, `BillingFax`, `ShippingAttention`, `ShippingCountry`, `ShippingAddressLine1`, `ShippingAddressLine2`, `ShippingCity`, `ShippingState`, `ShippingZipCode`, `ShippingPhone`, `ShippingFax`, `Remarks`) VALUES
+(2, 'Business', 'Mr.', 'Ahsan', 'Elahi', 'Carish', 'mr.elahi.ehsan@gmail.com', '+923339322880', '03479806600', 'mr.ahsan.elahi', 'Web Developer', 'Laravel', 'eits.ae', 'VAT Registered', '4234234', 'Dubai', 'AED- UAE Dirham', 234.00, 'http://facebook.com/', 'http://twitter.com/', 'Ahsan', 'Pakistan', 'Address Line 1', 'Address Line 2', 'Town', 'KPK', '25000', '03479806600', '234324', 'Ikram ullah', 'Malaysia', 'Address Line 3', 'Address Line 4', 'Kulampur', 'Punjab', 'G72 8PW', '+923339322880', '8778978', 'Remarks');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `daily_report`
 --
 
@@ -2383,6 +2438,32 @@ INSERT INTO `item__` (`ItemID`, `ItemType`, `ItemCode`, `ItemName`, `UnitName`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `controller_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_of_steps` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `overspeed_governer_voltage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `brake_voltage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `moter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `encoder_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_of_entrance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resue` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_date` date DEFAULT NULL,
+  `door_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `other_materials` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `additional_details` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jobtitle`
 --
 
@@ -2729,7 +2810,8 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2021_10_10_143303_create_attendances_table', 1);
+(1, '2021_10_10_143303_create_attendances_table', 1),
+(2, '2023_07_22_073017_create_jobs_table', 2);
 
 -- --------------------------------------------------------
 
@@ -2843,7 +2925,6 @@ CREATE TABLE `party` (
 --
 
 INSERT INTO `party` (`PartyID`, `PartyName`, `TRN`, `Address`, `City`, `Mobile`, `Phone`, `Email`, `Website`, `Active`, `InvoiceDueDays`, `eDate`) VALUES
-(1, 'Walkin Customer', '1234', '000000', 'Peshawar', '0000', '00000', '00000', '0000', 'Yes', 0, '2022-07-08 04:12:14'),
 (1002, 'kashif mushtaq', '6789', 'Kashif House, Khyber colony No 1, Tehkal Payan', 'Peshawar', '+923349047993', '+923349047993', 'kashif@inu.edu.pk', 'teqholic.com', 'No', 5, '2022-01-16 17:59:43'),
 (1012, 'SAJID SB PAK', '1256', 'Kashif House, Khyber colony No 1, Tehkal Payan', 'Peshawar', NULL, '+923349047993', 'kashif@inu.edu.pk', NULL, 'Yes', 90, '2022-01-16 17:59:49'),
 (1023, 'LIGHT SPEED', '1256', NULL, 'Peshawar', NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-16 17:58:58'),
@@ -3611,6 +3692,30 @@ INSERT INTO `tax` (`TaxID`, `TaxPer`, `Description`, `Section`) VALUES
 (2, '5', '[4.76%] Tax', 'Invoice'),
 (3, '0', '[0%] Tax ', 'Estimate'),
 (4, '4.76', '[5%] Tax', 'Estimate');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tax_treatment`
+--
+
+CREATE TABLE `tax_treatment` (
+  `TaxTreatmentID` int NOT NULL,
+  `TaxTreatmentName` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tax_treatment`
+--
+
+INSERT INTO `tax_treatment` (`TaxTreatmentID`, `TaxTreatmentName`) VALUES
+(1, 'VAT Registered'),
+(2, 'Non VAT Registered'),
+(3, 'GCC VAT Registered'),
+(4, 'GCC Non VAT Registered'),
+(5, 'Non GCC'),
+(6, 'VAT Registered - Designated Zone'),
+(7, 'Non VAT Registered - Designated Zone');
 
 -- --------------------------------------------------------
 
@@ -5821,7 +5926,7 @@ INSERT INTO `years` (`YearID`, `YearName`) VALUES
 --
 DROP TABLE IF EXISTS `vvv`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vvv`  AS SELECT `v_attendance`.`EmployeeID` AS `EmployeeID`, `v_attendance`.`CheckIn` AS `CheckIn`, `v_attendance`.`CheckOut` AS `CheckOut`, `v_attendance`.`Date` AS `Date`, `v_attendance`.`EmployeeName` AS `EmployeeName` FROM `v_attendance` WHERE (`v_attendance`.`EmployeeID` = 41) GROUP BY `v_attendance`.`EmployeeID`, `v_attendance`.`CheckIn`, `v_attendance`.`CheckOut`, `v_attendance`.`Date`, `v_attendance`.`EmployeeName` ORDER BY `v_attendance`.`Date` ASC  ;
+CREATE OR REPLACE VIEW `vvv`  AS SELECT `v_attendance`.`EmployeeID` AS `EmployeeID`, `v_attendance`.`CheckIn` AS `CheckIn`, `v_attendance`.`CheckOut` AS `CheckOut`, `v_attendance`.`Date` AS `Date`, `v_attendance`.`EmployeeName` AS `EmployeeName` FROM `v_attendance` WHERE (`v_attendance`.`EmployeeID` = 41) GROUP BY `v_attendance`.`EmployeeID`, `v_attendance`.`CheckIn`, `v_attendance`.`CheckOut`, `v_attendance`.`Date`, `v_attendance`.`EmployeeName` ORDER BY `v_attendance`.`Date` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -5830,7 +5935,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_agent_salary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_agent_salary`  AS SELECT `fcb`.`BranchID` AS `BranchID`, `fcb`.`EmployeeID` AS `EmployeeID`, sum(`fcb`.`FTDAmount`) AS `FTDAmount`, date_format(`fcb`.`Date`,'%b-%Y') AS `MonthName`, `employee`.`SupervisorID` AS `SupervisorID`, count(`fcb`.`FCBID`) AS `Total`, `employee`.`StaffType` AS `StaffType` FROM (`employee` join `fcb` on((`fcb`.`EmployeeID` = `employee`.`EmployeeID`))) WHERE ((`employee`.`StaffType` = 'Agent') AND (`fcb`.`Compliant` = 'YES') AND (`fcb`.`KYCSent` = 'YES')) GROUP BY `employee`.`SupervisorID`, `fcb`.`BranchID`, `fcb`.`EmployeeID`, date_format(`fcb`.`Date`,'%b-%Y'), `employee`.`StaffType`  ;
+CREATE OR REPLACE VIEW `v_agent_salary`  AS SELECT `fcb`.`BranchID` AS `BranchID`, `fcb`.`EmployeeID` AS `EmployeeID`, sum(`fcb`.`FTDAmount`) AS `FTDAmount`, date_format(`fcb`.`Date`,'%b-%Y') AS `MonthName`, `employee`.`SupervisorID` AS `SupervisorID`, count(`fcb`.`FCBID`) AS `Total`, `employee`.`StaffType` AS `StaffType` FROM (`employee` join `fcb` on((`fcb`.`EmployeeID` = `employee`.`EmployeeID`))) WHERE ((`employee`.`StaffType` = 'Agent') AND (`fcb`.`Compliant` = 'YES') AND (`fcb`.`KYCSent` = 'YES')) GROUP BY `employee`.`SupervisorID`, `fcb`.`BranchID`, `fcb`.`EmployeeID`, date_format(`fcb`.`Date`,'%b-%Y'), `employee`.`StaffType`  ;
 
 -- --------------------------------------------------------
 
@@ -5839,7 +5944,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_alerts`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_alerts`  AS SELECT timestampdiff(DAY,sysdate(),`employee`.`VisaExpiryDate`) AS `VisaExpiry`, timestampdiff(DAY,sysdate(),`employee`.`PassportExpiry`) AS `PassportExpiry`, `employee`.`BranchID` AS `BranchID`, `employee`.`EmployeeID` AS `EmployeeID` FROM `employee`  ;
+CREATE OR REPLACE VIEW `v_alerts`  AS SELECT timestampdiff(DAY,sysdate(),`employee`.`VisaExpiryDate`) AS `VisaExpiry`, timestampdiff(DAY,sysdate(),`employee`.`PassportExpiry`) AS `PassportExpiry`, `employee`.`BranchID` AS `BranchID`, `employee`.`EmployeeID` AS `EmployeeID` FROM `employee`  ;
 
 -- --------------------------------------------------------
 
@@ -5848,7 +5953,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_attendance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_attendance`  AS SELECT `attendance`.`EmployeeID` AS `EmployeeID`, if((`attendance`.`Status` = 'Check-in'),date_format(`attendance`.`DateTime`,'%H:%i'),0) AS `CheckIn`, if((`attendance`.`Status` = 'Check-out'),date_format(`attendance`.`DateTime`,'%H:%i'),0) AS `CheckOut`, date_format(`attendance`.`DateTime`,'%d-%m-%Y') AS `Date`, `attendance`.`EmployeeName` AS `EmployeeName` FROM `attendance` GROUP BY `attendance`.`EmployeeID`, `attendance`.`EmployeeName`, `attendance`.`DateTime`, `attendance`.`Status`  ;
+CREATE OR REPLACE VIEW `v_attendance`  AS SELECT `attendance`.`EmployeeID` AS `EmployeeID`, if((`attendance`.`Status` = 'Check-in'),date_format(`attendance`.`DateTime`,'%H:%i'),0) AS `CheckIn`, if((`attendance`.`Status` = 'Check-out'),date_format(`attendance`.`DateTime`,'%H:%i'),0) AS `CheckOut`, date_format(`attendance`.`DateTime`,'%d-%m-%Y') AS `Date`, `attendance`.`EmployeeName` AS `EmployeeName` FROM `attendance` GROUP BY `attendance`.`EmployeeID`, `attendance`.`EmployeeName`, `attendance`.`DateTime`, `attendance`.`Status`  ;
 
 -- --------------------------------------------------------
 
@@ -5857,7 +5962,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_bill_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_bill_balance`  AS SELECT `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(ifnull(`journal`.`Cr`,0)) AS `INVOICE`, sum(ifnull(`journal`.`Dr`,0)) AS `Payment`, (sum(ifnull(`journal`.`Cr`,0)) - sum(ifnull(`journal`.`Dr`,0))) AS `Remaining`, `journal`.`SupplierID` AS `SupplierID` FROM `journal` WHERE (`journal`.`ChartOfAccountID` = 210100) GROUP BY `journal`.`SupplierID`, `journal`.`InvoiceMasterID`  ;
+CREATE OR REPLACE VIEW `v_bill_balance`  AS SELECT `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(ifnull(`journal`.`Cr`,0)) AS `INVOICE`, sum(ifnull(`journal`.`Dr`,0)) AS `Payment`, (sum(ifnull(`journal`.`Cr`,0)) - sum(ifnull(`journal`.`Dr`,0))) AS `Remaining`, `journal`.`SupplierID` AS `SupplierID` FROM `journal` WHERE (`journal`.`ChartOfAccountID` = 210100) GROUP BY `journal`.`SupplierID`, `journal`.`InvoiceMasterID`  ;
 
 -- --------------------------------------------------------
 
@@ -5866,7 +5971,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_cashflow`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_cashflow`  AS SELECT sum(ifnull(`journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `Balance`, date_format(`journal`.`Date`,'%b-%Y') AS `MonthName` FROM `journal` WHERE (`journal`.`ChartOfAccountID` in (110201,110250,110101,110200)) GROUP BY date_format(`journal`.`Date`,'%b-%Y') ORDER BY date_format(`journal`.`Date`,'%b-%Y') ASC  ;
+CREATE OR REPLACE VIEW `v_cashflow`  AS SELECT sum(ifnull(`journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `Balance`, date_format(`journal`.`Date`,'%b-%Y') AS `MonthName` FROM `journal` WHERE (`journal`.`ChartOfAccountID` in (110201,110250,110101,110200)) GROUP BY date_format(`journal`.`Date`,'%b-%Y') ORDER BY date_format(`journal`.`Date`,'%b-%Y') ASC  ;
 
 -- --------------------------------------------------------
 
@@ -5875,7 +5980,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_challan_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_challan_detail`  AS SELECT `challan_detail`.`ChallanDetailID` AS `ChallanDetailID`, `challan_detail`.`ChallanMasterID` AS `ChallanMasterID`, `challan_detail`.`ChallanNo` AS `ChallanNo`, `challan_detail`.`ChallanDate` AS `ChallanDate`, `challan_detail`.`ItemID` AS `ItemID`, `challan_detail`.`Qty` AS `Qty`, `challan_detail`.`Rate` AS `Rate`, `challan_detail`.`TaxAmount` AS `TaxAmount`, `challan_detail`.`TaxPer` AS `TaxPer`, `challan_detail`.`Discount` AS `Discount`, `challan_detail`.`Total` AS `Total`, `item`.`ItemType` AS `ItemType`, `item`.`ItemCode` AS `ItemCode`, `item`.`ItemName` AS `ItemName`, `item`.`UnitName` AS `UnitName`, `challan_detail`.`Description` AS `Description` FROM (`challan_detail` join `item` on((`challan_detail`.`ItemID` = `item`.`ItemID`)))  ;
+CREATE OR REPLACE VIEW `v_challan_detail`  AS SELECT `challan_detail`.`ChallanDetailID` AS `ChallanDetailID`, `challan_detail`.`ChallanMasterID` AS `ChallanMasterID`, `challan_detail`.`ChallanNo` AS `ChallanNo`, `challan_detail`.`ChallanDate` AS `ChallanDate`, `challan_detail`.`ItemID` AS `ItemID`, `challan_detail`.`Qty` AS `Qty`, `challan_detail`.`Rate` AS `Rate`, `challan_detail`.`TaxAmount` AS `TaxAmount`, `challan_detail`.`TaxPer` AS `TaxPer`, `challan_detail`.`Discount` AS `Discount`, `challan_detail`.`Total` AS `Total`, `item`.`ItemType` AS `ItemType`, `item`.`ItemCode` AS `ItemCode`, `item`.`ItemName` AS `ItemName`, `item`.`UnitName` AS `UnitName`, `challan_detail`.`Description` AS `Description` FROM (`challan_detail` join `item` on((`challan_detail`.`ItemID` = `item`.`ItemID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -5884,7 +5989,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_challan_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_challan_master`  AS SELECT `challan_master`.`ChallanMasterID` AS `ChallanMasterID`, `challan_master`.`ChallanNo` AS `ChallanNo`, `challan_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `challan_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `challan_master`.`ReferenceNo` AS `ReferenceNo`, date_format(`challan_master`.`ChallanDate`,'%d/%m/%Y') AS `ChallanDate`, `challan_master`.`ChallanType` AS `ChallanType`, `challan_master`.`Total` AS `Total`, `challan_master`.`CustomerNotes` AS `CustomerNotes`, `challan_master`.`TermAndCondition` AS `TermAndCondition`, `challan_master`.`File` AS `File`, `party`.`TRN` AS `TRN`, `party`.`Address` AS `Address`, `party`.`Mobile` AS `Mobile`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate`, `challan_master`.`Subject` AS `Subject`, `challan_master`.`DescriptionNotes` AS `DescriptionNotes`, `challan_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `challan_master`.`DiscountPer` AS `DiscountPer`, `challan_master`.`SubTotal` AS `SubTotal`, `challan_master`.`DiscountAmount` AS `DiscountAmount`, `challan_master`.`TaxPer` AS `TaxPer`, `challan_master`.`Tax` AS `Tax`, `challan_master`.`Shipping` AS `Shipping`, `challan_master`.`GrandTotal` AS `GrandTotal` FROM (`challan_master` join `party` on((`challan_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_challan_master`  AS SELECT `challan_master`.`ChallanMasterID` AS `ChallanMasterID`, `challan_master`.`ChallanNo` AS `ChallanNo`, `challan_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `challan_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `challan_master`.`ReferenceNo` AS `ReferenceNo`, date_format(`challan_master`.`ChallanDate`,'%d/%m/%Y') AS `ChallanDate`, `challan_master`.`ChallanType` AS `ChallanType`, `challan_master`.`Total` AS `Total`, `challan_master`.`CustomerNotes` AS `CustomerNotes`, `challan_master`.`TermAndCondition` AS `TermAndCondition`, `challan_master`.`File` AS `File`, `party`.`TRN` AS `TRN`, `party`.`Address` AS `Address`, `party`.`Mobile` AS `Mobile`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate`, `challan_master`.`Subject` AS `Subject`, `challan_master`.`DescriptionNotes` AS `DescriptionNotes`, `challan_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `challan_master`.`DiscountPer` AS `DiscountPer`, `challan_master`.`SubTotal` AS `SubTotal`, `challan_master`.`DiscountAmount` AS `DiscountAmount`, `challan_master`.`TaxPer` AS `TaxPer`, `challan_master`.`Tax` AS `Tax`, `challan_master`.`Shipping` AS `Shipping`, `challan_master`.`GrandTotal` AS `GrandTotal` FROM (`challan_master` join `party` on((`challan_master`.`PartyID` = `party`.`PartyID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -5893,7 +5998,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_chartofaccount`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_chartofaccount`  AS SELECT `chartofaccount`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `chartofaccount`.`CODE` AS `CODE` FROM `chartofaccount` WHERE ((right(`chartofaccount`.`ChartOfAccountID`,5) = 0) AND (`chartofaccount`.`ChartOfAccountName` is not null))  ;
+CREATE OR REPLACE VIEW `v_chartofaccount`  AS SELECT `chartofaccount`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `chartofaccount`.`CODE` AS `CODE` FROM `chartofaccount` WHERE ((right(`chartofaccount`.`ChartOfAccountID`,5) = 0) AND (`chartofaccount`.`ChartOfAccountName` is not null))  ;
 
 -- --------------------------------------------------------
 
@@ -5902,7 +6007,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_chartofaccount_mini`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_chartofaccount_mini`  AS SELECT `chartofaccount`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`CODE` AS `CODE`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `chartofaccount`.`OpenDebit` AS `OpenDebit`, `chartofaccount`.`OpenCredit` AS `OpenCredit`, `chartofaccount`.`L1` AS `L1`, `chartofaccount`.`L2` AS `L2`, `chartofaccount`.`L3` AS `L3`, `chartofaccount`.`Category` AS `Category` FROM `chartofaccount` WHERE (`chartofaccount`.`Category` in ('CASH','CARD','BANK','AR'))  ;
+CREATE OR REPLACE VIEW `v_chartofaccount_mini`  AS SELECT `chartofaccount`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`CODE` AS `CODE`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `chartofaccount`.`OpenDebit` AS `OpenDebit`, `chartofaccount`.`OpenCredit` AS `OpenCredit`, `chartofaccount`.`L1` AS `L1`, `chartofaccount`.`L2` AS `L2`, `chartofaccount`.`L3` AS `L3`, `chartofaccount`.`Category` AS `Category` FROM `chartofaccount` WHERE (`chartofaccount`.`Category` in ('CASH','CARD','BANK','AR'))  ;
 
 -- --------------------------------------------------------
 
@@ -5911,7 +6016,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_closer_salary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_closer_salary`  AS SELECT `employee`.`BranchID` AS `BranchID`, `employee`.`EmployeeID` AS `EmployeeID`, sum(`v_agent_salary`.`FTDAmount`) AS `FTDAmount`, `v_agent_salary`.`MonthName` AS `MonthName`, `employee`.`SupervisorID` AS `SupervisorID`, sum(`v_agent_salary`.`Total`) AS `Total`, `employee`.`StaffType` AS `StaffType` FROM (`employee` join `v_agent_salary` on((`employee`.`EmployeeID` = `v_agent_salary`.`SupervisorID`))) WHERE (`employee`.`StaffType` = 'Closer') GROUP BY `employee`.`EmployeeID`, `employee`.`BranchID`, `v_agent_salary`.`MonthName`, `employee`.`StaffType`, `employee`.`SupervisorID`  ;
+CREATE OR REPLACE VIEW `v_closer_salary`  AS SELECT `employee`.`BranchID` AS `BranchID`, `employee`.`EmployeeID` AS `EmployeeID`, sum(`v_agent_salary`.`FTDAmount`) AS `FTDAmount`, `v_agent_salary`.`MonthName` AS `MonthName`, `employee`.`SupervisorID` AS `SupervisorID`, sum(`v_agent_salary`.`Total`) AS `Total`, `employee`.`StaffType` AS `StaffType` FROM (`employee` join `v_agent_salary` on((`employee`.`EmployeeID` = `v_agent_salary`.`SupervisorID`))) WHERE (`employee`.`StaffType` = 'Closer') GROUP BY `employee`.`EmployeeID`, `employee`.`BranchID`, `v_agent_salary`.`MonthName`, `employee`.`StaffType`, `employee`.`SupervisorID`  ;
 
 -- --------------------------------------------------------
 
@@ -5920,7 +6025,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_daily_report`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_daily_report`  AS SELECT `employee`.`SupervisorID` AS `SupervisorID`, `daily_report`.`DailyReportID` AS `DailyReportID`, `daily_report`.`EmployeeID` AS `EmployeeID`, `daily_report`.`Date` AS `Date`, `daily_report`.`Title` AS `Title`, `daily_report`.`Detail` AS `Detail`, `daily_report`.`SupervisorComments` AS `SupervisorComments`, `daily_report`.`File` AS `File`, `daily_report`.`eDate` AS `eDate` FROM (`daily_report` join `employee` on((`daily_report`.`EmployeeID` = `employee`.`EmployeeID`))) WHERE (`daily_report`.`SupervisorComments` is null)  ;
+CREATE OR REPLACE VIEW `v_daily_report`  AS SELECT `employee`.`SupervisorID` AS `SupervisorID`, `daily_report`.`DailyReportID` AS `DailyReportID`, `daily_report`.`EmployeeID` AS `EmployeeID`, `daily_report`.`Date` AS `Date`, `daily_report`.`Title` AS `Title`, `daily_report`.`Detail` AS `Detail`, `daily_report`.`SupervisorComments` AS `SupervisorComments`, `daily_report`.`File` AS `File`, `daily_report`.`eDate` AS `eDate` FROM (`daily_report` join `employee` on((`daily_report`.`EmployeeID` = `employee`.`EmployeeID`))) WHERE (`daily_report`.`SupervisorComments` is null)  ;
 
 -- --------------------------------------------------------
 
@@ -5929,7 +6034,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_delivery_challan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_delivery_challan`  AS SELECT `challan_master`.`ChallanMasterID` AS `ChallanMasterID`, `challan_master`.`ChallanNo` AS `ChallanNo`, `challan_master`.`PartyID` AS `PartyID`, `challan_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `challan_master`.`ReferenceNo` AS `ReferenceNo`, `challan_master`.`ChallanDate` AS `ChallanDate`, `challan_master`.`ChallanType` AS `ChallanType`, `challan_master`.`Total` AS `Total`, `challan_master`.`CustomerNotes` AS `CustomerNotes`, `challan_master`.`TermAndCondition` AS `TermAndCondition`, `challan_master`.`File` AS `File`, `challan_master`.`UserID` AS `UserID`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`TRN` AS `TRN`, `party`.`Mobile` AS `Mobile`, `party`.`Website` AS `Website`, `party`.`eDate` AS `eDate`, `challan_master`.`Subject` AS `Subject`, `challan_master`.`DescriptionNotes` AS `DescriptionNotes`, `challan_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `challan_master`.`SubTotal` AS `SubTotal`, `challan_master`.`DiscountPer` AS `DiscountPer`, `challan_master`.`DiscountAmount` AS `DiscountAmount`, `challan_master`.`TaxPer` AS `TaxPer`, `challan_master`.`Tax` AS `Tax`, `challan_master`.`Shipping` AS `Shipping`, `challan_master`.`GrandTotal` AS `GrandTotal`, `challan_master`.`Paid` AS `Paid`, `challan_master`.`Balance` AS `Balance` FROM (`challan_master` join `party` on((`challan_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_delivery_challan`  AS SELECT `challan_master`.`ChallanMasterID` AS `ChallanMasterID`, `challan_master`.`ChallanNo` AS `ChallanNo`, `challan_master`.`PartyID` AS `PartyID`, `challan_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `challan_master`.`ReferenceNo` AS `ReferenceNo`, `challan_master`.`ChallanDate` AS `ChallanDate`, `challan_master`.`ChallanType` AS `ChallanType`, `challan_master`.`Total` AS `Total`, `challan_master`.`CustomerNotes` AS `CustomerNotes`, `challan_master`.`TermAndCondition` AS `TermAndCondition`, `challan_master`.`File` AS `File`, `challan_master`.`UserID` AS `UserID`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`TRN` AS `TRN`, `party`.`Mobile` AS `Mobile`, `party`.`Website` AS `Website`, `party`.`eDate` AS `eDate`, `challan_master`.`Subject` AS `Subject`, `challan_master`.`DescriptionNotes` AS `DescriptionNotes`, `challan_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `challan_master`.`SubTotal` AS `SubTotal`, `challan_master`.`DiscountPer` AS `DiscountPer`, `challan_master`.`DiscountAmount` AS `DiscountAmount`, `challan_master`.`TaxPer` AS `TaxPer`, `challan_master`.`Tax` AS `Tax`, `challan_master`.`Shipping` AS `Shipping`, `challan_master`.`GrandTotal` AS `GrandTotal`, `challan_master`.`Paid` AS `Paid`, `challan_master`.`Balance` AS `Balance` FROM (`challan_master` join `party` on((`challan_master`.`PartyID` = `party`.`PartyID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -5938,7 +6043,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_documents`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_documents`  AS SELECT `documents`.`DocumentID` AS `DocumentID`, `documents`.`EmployeeID` AS `EmployeeID`, `documents`.`FileName` AS `FileName`, `documents`.`File` AS `File`, `documents`.`FileSize` AS `FileSize`, date_format(`documents`.`eDate`,'%d-%m-%Y,  %H:%i') AS `eDate` FROM `documents`  ;
+CREATE OR REPLACE VIEW `v_documents`  AS SELECT `documents`.`DocumentID` AS `DocumentID`, `documents`.`EmployeeID` AS `EmployeeID`, `documents`.`FileName` AS `FileName`, `documents`.`File` AS `File`, `documents`.`FileSize` AS `FileSize`, date_format(`documents`.`eDate`,'%d-%m-%Y,  %H:%i') AS `eDate` FROM `documents`  ;
 
 -- --------------------------------------------------------
 
@@ -5947,7 +6052,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_employee`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_employee`  AS SELECT `employee`.`FirstName` AS `FirstName`, `employee`.`MiddleName` AS `MiddleName`, `employee`.`LastName` AS `LastName`, `jobtitle`.`JobTitleName` AS `JobTitleName`, `department`.`DepartmentName` AS `DepartmentName`, `branch`.`BranchName` AS `BranchName`, `employee`.`EmployeeID` AS `EmployeeID`, `employee`.`Picture` AS `Picture`, `employee`.`Email` AS `Email`, `employee`.`MobileNo` AS `MobileNo`, `employee`.`BranchID` AS `BranchID`, `employee`.`IsSupervisor` AS `IsSupervisor`, `employee`.`DateOfBirth` AS `DateOfBirth`, `employee`.`VisaIssueDate` AS `VisaIssueDate`, `employee`.`VisaExpiryDate` AS `VisaExpiryDate`, `employee`.`PassportNo` AS `PassportNo`, `employee`.`PassportExpiry` AS `PassportExpiry`, `employee`.`EidNo` AS `EidNo`, `employee`.`EidExpiry` AS `EidExpiry`, `employee`.`FullAddress` AS `FullAddress`, `employee`.`HomePhone` AS `HomePhone`, `employee`.`Gender` AS `Gender`, `employee`.`SSNorGID` AS `SSNorGID`, `employee`.`MaritalStatus` AS `MaritalStatus`, `employee`.`SpouseName` AS `SpouseName`, `employee`.`SpouseEmployer` AS `SpouseEmployer`, `employee`.`SpouseWorkPhone` AS `SpouseWorkPhone`, `employee`.`JobTitleID` AS `JobTitleID`, `employee`.`DepartmentID` AS `DepartmentID`, `employee`.`SupervisorID` AS `SupervisorID`, `employee`.`WorkLocation` AS `WorkLocation`, `employee`.`EmailOffical` AS `EmailOffical`, `employee`.`WorkPhone` AS `WorkPhone`, `employee`.`StartDate` AS `StartDate`, `employee`.`Salary` AS `Salary`, `employee`.`NextofKinName` AS `NextofKinName`, `employee`.`NextofKinAddress` AS `NextofKinAddress`, `employee`.`NextofKinPhone` AS `NextofKinPhone`, `employee`.`NextofKinRelationship` AS `NextofKinRelationship`, `employee`.`EducationLevel` AS `EducationLevel`, `employee`.`LastDegree` AS `LastDegree`, `employee`.`eDate` AS `eDate`, `employee`.`uDate` AS `uDate`, `employee`.`Title` AS `Title`, `employee`.`ExtraComission` AS `ExtraComission`, `employee`.`SalaryRemarks` AS `SalaryRemarks`, `employee`.`StaffType` AS `StaffType`, `employee`.`Nationality` AS `Nationality`, `employee`.`Password` AS `Password`, `employee`.`BankName` AS `BankName`, `employee`.`IBAN` AS `IBAN`, `employee`.`AccountTitle` AS `AccountTitle`, `employee`.`SalaryType` AS `SalaryType` FROM (((`employee` left join `jobtitle` on((`employee`.`JobTitleID` = `jobtitle`.`JobTitleID`))) left join `department` on((`employee`.`DepartmentID` = `department`.`DepartmentID`))) left join `branch` on((`employee`.`BranchID` = `branch`.`BranchID`)))  ;
+CREATE OR REPLACE VIEW `v_employee`  AS SELECT `employee`.`FirstName` AS `FirstName`, `employee`.`MiddleName` AS `MiddleName`, `employee`.`LastName` AS `LastName`, `jobtitle`.`JobTitleName` AS `JobTitleName`, `department`.`DepartmentName` AS `DepartmentName`, `branch`.`BranchName` AS `BranchName`, `employee`.`EmployeeID` AS `EmployeeID`, `employee`.`Picture` AS `Picture`, `employee`.`Email` AS `Email`, `employee`.`MobileNo` AS `MobileNo`, `employee`.`BranchID` AS `BranchID`, `employee`.`IsSupervisor` AS `IsSupervisor`, `employee`.`DateOfBirth` AS `DateOfBirth`, `employee`.`VisaIssueDate` AS `VisaIssueDate`, `employee`.`VisaExpiryDate` AS `VisaExpiryDate`, `employee`.`PassportNo` AS `PassportNo`, `employee`.`PassportExpiry` AS `PassportExpiry`, `employee`.`EidNo` AS `EidNo`, `employee`.`EidExpiry` AS `EidExpiry`, `employee`.`FullAddress` AS `FullAddress`, `employee`.`HomePhone` AS `HomePhone`, `employee`.`Gender` AS `Gender`, `employee`.`SSNorGID` AS `SSNorGID`, `employee`.`MaritalStatus` AS `MaritalStatus`, `employee`.`SpouseName` AS `SpouseName`, `employee`.`SpouseEmployer` AS `SpouseEmployer`, `employee`.`SpouseWorkPhone` AS `SpouseWorkPhone`, `employee`.`JobTitleID` AS `JobTitleID`, `employee`.`DepartmentID` AS `DepartmentID`, `employee`.`SupervisorID` AS `SupervisorID`, `employee`.`WorkLocation` AS `WorkLocation`, `employee`.`EmailOffical` AS `EmailOffical`, `employee`.`WorkPhone` AS `WorkPhone`, `employee`.`StartDate` AS `StartDate`, `employee`.`Salary` AS `Salary`, `employee`.`NextofKinName` AS `NextofKinName`, `employee`.`NextofKinAddress` AS `NextofKinAddress`, `employee`.`NextofKinPhone` AS `NextofKinPhone`, `employee`.`NextofKinRelationship` AS `NextofKinRelationship`, `employee`.`EducationLevel` AS `EducationLevel`, `employee`.`LastDegree` AS `LastDegree`, `employee`.`eDate` AS `eDate`, `employee`.`uDate` AS `uDate`, `employee`.`Title` AS `Title`, `employee`.`ExtraComission` AS `ExtraComission`, `employee`.`SalaryRemarks` AS `SalaryRemarks`, `employee`.`StaffType` AS `StaffType`, `employee`.`Nationality` AS `Nationality`, `employee`.`Password` AS `Password`, `employee`.`BankName` AS `BankName`, `employee`.`IBAN` AS `IBAN`, `employee`.`AccountTitle` AS `AccountTitle`, `employee`.`SalaryType` AS `SalaryType` FROM (((`employee` left join `jobtitle` on((`employee`.`JobTitleID` = `jobtitle`.`JobTitleID`))) left join `department` on((`employee`.`DepartmentID` = `department`.`DepartmentID`))) left join `branch` on((`employee`.`BranchID` = `branch`.`BranchID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -5956,7 +6061,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_emp_allowance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_emp_allowance`  AS SELECT `emp_allowance`.`EmployeeAllowanceID` AS `EmployeeAllowanceID`, `emp_allowance`.`EmployeeID` AS `EmployeeID`, `emp_allowance`.`AllowanceListID` AS `AllowanceListID`, `emp_allowance`.`Amount` AS `Amount`, `emp_allowance`.`Active` AS `Active`, `emp_allowance`.`eDate` AS `eDate`, `allowance_list`.`AllowanceTitle` AS `AllowanceTitle`, `allowance_list`.`AllowanceType` AS `AllowanceType` FROM (`allowance_list` join `emp_allowance` on((`emp_allowance`.`AllowanceListID` = `allowance_list`.`AllowanceListID`)))  ;
+CREATE OR REPLACE VIEW `v_emp_allowance`  AS SELECT `emp_allowance`.`EmployeeAllowanceID` AS `EmployeeAllowanceID`, `emp_allowance`.`EmployeeID` AS `EmployeeID`, `emp_allowance`.`AllowanceListID` AS `AllowanceListID`, `emp_allowance`.`Amount` AS `Amount`, `emp_allowance`.`Active` AS `Active`, `emp_allowance`.`eDate` AS `eDate`, `allowance_list`.`AllowanceTitle` AS `AllowanceTitle`, `allowance_list`.`AllowanceType` AS `AllowanceType` FROM (`allowance_list` join `emp_allowance` on((`emp_allowance`.`AllowanceListID` = `allowance_list`.`AllowanceListID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -5965,7 +6070,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_emp_leave`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_emp_leave`  AS SELECT `leave`.`LeaveID` AS `LeaveID`, `leave`.`EmployeeID` AS `EmployeeID`, `leave`.`FromDate` AS `FromDate`, `leave`.`ToDate` AS `ToDate`, (to_days(`leave`.`ToDate`) - to_days(`leave`.`FromDate`)) AS `NoOfDays`, `leave`.`Reason` AS `Reason`, `leave`.`DaysApproved` AS `DaysApproved`, `leave`.`DaysRemaining` AS `DaysRemaining`, `leave`.`OMStatus` AS `OMStatus`, `leave`.`HRStatus` AS `HRStatus`, `leave`.`GMStatus` AS `GMStatus`, `leave`.`BranchID` AS `BranchID`, `leave`.`LeaveTypeID` AS `LeaveTypeID`, `leave_type`.`LeaveTypeName` AS `LeaveTypeName`, `leave_type`.`DaysAllowed` AS `DaysAllowed` FROM (`leave` join `leave_type` on((`leave`.`LeaveTypeID` = `leave_type`.`LeaveTypeID`)))  ;
+CREATE OR REPLACE VIEW `v_emp_leave`  AS SELECT `leave`.`LeaveID` AS `LeaveID`, `leave`.`EmployeeID` AS `EmployeeID`, `leave`.`FromDate` AS `FromDate`, `leave`.`ToDate` AS `ToDate`, (to_days(`leave`.`ToDate`) - to_days(`leave`.`FromDate`)) AS `NoOfDays`, `leave`.`Reason` AS `Reason`, `leave`.`DaysApproved` AS `DaysApproved`, `leave`.`DaysRemaining` AS `DaysRemaining`, `leave`.`OMStatus` AS `OMStatus`, `leave`.`HRStatus` AS `HRStatus`, `leave`.`GMStatus` AS `GMStatus`, `leave`.`BranchID` AS `BranchID`, `leave`.`LeaveTypeID` AS `LeaveTypeID`, `leave_type`.`LeaveTypeName` AS `LeaveTypeName`, `leave_type`.`DaysAllowed` AS `DaysAllowed` FROM (`leave` join `leave_type` on((`leave`.`LeaveTypeID` = `leave_type`.`LeaveTypeID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -5974,7 +6079,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_emp_salary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_emp_salary`  AS SELECT `allowance_list`.`AllowanceTitle` AS `AllowanceTitle`, `allowance_list`.`AllowanceType` AS `AllowanceType`, `emp_salary`.`EmployeeAllowanceID` AS `EmployeeAllowanceID`, `emp_salary`.`EmployeeID` AS `EmployeeID`, `emp_salary`.`AllowanceListID` AS `AllowanceListID`, `emp_salary`.`Amount` AS `Amount`, `emp_salary`.`Active` AS `Active`, `emp_salary`.`eDate` AS `eDate`, date_format(`emp_salary`.`eDate`,'%d/%m/%Y') AS `eDate1` FROM (`allowance_list` join `emp_salary` on((`allowance_list`.`AllowanceListID` = `emp_salary`.`AllowanceListID`)))  ;
+CREATE OR REPLACE VIEW `v_emp_salary`  AS SELECT `allowance_list`.`AllowanceTitle` AS `AllowanceTitle`, `allowance_list`.`AllowanceType` AS `AllowanceType`, `emp_salary`.`EmployeeAllowanceID` AS `EmployeeAllowanceID`, `emp_salary`.`EmployeeID` AS `EmployeeID`, `emp_salary`.`AllowanceListID` AS `AllowanceListID`, `emp_salary`.`Amount` AS `Amount`, `emp_salary`.`Active` AS `Active`, `emp_salary`.`eDate` AS `eDate`, date_format(`emp_salary`.`eDate`,'%d/%m/%Y') AS `eDate1` FROM (`allowance_list` join `emp_salary` on((`allowance_list`.`AllowanceListID` = `emp_salary`.`AllowanceListID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -5983,7 +6088,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_emp_salary_structure`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_emp_salary_structure`  AS SELECT `emp_salary`.`EmployeeID` AS `EmployeeID`, sum(if((`emp_salary`.`AllowanceListID` = 1),`emp_salary`.`Amount`,0)) AS `Basic`, sum(if((`emp_salary`.`AllowanceListID` = 2),`emp_salary`.`Amount`,0)) AS `HRA`, sum(if((`emp_salary`.`AllowanceListID` = 3),`emp_salary`.`Amount`,0)) AS `Transport`, sum(if((`emp_salary`.`AllowanceListID` = 4),`emp_salary`.`Amount`,0)) AS `OtherAllowance`, (((sum(if((`emp_salary`.`AllowanceListID` = 1),`emp_salary`.`Amount`,0)) + sum(if((`emp_salary`.`AllowanceListID` = 2),`emp_salary`.`Amount`,0))) + sum(if((`emp_salary`.`AllowanceListID` = 3),`emp_salary`.`Amount`,0))) + sum(if((`emp_salary`.`AllowanceListID` = 4),`emp_salary`.`Amount`,0))) AS `TotalSalary` FROM `emp_salary` GROUP BY `emp_salary`.`EmployeeID`  ;
+CREATE OR REPLACE VIEW `v_emp_salary_structure`  AS SELECT `emp_salary`.`EmployeeID` AS `EmployeeID`, sum(if((`emp_salary`.`AllowanceListID` = 1),`emp_salary`.`Amount`,0)) AS `Basic`, sum(if((`emp_salary`.`AllowanceListID` = 2),`emp_salary`.`Amount`,0)) AS `HRA`, sum(if((`emp_salary`.`AllowanceListID` = 3),`emp_salary`.`Amount`,0)) AS `Transport`, sum(if((`emp_salary`.`AllowanceListID` = 4),`emp_salary`.`Amount`,0)) AS `OtherAllowance`, (((sum(if((`emp_salary`.`AllowanceListID` = 1),`emp_salary`.`Amount`,0)) + sum(if((`emp_salary`.`AllowanceListID` = 2),`emp_salary`.`Amount`,0))) + sum(if((`emp_salary`.`AllowanceListID` = 3),`emp_salary`.`Amount`,0))) + sum(if((`emp_salary`.`AllowanceListID` = 4),`emp_salary`.`Amount`,0))) AS `TotalSalary` FROM `emp_salary` GROUP BY `emp_salary`.`EmployeeID`  ;
 
 -- --------------------------------------------------------
 
@@ -5992,7 +6097,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_estimate_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_estimate_detail`  AS SELECT `estimate_detail`.`EstimateDetailID` AS `EstimateDetailID`, `estimate_detail`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_detail`.`EstimateNo` AS `EstimateNo`, `estimate_detail`.`EstimateDate` AS `EstimateDate`, `estimate_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `estimate_detail`.`Qty` AS `Qty`, `estimate_detail`.`Rate` AS `Rate`, `estimate_detail`.`Total` AS `Total`, `estimate_detail`.`Description` AS `Description`, `estimate_detail`.`TaxPer` AS `TaxPer`, `estimate_detail`.`Tax` AS `Tax` FROM (`estimate_detail` join `item` on((`estimate_detail`.`ItemID` = `item`.`ItemID`)))  ;
+CREATE OR REPLACE VIEW `v_estimate_detail`  AS SELECT `estimate_detail`.`EstimateDetailID` AS `EstimateDetailID`, `estimate_detail`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_detail`.`EstimateNo` AS `EstimateNo`, `estimate_detail`.`EstimateDate` AS `EstimateDate`, `estimate_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `estimate_detail`.`Qty` AS `Qty`, `estimate_detail`.`Rate` AS `Rate`, `estimate_detail`.`Total` AS `Total`, `estimate_detail`.`Description` AS `Description`, `estimate_detail`.`TaxPer` AS `TaxPer`, `estimate_detail`.`Tax` AS `Tax` FROM (`estimate_detail` join `item` on((`estimate_detail`.`ItemID` = `item`.`ItemID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6001,7 +6106,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_estimate_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_estimate_master`  AS SELECT `estimate_master`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_master`.`EstimateNo` AS `EstimateNo`, `estimate_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `estimate_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `estimate_master`.`ReferenceNo` AS `ReferenceNo`, `estimate_master`.`EstimateDate` AS `EstimateDate`, `estimate_master`.`Total` AS `Total`, `estimate_master`.`CustomerNotes` AS `CustomerNotes`, `estimate_master`.`TermAndCondition` AS `TermAndCondition`, `estimate_master`.`File` AS `File`, `estimate_master`.`UserID` AS `UserID`, `estimate_master`.`Subject` AS `Subject`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `estimate_master`.`Date` AS `Date`, `estimate_master`.`SubTotal` AS `SubTotal`, `estimate_master`.`TaxPer` AS `TaxPer`, `estimate_master`.`Tax` AS `Tax`, `estimate_master`.`DiscountPer` AS `DiscountPer`, `estimate_master`.`Discount` AS `Discount`, `estimate_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `estimate_master`.`Shipping` AS `Shipping`, `estimate_master`.`DescriptionNotes` AS `DescriptionNotes`, `estimate_master`.`ExpiryDate` AS `ExpiryDate`, `estimate_master`.`GrandTotal` AS `GrandTotal`, `party`.`TRN` AS `TRN`, `party`.`Mobile` AS `Mobile`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate` FROM (`estimate_master` join `party` on((`estimate_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_estimate_master`  AS SELECT `estimate_master`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_master`.`EstimateNo` AS `EstimateNo`, `estimate_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `estimate_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `estimate_master`.`ReferenceNo` AS `ReferenceNo`, `estimate_master`.`EstimateDate` AS `EstimateDate`, `estimate_master`.`Total` AS `Total`, `estimate_master`.`CustomerNotes` AS `CustomerNotes`, `estimate_master`.`TermAndCondition` AS `TermAndCondition`, `estimate_master`.`File` AS `File`, `estimate_master`.`UserID` AS `UserID`, `estimate_master`.`Subject` AS `Subject`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `estimate_master`.`Date` AS `Date`, `estimate_master`.`SubTotal` AS `SubTotal`, `estimate_master`.`TaxPer` AS `TaxPer`, `estimate_master`.`Tax` AS `Tax`, `estimate_master`.`DiscountPer` AS `DiscountPer`, `estimate_master`.`Discount` AS `Discount`, `estimate_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `estimate_master`.`Shipping` AS `Shipping`, `estimate_master`.`DescriptionNotes` AS `DescriptionNotes`, `estimate_master`.`ExpiryDate` AS `ExpiryDate`, `estimate_master`.`GrandTotal` AS `GrandTotal`, `party`.`TRN` AS `TRN`, `party`.`Mobile` AS `Mobile`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate` FROM (`estimate_master` join `party` on((`estimate_master`.`PartyID` = `party`.`PartyID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6010,7 +6115,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_expense`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_expense`  AS SELECT `expense_master`.`ExpenseMasterID` AS `ExpenseMasterID`, `expense_master`.`Date` AS `Date`, date_format(`expense_master`.`Date`,'%d-%m-%Y') AS `Date1`, `expense_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `expense_master`.`SupplierID` AS `SupplierID`, `supplier`.`SupplierName` AS `SupplierName`, `expense_master`.`ReferenceNo` AS `ReferenceNo`, `expense_master`.`ExpenseNo` AS `ExpenseNo`, `expense_master`.`GrantTotal` AS `GrantTotal` FROM ((`expense_master` join `chartofaccount` on((`expense_master`.`ChartOfAccountID` = `chartofaccount`.`ChartOfAccountID`))) join `supplier` on((`expense_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_expense`  AS SELECT `expense_master`.`ExpenseMasterID` AS `ExpenseMasterID`, `expense_master`.`Date` AS `Date`, date_format(`expense_master`.`Date`,'%d-%m-%Y') AS `Date1`, `expense_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `expense_master`.`SupplierID` AS `SupplierID`, `supplier`.`SupplierName` AS `SupplierName`, `expense_master`.`ReferenceNo` AS `ReferenceNo`, `expense_master`.`ExpenseNo` AS `ExpenseNo`, `expense_master`.`GrantTotal` AS `GrantTotal` FROM ((`expense_master` join `chartofaccount` on((`expense_master`.`ChartOfAccountID` = `chartofaccount`.`ChartOfAccountID`))) join `supplier` on((`expense_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6019,7 +6124,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_expense_chart`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_expense_chart`  AS SELECT date_format(`v_journal`.`Date`,'%M-%Y') AS `MonthName`, (sum(if((`v_journal`.`Dr` is null),0,`v_journal`.`Dr`)) - sum(if((`v_journal`.`Cr` is null),0,`v_journal`.`Cr`))) AS `Balance`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName` FROM `v_journal` WHERE (`v_journal`.`CODE` = 'E') GROUP BY date_format(`v_journal`.`Date`,'%M-%Y'), `v_journal`.`ChartOfAccountName`  ;
+CREATE OR REPLACE VIEW `v_expense_chart`  AS SELECT date_format(`v_journal`.`Date`,'%M-%Y') AS `MonthName`, (sum(if((`v_journal`.`Dr` is null),0,`v_journal`.`Dr`)) - sum(if((`v_journal`.`Cr` is null),0,`v_journal`.`Cr`))) AS `Balance`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName` FROM `v_journal` WHERE (`v_journal`.`CODE` = 'E') GROUP BY date_format(`v_journal`.`Date`,'%M-%Y'), `v_journal`.`ChartOfAccountName`  ;
 
 -- --------------------------------------------------------
 
@@ -6028,7 +6133,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_expense_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_expense_detail`  AS SELECT `expense_master`.`ExpenseNo` AS `ExpenseNo`, `expense_master`.`Date` AS `Date`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `expense_detail`.`ExpenseDetailID` AS `ExpenseDetailID`, `expense_detail`.`ExpenseMasterID` AS `ExpenseMasterID`, `expense_detail`.`ChartOfAccountID` AS `ChartOfAccountID`, `expense_detail`.`Notes` AS `Notes`, `expense_detail`.`TaxPer` AS `TaxPer`, `expense_detail`.`Tax` AS `Tax`, `expense_detail`.`Amount` AS `Amount`, `supplier`.`SupplierName` AS `SupplierName` FROM (((`expense_detail` join `expense_master` on((`expense_master`.`ExpenseMasterID` = `expense_detail`.`ExpenseMasterID`))) join `chartofaccount` on((`expense_detail`.`ChartOfAccountID` = `chartofaccount`.`ChartOfAccountID`))) join `supplier` on((`expense_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_expense_detail`  AS SELECT `expense_master`.`ExpenseNo` AS `ExpenseNo`, `expense_master`.`Date` AS `Date`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `expense_detail`.`ExpenseDetailID` AS `ExpenseDetailID`, `expense_detail`.`ExpenseMasterID` AS `ExpenseMasterID`, `expense_detail`.`ChartOfAccountID` AS `ChartOfAccountID`, `expense_detail`.`Notes` AS `Notes`, `expense_detail`.`TaxPer` AS `TaxPer`, `expense_detail`.`Tax` AS `Tax`, `expense_detail`.`Amount` AS `Amount`, `supplier`.`SupplierName` AS `SupplierName` FROM (((`expense_detail` join `expense_master` on((`expense_master`.`ExpenseMasterID` = `expense_detail`.`ExpenseMasterID`))) join `chartofaccount` on((`expense_detail`.`ChartOfAccountID` = `chartofaccount`.`ChartOfAccountID`))) join `supplier` on((`expense_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6037,7 +6142,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_expense_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_expense_master`  AS SELECT `expense_master`.`Date` AS `Date`, `expense_master`.`ExpenseNo` AS `ExpenseNo`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `expense_master`.`ReferenceNo` AS `ReferenceNo`, `supplier`.`SupplierName` AS `SupplierName`, `expense_master`.`GrantTotal` AS `GrantTotal` FROM ((`expense_master` join `chartofaccount` on((`expense_master`.`ChartOfAccountID` = `chartofaccount`.`ChartOfAccountID`))) join `supplier` on((`expense_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_expense_master`  AS SELECT `expense_master`.`Date` AS `Date`, `expense_master`.`ExpenseNo` AS `ExpenseNo`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `expense_master`.`ReferenceNo` AS `ReferenceNo`, `supplier`.`SupplierName` AS `SupplierName`, `expense_master`.`GrantTotal` AS `GrantTotal` FROM ((`expense_master` join `chartofaccount` on((`expense_master`.`ChartOfAccountID` = `chartofaccount`.`ChartOfAccountID`))) join `supplier` on((`expense_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6046,7 +6151,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_fcb`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_fcb`  AS SELECT `fcb`.`FCBID` AS `FCBID`, `fcb`.`ID` AS `ID`, `fcb`.`FTDAmount` AS `FTDAmount`, date_format(`fcb`.`Date`,'%d/%m/%Y') AS `Date`, date_format(`fcb`.`Date`,'%b-%Y') AS `MonthName`, `fcb`.`Compliant` AS `Compliant`, `fcb`.`KYCSent` AS `KYCSent`, `employee`.`FirstName` AS `FirstName`, `employee`.`MiddleName` AS `MiddleName`, `employee`.`LastName` AS `LastName`, `fcb`.`Dialer` AS `Dialer`, `fcb`.`EmployeeID` AS `EmployeeID`, `fcb`.`BranchID` AS `BranchID`, `fcb`.`Remarks` AS `Remarks` FROM (`fcb` join `employee` on((`fcb`.`EmployeeID` = `employee`.`EmployeeID`)))  ;
+CREATE OR REPLACE VIEW `v_fcb`  AS SELECT `fcb`.`FCBID` AS `FCBID`, `fcb`.`ID` AS `ID`, `fcb`.`FTDAmount` AS `FTDAmount`, date_format(`fcb`.`Date`,'%d/%m/%Y') AS `Date`, date_format(`fcb`.`Date`,'%b-%Y') AS `MonthName`, `fcb`.`Compliant` AS `Compliant`, `fcb`.`KYCSent` AS `KYCSent`, `employee`.`FirstName` AS `FirstName`, `employee`.`MiddleName` AS `MiddleName`, `employee`.`LastName` AS `LastName`, `fcb`.`Dialer` AS `Dialer`, `fcb`.`EmployeeID` AS `EmployeeID`, `fcb`.`BranchID` AS `BranchID`, `fcb`.`Remarks` AS `Remarks` FROM (`fcb` join `employee` on((`fcb`.`EmployeeID` = `employee`.`EmployeeID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6055,7 +6160,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_fcb_summary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_fcb_summary`  AS SELECT `fcb`.`BranchID` AS `BranchID`, `fcb`.`EmployeeID` AS `EmployeeID`, `fcb`.`FTDAmount` AS `FTDAmount`, date_format(`fcb`.`Date`,'%b-%Y') AS `MonthName`, count(`fcb`.`FCBID`) AS `Total` FROM `fcb` GROUP BY `fcb`.`BranchID`, `fcb`.`EmployeeID`, date_format(`fcb`.`Date`,'%b-%Y')  ;
+CREATE OR REPLACE VIEW `v_fcb_summary`  AS SELECT `fcb`.`BranchID` AS `BranchID`, `fcb`.`EmployeeID` AS `EmployeeID`, `fcb`.`FTDAmount` AS `FTDAmount`, date_format(`fcb`.`Date`,'%b-%Y') AS `MonthName`, count(`fcb`.`FCBID`) AS `Total` FROM `fcb` GROUP BY `fcb`.`BranchID`, `fcb`.`EmployeeID`, date_format(`fcb`.`Date`,'%b-%Y')  ;
 
 -- --------------------------------------------------------
 
@@ -6064,7 +6169,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_floor_manager_salary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_floor_manager_salary`  AS SELECT `employee`.`BranchID` AS `BranchID`, `employee`.`EmployeeID` AS `EmployeeID`, `v_closer_salary`.`FTDAmount` AS `FTDAmount`, `v_closer_salary`.`MonthName` AS `MonthName`, `v_closer_salary`.`SupervisorID` AS `SupervisorID`, `v_closer_salary`.`Total` AS `Total`, `employee`.`StaffType` AS `StaffType` FROM (`v_closer_salary` join `employee` on((`employee`.`EmployeeID` = `v_closer_salary`.`SupervisorID`))) WHERE (`employee`.`StaffType` = 'Floor Manager') GROUP BY `employee`.`StaffType`, `employee`.`SupervisorID`, `employee`.`BranchID`, `employee`.`EmployeeID`, `v_closer_salary`.`FTDAmount`, `v_closer_salary`.`MonthName`, `v_closer_salary`.`SupervisorID`, `v_closer_salary`.`Total`  ;
+CREATE OR REPLACE VIEW `v_floor_manager_salary`  AS SELECT `employee`.`BranchID` AS `BranchID`, `employee`.`EmployeeID` AS `EmployeeID`, `v_closer_salary`.`FTDAmount` AS `FTDAmount`, `v_closer_salary`.`MonthName` AS `MonthName`, `v_closer_salary`.`SupervisorID` AS `SupervisorID`, `v_closer_salary`.`Total` AS `Total`, `employee`.`StaffType` AS `StaffType` FROM (`v_closer_salary` join `employee` on((`employee`.`EmployeeID` = `v_closer_salary`.`SupervisorID`))) WHERE (`employee`.`StaffType` = 'Floor Manager') GROUP BY `employee`.`StaffType`, `employee`.`SupervisorID`, `employee`.`BranchID`, `employee`.`EmployeeID`, `v_closer_salary`.`FTDAmount`, `v_closer_salary`.`MonthName`, `v_closer_salary`.`SupervisorID`, `v_closer_salary`.`Total`  ;
 
 -- --------------------------------------------------------
 
@@ -6073,7 +6178,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_income_exp_chart`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_income_exp_chart`  AS SELECT sum(ifnull(`journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `Balance`, date_format(`journal`.`Date`,'%b-%Y') AS `MonthName` FROM `journal` WHERE (`journal`.`ChartOfAccountID` in (110201,110250,110101,110200)) GROUP BY date_format(`journal`.`Date`,'%b-%Y')  ;
+CREATE OR REPLACE VIEW `v_income_exp_chart`  AS SELECT sum(ifnull(`journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `Balance`, date_format(`journal`.`Date`,'%b-%Y') AS `MonthName` FROM `journal` WHERE (`journal`.`ChartOfAccountID` in (110201,110250,110101,110200)) GROUP BY date_format(`journal`.`Date`,'%b-%Y')  ;
 
 -- --------------------------------------------------------
 
@@ -6082,7 +6187,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_inventory`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_inventory`  AS SELECT `invoice_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `item`.`UnitName` AS `UnitName`, sum(if((left(`invoice_detail`.`InvoiceNo`,2) = 'CN'),`invoice_detail`.`Qty`,0)) AS `SaleReturn`, sum(if((left(`invoice_detail`.`InvoiceNo`,3) = 'BIL'),`invoice_detail`.`Qty`,0)) AS `QtyIn`, sum(if((left(`invoice_detail`.`InvoiceNo`,3) = 'TAX'),`invoice_detail`.`Qty`,0)) AS `QtyOut`, (sum((if((left(`invoice_detail`.`InvoiceNo`,3) = 'BIL'),`invoice_detail`.`Qty`,0) + if((left(`invoice_detail`.`InvoiceNo`,2) = 'CN'),`invoice_detail`.`Qty`,0))) - sum(if((left(`invoice_detail`.`InvoiceNo`,3) = 'TAX'),`invoice_detail`.`Qty`,0))) AS `Balance` FROM (`invoice_detail` join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) GROUP BY `invoice_detail`.`ItemID`, `item`.`ItemName`, `item`.`UnitName`  ;
+CREATE OR REPLACE VIEW `v_inventory`  AS SELECT `invoice_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `item`.`UnitName` AS `UnitName`, sum(if((left(`invoice_detail`.`InvoiceNo`,2) = 'CN'),`invoice_detail`.`Qty`,0)) AS `SaleReturn`, sum(if((left(`invoice_detail`.`InvoiceNo`,3) = 'BIL'),`invoice_detail`.`Qty`,0)) AS `QtyIn`, sum(if((left(`invoice_detail`.`InvoiceNo`,3) = 'TAX'),`invoice_detail`.`Qty`,0)) AS `QtyOut`, (sum((if((left(`invoice_detail`.`InvoiceNo`,3) = 'BIL'),`invoice_detail`.`Qty`,0) + if((left(`invoice_detail`.`InvoiceNo`,2) = 'CN'),`invoice_detail`.`Qty`,0))) - sum(if((left(`invoice_detail`.`InvoiceNo`,3) = 'TAX'),`invoice_detail`.`Qty`,0))) AS `Balance` FROM (`invoice_detail` join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) GROUP BY `invoice_detail`.`ItemID`, `item`.`ItemName`, `item`.`UnitName`  ;
 
 -- --------------------------------------------------------
 
@@ -6091,7 +6196,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_inventory_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_inventory_detail`  AS SELECT `invoice_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `item`.`UnitName` AS `UnitName`, if((left(`invoice_detail`.`InvoiceNo`,2) = 'CN'),`invoice_detail`.`Qty`,0) AS `SaleReturn`, if((left(`invoice_detail`.`InvoiceNo`,3) = 'BIL'),`invoice_detail`.`Qty`,0) AS `QtyIn`, if((left(`invoice_detail`.`InvoiceNo`,3) = 'TAX'),`invoice_detail`.`Qty`,0) AS `QtyOut`, `invoice_master`.`Date` AS `Date`, `invoice_detail`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID` FROM ((`invoice_detail` join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`)))  ;
+CREATE OR REPLACE VIEW `v_inventory_detail`  AS SELECT `invoice_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `item`.`UnitName` AS `UnitName`, if((left(`invoice_detail`.`InvoiceNo`,2) = 'CN'),`invoice_detail`.`Qty`,0) AS `SaleReturn`, if((left(`invoice_detail`.`InvoiceNo`,3) = 'BIL'),`invoice_detail`.`Qty`,0) AS `QtyIn`, if((left(`invoice_detail`.`InvoiceNo`,3) = 'TAX'),`invoice_detail`.`Qty`,0) AS `QtyOut`, `invoice_master`.`Date` AS `Date`, `invoice_detail`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID` FROM ((`invoice_detail` join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6100,7 +6205,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_invoice_bal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invoice_bal`  AS SELECT `journal`.`PartyID` AS `PartyID`, `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(ifnull(`journal`.`Dr`,0)) AS `INVOICE`, sum(ifnull(`journal`.`Cr`,0)) AS `PAID`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `due` FROM `journal` WHERE (`journal`.`ChartOfAccountID` = 110400) GROUP BY `journal`.`PartyID`, `journal`.`InvoiceMasterID`  ;
+CREATE OR REPLACE VIEW `v_invoice_bal`  AS SELECT `journal`.`PartyID` AS `PartyID`, `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(ifnull(`journal`.`Dr`,0)) AS `INVOICE`, sum(ifnull(`journal`.`Cr`,0)) AS `PAID`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `due` FROM `journal` WHERE (`journal`.`ChartOfAccountID` = 110400) GROUP BY `journal`.`PartyID`, `journal`.`InvoiceMasterID`  ;
 
 -- --------------------------------------------------------
 
@@ -6109,7 +6214,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_invoice_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invoice_balance`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `v_invoice_bal`.`PartyID` AS `PartyID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `v_invoice_bal`.`INVOICE` AS `INVOICE`, `v_invoice_bal`.`PAID` AS `PAID`, `v_invoice_bal`.`due` AS `BALANCE`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`DueDate` AS `DueDate`, `invoice_master`.`ReferenceNo` AS `ReferenceNo` FROM (`invoice_master` join `v_invoice_bal` on((`invoice_master`.`InvoiceMasterID` = `v_invoice_bal`.`InvoiceMasterID`)))  ;
+CREATE OR REPLACE VIEW `v_invoice_balance`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `v_invoice_bal`.`PartyID` AS `PartyID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `v_invoice_bal`.`INVOICE` AS `INVOICE`, `v_invoice_bal`.`PAID` AS `PAID`, `v_invoice_bal`.`due` AS `BALANCE`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`DueDate` AS `DueDate`, `invoice_master`.`ReferenceNo` AS `ReferenceNo` FROM (`invoice_master` join `v_invoice_bal` on((`invoice_master`.`InvoiceMasterID` = `v_invoice_bal`.`InvoiceMasterID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6118,7 +6223,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_invoice_both`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invoice_both`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`Paid` AS `Paid`, (`invoice_master`.`GrandTotal` - `invoice_master`.`Paid`) AS `Balance`, `invoice_master`.`DueDate` AS `DueDate`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`TaxPer` AS `TaxPer`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `party`.`Mobile` AS `Mobile`, `party`.`TRN` AS `TRN`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `user`.`FullName` AS `FullName`, `supplier`.`SupplierName` AS `SupplierName` FROM (((`invoice_master` left join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) left join `user` on((`invoice_master`.`UserID` = `user`.`UserID`))) left join `supplier` on((`invoice_master`.`SupplierID` = `supplier`.`SupplierID`))) ORDER BY `invoice_master`.`InvoiceMasterID` ASC  ;
+CREATE OR REPLACE VIEW `v_invoice_both`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`Paid` AS `Paid`, (`invoice_master`.`GrandTotal` - `invoice_master`.`Paid`) AS `Balance`, `invoice_master`.`DueDate` AS `DueDate`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`TaxPer` AS `TaxPer`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `party`.`Mobile` AS `Mobile`, `party`.`TRN` AS `TRN`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `user`.`FullName` AS `FullName`, `supplier`.`SupplierName` AS `SupplierName` FROM (((`invoice_master` left join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) left join `user` on((`invoice_master`.`UserID` = `user`.`UserID`))) left join `supplier` on((`invoice_master`.`SupplierID` = `supplier`.`SupplierID`))) ORDER BY `invoice_master`.`InvoiceMasterID` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -6127,7 +6232,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_invoice_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invoice_detail`  AS SELECT `invoice_detail`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, `invoice_detail`.`InvoiceDetailID` AS `InvoiceDetailID`, `invoice_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`SupplierID` AS `SupplierID`, `invoice_detail`.`PartyID` AS `PartyID`, `invoice_detail`.`Qty` AS `Qty`, `invoice_detail`.`Rate` AS `Rate`, `invoice_detail`.`Total` AS `Total`, `item`.`ItemCode` AS `ItemCode`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`Description` AS `Description`, `invoice_detail`.`TaxPer` AS `TaxPer`, `invoice_detail`.`Tax` AS `Tax`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_detail`.`Discount` AS `Discount`, `invoice_detail`.`DiscountType` AS `DiscountType`, `invoice_detail`.`DiscountAmountItem` AS `DiscountAmountItem`, `invoice_detail`.`Gross` AS `Gross`, `party`.`PartyName` AS `PartyName` FROM (((`invoice_detail` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`))) join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) left join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_invoice_detail`  AS SELECT `invoice_detail`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, `invoice_detail`.`InvoiceDetailID` AS `InvoiceDetailID`, `invoice_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`SupplierID` AS `SupplierID`, `invoice_detail`.`PartyID` AS `PartyID`, `invoice_detail`.`Qty` AS `Qty`, `invoice_detail`.`Rate` AS `Rate`, `invoice_detail`.`Total` AS `Total`, `item`.`ItemCode` AS `ItemCode`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`Description` AS `Description`, `invoice_detail`.`TaxPer` AS `TaxPer`, `invoice_detail`.`Tax` AS `Tax`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_detail`.`Discount` AS `Discount`, `invoice_detail`.`DiscountType` AS `DiscountType`, `invoice_detail`.`DiscountAmountItem` AS `DiscountAmountItem`, `invoice_detail`.`Gross` AS `Gross`, `party`.`PartyName` AS `PartyName` FROM (((`invoice_detail` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`))) join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) left join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6136,7 +6241,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_invoice_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invoice_master`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`Paid` AS `Paid`, (`invoice_master`.`GrandTotal` - `invoice_master`.`Paid`) AS `Balance`, `invoice_master`.`DueDate` AS `DueDate`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`TaxPer` AS `TaxPer`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `party`.`Mobile` AS `Mobile`, `party`.`TRN` AS `TRN`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `user`.`FullName` AS `FullName`, `invoice_master`.`TaxType` AS `TaxType` FROM ((`invoice_master` join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) left join `user` on((`invoice_master`.`UserID` = `user`.`UserID`))) ORDER BY `invoice_master`.`InvoiceMasterID` ASC  ;
+CREATE OR REPLACE VIEW `v_invoice_master`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`Paid` AS `Paid`, (`invoice_master`.`GrandTotal` - `invoice_master`.`Paid`) AS `Balance`, `invoice_master`.`DueDate` AS `DueDate`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`TaxPer` AS `TaxPer`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `party`.`Mobile` AS `Mobile`, `party`.`TRN` AS `TRN`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `user`.`FullName` AS `FullName`, `invoice_master`.`TaxType` AS `TaxType` FROM ((`invoice_master` join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) left join `user` on((`invoice_master`.`UserID` = `user`.`UserID`))) ORDER BY `invoice_master`.`InvoiceMasterID` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -6145,7 +6250,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_invoice_master_supplier`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invoice_master_supplier`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`DueDate` AS `DueDate`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`Address` AS `Address`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Active` AS `Active`, `supplier`.`InvoiceDueDays` AS `InvoiceDueDays`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`TaxPer` AS `TaxPer`, `supplier`.`TRN` AS `TRN`, `v_bill_balance`.`Remaining` AS `Remaining`, `v_bill_balance`.`Payment` AS `Payment`, `v_bill_balance`.`Remaining` AS `Paid`, `v_bill_balance`.`Payment` AS `Balance` FROM ((`invoice_master` join `supplier` on((`invoice_master`.`SupplierID` = `supplier`.`SupplierID`))) left join `v_bill_balance` on((`invoice_master`.`InvoiceMasterID` = `v_bill_balance`.`InvoiceMasterID`))) ORDER BY `invoice_master`.`InvoiceMasterID` ASC  ;
+CREATE OR REPLACE VIEW `v_invoice_master_supplier`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`DueDate` AS `DueDate`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`Address` AS `Address`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Active` AS `Active`, `supplier`.`InvoiceDueDays` AS `InvoiceDueDays`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`TaxPer` AS `TaxPer`, `supplier`.`TRN` AS `TRN`, `v_bill_balance`.`Remaining` AS `Remaining`, `v_bill_balance`.`Payment` AS `Payment`, `v_bill_balance`.`Remaining` AS `Paid`, `v_bill_balance`.`Payment` AS `Balance` FROM ((`invoice_master` join `supplier` on((`invoice_master`.`SupplierID` = `supplier`.`SupplierID`))) left join `v_bill_balance` on((`invoice_master`.`InvoiceMasterID` = `v_bill_balance`.`InvoiceMasterID`))) ORDER BY `invoice_master`.`InvoiceMasterID` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -6154,7 +6259,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_invoice_party_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invoice_party_balance`  AS SELECT `v_invoice_balance`.`PartyID` AS `PartyID`, sum(`v_invoice_balance`.`BALANCE`) AS `BALANCE` FROM `v_invoice_balance` GROUP BY `v_invoice_balance`.`PartyID`  ;
+CREATE OR REPLACE VIEW `v_invoice_party_balance`  AS SELECT `v_invoice_balance`.`PartyID` AS `PartyID`, sum(`v_invoice_balance`.`BALANCE`) AS `BALANCE` FROM `v_invoice_balance` GROUP BY `v_invoice_balance`.`PartyID`  ;
 
 -- --------------------------------------------------------
 
@@ -6163,7 +6268,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_inv_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_inv_balance`  AS SELECT `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(`journal`.`Dr`) AS `Balance` FROM `journal` WHERE (left(`journal`.`VHNO`,3) = 'PAY') GROUP BY `journal`.`InvoiceMasterID`  ;
+CREATE OR REPLACE VIEW `v_inv_balance`  AS SELECT `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(`journal`.`Dr`) AS `Balance` FROM `journal` WHERE (left(`journal`.`VHNO`,3) = 'PAY') GROUP BY `journal`.`InvoiceMasterID`  ;
 
 -- --------------------------------------------------------
 
@@ -6172,7 +6277,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_inv_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_inv_detail`  AS SELECT `invoice_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_detail`.`InvoiceNo` AS `InvoiceNo`, `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`SupplierID` AS `SupplierID`, `invoice_detail`.`Qty` AS `Qty`, `invoice_detail`.`Rate` AS `Rate`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`Gross` AS `Gross`, `invoice_detail`.`Total` AS `Total` FROM (`invoice_detail` join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`)))  ;
+CREATE OR REPLACE VIEW `v_inv_detail`  AS SELECT `invoice_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_detail`.`InvoiceNo` AS `InvoiceNo`, `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`SupplierID` AS `SupplierID`, `invoice_detail`.`Qty` AS `Qty`, `invoice_detail`.`Rate` AS `Rate`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`Gross` AS `Gross`, `invoice_detail`.`Total` AS `Total` FROM (`invoice_detail` join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6181,7 +6286,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_itemwise_sale`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_itemwise_sale`  AS SELECT `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`PartyID` AS `PartyID`, sum(`invoice_detail`.`Qty`) AS `Qty`, `invoice_detail`.`Rate` AS `Rate`, sum(`invoice_detail`.`Total`) AS `Total`, `item`.`ItemCode` AS `ItemCode`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`Discount` AS `Discount`, `invoice_detail`.`DiscountType` AS `DiscountType`, sum(`invoice_detail`.`DiscountAmountItem`) AS `DiscountAmountItem`, sum(`invoice_detail`.`Gross`) AS `Gross`, `party`.`PartyName` AS `PartyName`, `party`.`City` AS `City`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`InvoiceNo` AS `InvoiceNo` FROM (((`invoice_detail` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`))) join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) left join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) GROUP BY `invoice_detail`.`ItemID`, `invoice_detail`.`PartyID`, `invoice_detail`.`Rate`, `item`.`ItemCode`, `item`.`ItemName`, `invoice_detail`.`Discount`, `invoice_detail`.`DiscountType`, `party`.`PartyName`, `party`.`City`, `invoice_master`.`Date`, `invoice_master`.`InvoiceNo`  ;
+CREATE OR REPLACE VIEW `v_itemwise_sale`  AS SELECT `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`PartyID` AS `PartyID`, sum(`invoice_detail`.`Qty`) AS `Qty`, `invoice_detail`.`Rate` AS `Rate`, sum(`invoice_detail`.`Total`) AS `Total`, `item`.`ItemCode` AS `ItemCode`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`Discount` AS `Discount`, `invoice_detail`.`DiscountType` AS `DiscountType`, sum(`invoice_detail`.`DiscountAmountItem`) AS `DiscountAmountItem`, sum(`invoice_detail`.`Gross`) AS `Gross`, `party`.`PartyName` AS `PartyName`, `party`.`City` AS `City`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`InvoiceNo` AS `InvoiceNo` FROM (((`invoice_detail` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`))) join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`))) left join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) GROUP BY `invoice_detail`.`ItemID`, `invoice_detail`.`PartyID`, `invoice_detail`.`Rate`, `item`.`ItemCode`, `item`.`ItemName`, `invoice_detail`.`Discount`, `invoice_detail`.`DiscountType`, `party`.`PartyName`, `party`.`City`, `invoice_master`.`Date`, `invoice_master`.`InvoiceNo`  ;
 
 -- --------------------------------------------------------
 
@@ -6190,7 +6295,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_journal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_journal`  AS SELECT `journal`.`VHNO` AS `VHNO`, `journal`.`JournalType` AS `JournalType`, `journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `journal`.`SupplierID` AS `SupplierID`, `journal`.`VoucherMstID` AS `VoucherMstID`, `journal`.`PettyMstID` AS `PettyMstID`, `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, `journal`.`Date` AS `Date`, `journal`.`Dr` AS `Dr`, `journal`.`Cr` AS `Cr`, `journal`.`PartyID` AS `PartyID`, `journal`.`Narration` AS `Narration`, `chartofaccount`.`L1` AS `L1`, `chartofaccount`.`L2` AS `L2`, `chartofaccount`.`L3` AS `L3`, `chartofaccount`.`CODE` AS `CODE`, `journal`.`Trace` AS `Trace`, `journal`.`BankReconcile` AS `BankReconcile`, `journal`.`ReconcileDate` AS `ReconcileDate`, `journal`.`JournalID` AS `JournalID`, `chartofaccount`.`Category` AS `Category`, `journal`.`ExpenseMasterID` AS `ExpenseMasterID`, `journal`.`PaymentMasterID` AS `PaymentMasterID`, `journal`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID` FROM (`chartofaccount` join `journal` on((`chartofaccount`.`ChartOfAccountID` = `journal`.`ChartOfAccountID`))) ORDER BY `journal`.`JournalID` ASC  ;
+CREATE OR REPLACE VIEW `v_journal`  AS SELECT `journal`.`VHNO` AS `VHNO`, `journal`.`JournalType` AS `JournalType`, `journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `journal`.`SupplierID` AS `SupplierID`, `journal`.`VoucherMstID` AS `VoucherMstID`, `journal`.`PettyMstID` AS `PettyMstID`, `journal`.`InvoiceMasterID` AS `InvoiceMasterID`, `journal`.`Date` AS `Date`, `journal`.`Dr` AS `Dr`, `journal`.`Cr` AS `Cr`, `journal`.`PartyID` AS `PartyID`, `journal`.`Narration` AS `Narration`, `chartofaccount`.`L1` AS `L1`, `chartofaccount`.`L2` AS `L2`, `chartofaccount`.`L3` AS `L3`, `chartofaccount`.`CODE` AS `CODE`, `journal`.`Trace` AS `Trace`, `journal`.`BankReconcile` AS `BankReconcile`, `journal`.`ReconcileDate` AS `ReconcileDate`, `journal`.`JournalID` AS `JournalID`, `chartofaccount`.`Category` AS `Category`, `journal`.`ExpenseMasterID` AS `ExpenseMasterID`, `journal`.`PaymentMasterID` AS `PaymentMasterID`, `journal`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID` FROM (`chartofaccount` join `journal` on((`chartofaccount`.`ChartOfAccountID` = `journal`.`ChartOfAccountID`))) ORDER BY `journal`.`JournalID` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -6199,7 +6304,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_journal_report`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_journal_report`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, 'INVOICE' AS `INVOICE` FROM `invoice_master`  ;
+CREATE OR REPLACE VIEW `v_journal_report`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, 'INVOICE' AS `INVOICE` FROM `invoice_master`  ;
 
 -- --------------------------------------------------------
 
@@ -6208,7 +6313,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_leave`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_leave`  AS SELECT `leave`.`LeaveID` AS `LeaveID`, `branch`.`BranchName` AS `BranchName`, `leave`.`EmployeeID` AS `EmployeeID`, `v_employee`.`FirstName` AS `FirstName`, `v_employee`.`MiddleName` AS `MiddleName`, `v_employee`.`LastName` AS `LastName`, `v_employee`.`JobTitleName` AS `JobTitleName`, `v_employee`.`DepartmentName` AS `DepartmentName`, `leave`.`FromDate` AS `FromDate`, `leave`.`ToDate` AS `ToDate`, (to_days(`leave`.`ToDate`) - to_days(`leave`.`FromDate`)) AS `NoOfDays`, `leave`.`Reason` AS `Reason`, `leave`.`DaysApproved` AS `DaysApproved`, `leave`.`DaysRemaining` AS `DaysRemaining`, `leave`.`OMStatus` AS `OMStatus`, `leave`.`HRStatus` AS `HRStatus`, `leave`.`GMStatus` AS `GMStatus`, `leave`.`BranchID` AS `BranchID`, `leave`.`LeaveTypeID` AS `LeaveTypeID`, `leave_type`.`LeaveTypeName` AS `LeaveTypeName`, `leave_type`.`DaysAllowed` AS `DaysAllowed`, `leave`.`FromTime` AS `FromTime`, `leave`.`ToTime` AS `ToTime` FROM (((`leave` join `branch` on((`leave`.`BranchID` = `branch`.`BranchID`))) join `v_employee` on((`leave`.`EmployeeID` = `v_employee`.`EmployeeID`))) join `leave_type` on((`leave`.`LeaveTypeID` = `leave_type`.`LeaveTypeID`)))  ;
+CREATE OR REPLACE VIEW `v_leave`  AS SELECT `leave`.`LeaveID` AS `LeaveID`, `branch`.`BranchName` AS `BranchName`, `leave`.`EmployeeID` AS `EmployeeID`, `v_employee`.`FirstName` AS `FirstName`, `v_employee`.`MiddleName` AS `MiddleName`, `v_employee`.`LastName` AS `LastName`, `v_employee`.`JobTitleName` AS `JobTitleName`, `v_employee`.`DepartmentName` AS `DepartmentName`, `leave`.`FromDate` AS `FromDate`, `leave`.`ToDate` AS `ToDate`, (to_days(`leave`.`ToDate`) - to_days(`leave`.`FromDate`)) AS `NoOfDays`, `leave`.`Reason` AS `Reason`, `leave`.`DaysApproved` AS `DaysApproved`, `leave`.`DaysRemaining` AS `DaysRemaining`, `leave`.`OMStatus` AS `OMStatus`, `leave`.`HRStatus` AS `HRStatus`, `leave`.`GMStatus` AS `GMStatus`, `leave`.`BranchID` AS `BranchID`, `leave`.`LeaveTypeID` AS `LeaveTypeID`, `leave_type`.`LeaveTypeName` AS `LeaveTypeName`, `leave_type`.`DaysAllowed` AS `DaysAllowed`, `leave`.`FromTime` AS `FromTime`, `leave`.`ToTime` AS `ToTime` FROM (((`leave` join `branch` on((`leave`.`BranchID` = `branch`.`BranchID`))) join `v_employee` on((`leave`.`EmployeeID` = `v_employee`.`EmployeeID`))) join `leave_type` on((`leave`.`LeaveTypeID` = `leave_type`.`LeaveTypeID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6217,7 +6322,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_leave_summary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_leave_summary`  AS SELECT `leave_detail`.`EmployeeID` AS `EmployeeID`, `leave_detail`.`LeaveTypeID` AS `LeaveTypeID`, sum(if((`leave_detail`.`LeaveTypeID` <> 2),1,0.5)) AS `Total`, date_format(`leave_detail`.`Date`,'%M-%Y') AS `MonthName`, `leave_type`.`LeaveTypeName` AS `LeaveTypeName` FROM (`leave_detail` join `leave_type` on((`leave_detail`.`LeaveTypeID` = `leave_type`.`LeaveTypeID`))) GROUP BY `leave_detail`.`EmployeeID`, `leave_detail`.`LeaveTypeID`, date_format(`leave_detail`.`Date`,'%M-%Y'), `leave_type`.`LeaveTypeName`  ;
+CREATE OR REPLACE VIEW `v_leave_summary`  AS SELECT `leave_detail`.`EmployeeID` AS `EmployeeID`, `leave_detail`.`LeaveTypeID` AS `LeaveTypeID`, sum(if((`leave_detail`.`LeaveTypeID` <> 2),1,0.5)) AS `Total`, date_format(`leave_detail`.`Date`,'%M-%Y') AS `MonthName`, `leave_type`.`LeaveTypeName` AS `LeaveTypeName` FROM (`leave_detail` join `leave_type` on((`leave_detail`.`LeaveTypeID` = `leave_type`.`LeaveTypeID`))) GROUP BY `leave_detail`.`EmployeeID`, `leave_detail`.`LeaveTypeID`, date_format(`leave_detail`.`Date`,'%M-%Y'), `leave_type`.`LeaveTypeName`  ;
 
 -- --------------------------------------------------------
 
@@ -6226,7 +6331,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_partywise_sale`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_partywise_sale`  AS SELECT `invoice_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`DueDate` AS `DueDate`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `invoice_master`.`TaxPer` AS `TaxPer`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `invoice_master`.`Paid` AS `Paid`, `invoice_master`.`Balance` AS `Balance` FROM (`invoice_master` join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_partywise_sale`  AS SELECT `invoice_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`InvoiceType` AS `InvoiceType`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`DueDate` AS `DueDate`, `invoice_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `invoice_master`.`SupplierID` AS `SupplierID`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_master`.`UserID` AS `UserID`, `invoice_master`.`PaymentMode` AS `PaymentMode`, `invoice_master`.`PaymentDetails` AS `PaymentDetails`, `invoice_master`.`Subject` AS `Subject`, `invoice_master`.`DescriptionNotes` AS `DescriptionNotes`, `invoice_master`.`CustomerNotes` AS `CustomerNotes`, `invoice_master`.`SubTotal` AS `SubTotal`, `invoice_master`.`DiscountPer` AS `DiscountPer`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`DiscountAmount` AS `DiscountAmount`, `invoice_master`.`TaxPer` AS `TaxPer`, `invoice_master`.`Tax` AS `Tax`, `invoice_master`.`Shipping` AS `Shipping`, `invoice_master`.`GrandTotal` AS `GrandTotal`, `invoice_master`.`Paid` AS `Paid`, `invoice_master`.`Balance` AS `Balance` FROM (`invoice_master` join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6235,7 +6340,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_party_aging`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_party_aging`  AS SELECT `invoice_master`.`PartyID` AS `PartyID`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 1 and 7),`invoice_master`.`GrandTotal`,0)) AS `age7Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 8 and 16),`invoice_master`.`GrandTotal`,0)) AS `age15Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 17 and 30),`invoice_master`.`GrandTotal`,0)) AS `age30Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 31 and 60),`invoice_master`.`GrandTotal`,0)) AS `age60Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 61 and 90),`invoice_master`.`GrandTotal`,0)) AS `age90Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) > 90),`invoice_master`.`GrandTotal`,0)) AS `age90plusDays`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) > 0),`invoice_master`.`GrandTotal`,0)) AS `Total`, `party`.`PartyName` AS `PartyName` FROM (`invoice_master` join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) WHERE (`invoice_master`.`Paid` = 0) GROUP BY `invoice_master`.`PartyID`, `party`.`PartyName`  ;
+CREATE OR REPLACE VIEW `v_party_aging`  AS SELECT `invoice_master`.`PartyID` AS `PartyID`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 1 and 7),`invoice_master`.`GrandTotal`,0)) AS `age7Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 8 and 16),`invoice_master`.`GrandTotal`,0)) AS `age15Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 17 and 30),`invoice_master`.`GrandTotal`,0)) AS `age30Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 31 and 60),`invoice_master`.`GrandTotal`,0)) AS `age60Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) between 61 and 90),`invoice_master`.`GrandTotal`,0)) AS `age90Days`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) > 90),`invoice_master`.`GrandTotal`,0)) AS `age90plusDays`, sum(if(((to_days(curdate()) - to_days(`invoice_master`.`Date`)) > 0),`invoice_master`.`GrandTotal`,0)) AS `Total`, `party`.`PartyName` AS `PartyName` FROM (`invoice_master` join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`))) WHERE (`invoice_master`.`Paid` = 0) GROUP BY `invoice_master`.`PartyID`, `party`.`PartyName`  ;
 
 -- --------------------------------------------------------
 
@@ -6244,7 +6349,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_party_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_party_balance`  AS SELECT `v_journal`.`VHNO` AS `VHNO`, `v_journal`.`JournalType` AS `JournalType`, `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, `v_journal`.`SupplierID` AS `SupplierID`, `v_journal`.`VoucherMstID` AS `VoucherMstID`, `v_journal`.`PettyMstID` AS `PettyMstID`, `v_journal`.`InvoiceMasterID` AS `InvoiceMasterID`, `v_journal`.`Date` AS `Date`, `v_journal`.`Dr` AS `Dr`, `v_journal`.`Cr` AS `Cr`, `v_journal`.`PartyID` AS `PartyID`, `v_journal`.`Narration` AS `Narration`, `party`.`PartyName` AS `PartyName` FROM (`v_journal` join `party` on((`v_journal`.`PartyID` = `party`.`PartyID`))) WHERE (`v_journal`.`ChartOfAccountID` = 110400)  ;
+CREATE OR REPLACE VIEW `v_party_balance`  AS SELECT `v_journal`.`VHNO` AS `VHNO`, `v_journal`.`JournalType` AS `JournalType`, `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, `v_journal`.`SupplierID` AS `SupplierID`, `v_journal`.`VoucherMstID` AS `VoucherMstID`, `v_journal`.`PettyMstID` AS `PettyMstID`, `v_journal`.`InvoiceMasterID` AS `InvoiceMasterID`, `v_journal`.`Date` AS `Date`, `v_journal`.`Dr` AS `Dr`, `v_journal`.`Cr` AS `Cr`, `v_journal`.`PartyID` AS `PartyID`, `v_journal`.`Narration` AS `Narration`, `party`.`PartyName` AS `PartyName` FROM (`v_journal` join `party` on((`v_journal`.`PartyID` = `party`.`PartyID`))) WHERE (`v_journal`.`ChartOfAccountID` = 110400)  ;
 
 -- --------------------------------------------------------
 
@@ -6253,7 +6358,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_party_montly_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_party_montly_balance`  AS SELECT date_format(`journal`.`Date`,'%b-%Y') AS `Date`, sum(ifnull(`journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `Balance`, `journal`.`PartyID` AS `PartyID` FROM `journal` WHERE ((`journal`.`ChartOfAccountID` = 110400) AND (`journal`.`PartyID` is not null)) GROUP BY `journal`.`PartyID`, date_format(`journal`.`Date`,'%b-%Y')  ;
+CREATE OR REPLACE VIEW `v_party_montly_balance`  AS SELECT date_format(`journal`.`Date`,'%b-%Y') AS `Date`, sum(ifnull(`journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`journal`.`Dr`,0)) - sum(ifnull(`journal`.`Cr`,0))) AS `Balance`, `journal`.`PartyID` AS `PartyID` FROM `journal` WHERE ((`journal`.`ChartOfAccountID` = 110400) AND (`journal`.`PartyID` is not null)) GROUP BY `journal`.`PartyID`, date_format(`journal`.`Date`,'%b-%Y')  ;
 
 -- --------------------------------------------------------
 
@@ -6262,7 +6367,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_passportexpiry`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_passportexpiry`  AS SELECT count(`v_alerts`.`PassportExpiry`) AS `Total`, `v_alerts`.`BranchID` AS `BranchID` FROM `v_alerts` WHERE (`v_alerts`.`PassportExpiry` <= 30) GROUP BY `v_alerts`.`BranchID`  ;
+CREATE OR REPLACE VIEW `v_passportexpiry`  AS SELECT count(`v_alerts`.`PassportExpiry`) AS `Total`, `v_alerts`.`BranchID` AS `BranchID` FROM `v_alerts` WHERE (`v_alerts`.`PassportExpiry` <= 30) GROUP BY `v_alerts`.`BranchID`  ;
 
 -- --------------------------------------------------------
 
@@ -6271,7 +6376,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_passport_expiry_list`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_passport_expiry_list`  AS SELECT `v_employee`.`FirstName` AS `FirstName`, `v_employee`.`MiddleName` AS `MiddleName`, `v_employee`.`LastName` AS `LastName`, `v_employee`.`DepartmentName` AS `DepartmentName`, `v_employee`.`BranchName` AS `BranchName`, `v_employee`.`EmployeeID` AS `EmployeeID`, `v_employee`.`Picture` AS `Picture`, `v_employee`.`Email` AS `Email`, `v_employee`.`MobileNo` AS `MobileNo`, `v_employee`.`BranchID` AS `BranchID`, `v_employee`.`IsSupervisor` AS `IsSupervisor`, `v_employee`.`DateOfBirth` AS `DateOfBirth`, `v_employee`.`VisaIssueDate` AS `VisaIssueDate`, `v_employee`.`VisaExpiryDate` AS `VisaExpiryDate`, `v_employee`.`PassportNo` AS `PassportNo`, `v_employee`.`PassportExpiry` AS `PassportExpiry`, `v_employee`.`EidNo` AS `EidNo`, `v_employee`.`EidExpiry` AS `EidExpiry`, `v_employee`.`FullAddress` AS `FullAddress`, `v_employee`.`HomePhone` AS `HomePhone`, `v_employee`.`Gender` AS `Gender`, `v_employee`.`SSNorGID` AS `SSNorGID`, `v_employee`.`MaritalStatus` AS `MaritalStatus`, `v_employee`.`SpouseName` AS `SpouseName`, `v_employee`.`SpouseEmployer` AS `SpouseEmployer`, `v_employee`.`SpouseWorkPhone` AS `SpouseWorkPhone`, `v_employee`.`JobTitleID` AS `JobTitleID`, `v_employee`.`DepartmentID` AS `DepartmentID`, `v_employee`.`SupervisorID` AS `SupervisorID`, `v_employee`.`WorkLocation` AS `WorkLocation`, `v_employee`.`EmailOffical` AS `EmailOffical`, `v_employee`.`WorkPhone` AS `WorkPhone`, `v_employee`.`StartDate` AS `StartDate`, `v_employee`.`Salary` AS `Salary`, `v_employee`.`NextofKinName` AS `NextofKinName`, `v_employee`.`NextofKinAddress` AS `NextofKinAddress`, `v_employee`.`NextofKinPhone` AS `NextofKinPhone`, `v_employee`.`NextofKinRelationship` AS `NextofKinRelationship`, `v_employee`.`EducationLevel` AS `EducationLevel`, `v_employee`.`LastDegree` AS `LastDegree`, `v_employee`.`eDate` AS `eDate`, `v_employee`.`uDate` AS `uDate`, `v_employee`.`Title` AS `Title`, `v_employee`.`ExtraComission` AS `ExtraComission`, `v_employee`.`SalaryRemarks` AS `SalaryRemarks`, `v_employee`.`StaffType` AS `StaffType`, `v_employee`.`Nationality` AS `Nationality`, `v_employee`.`JobTitleName` AS `JobTitleName` FROM `v_employee` WHERE (timestampdiff(DAY,sysdate(),`v_employee`.`PassportExpiry`) <= 3030)  ;
+CREATE OR REPLACE VIEW `v_passport_expiry_list`  AS SELECT `v_employee`.`FirstName` AS `FirstName`, `v_employee`.`MiddleName` AS `MiddleName`, `v_employee`.`LastName` AS `LastName`, `v_employee`.`DepartmentName` AS `DepartmentName`, `v_employee`.`BranchName` AS `BranchName`, `v_employee`.`EmployeeID` AS `EmployeeID`, `v_employee`.`Picture` AS `Picture`, `v_employee`.`Email` AS `Email`, `v_employee`.`MobileNo` AS `MobileNo`, `v_employee`.`BranchID` AS `BranchID`, `v_employee`.`IsSupervisor` AS `IsSupervisor`, `v_employee`.`DateOfBirth` AS `DateOfBirth`, `v_employee`.`VisaIssueDate` AS `VisaIssueDate`, `v_employee`.`VisaExpiryDate` AS `VisaExpiryDate`, `v_employee`.`PassportNo` AS `PassportNo`, `v_employee`.`PassportExpiry` AS `PassportExpiry`, `v_employee`.`EidNo` AS `EidNo`, `v_employee`.`EidExpiry` AS `EidExpiry`, `v_employee`.`FullAddress` AS `FullAddress`, `v_employee`.`HomePhone` AS `HomePhone`, `v_employee`.`Gender` AS `Gender`, `v_employee`.`SSNorGID` AS `SSNorGID`, `v_employee`.`MaritalStatus` AS `MaritalStatus`, `v_employee`.`SpouseName` AS `SpouseName`, `v_employee`.`SpouseEmployer` AS `SpouseEmployer`, `v_employee`.`SpouseWorkPhone` AS `SpouseWorkPhone`, `v_employee`.`JobTitleID` AS `JobTitleID`, `v_employee`.`DepartmentID` AS `DepartmentID`, `v_employee`.`SupervisorID` AS `SupervisorID`, `v_employee`.`WorkLocation` AS `WorkLocation`, `v_employee`.`EmailOffical` AS `EmailOffical`, `v_employee`.`WorkPhone` AS `WorkPhone`, `v_employee`.`StartDate` AS `StartDate`, `v_employee`.`Salary` AS `Salary`, `v_employee`.`NextofKinName` AS `NextofKinName`, `v_employee`.`NextofKinAddress` AS `NextofKinAddress`, `v_employee`.`NextofKinPhone` AS `NextofKinPhone`, `v_employee`.`NextofKinRelationship` AS `NextofKinRelationship`, `v_employee`.`EducationLevel` AS `EducationLevel`, `v_employee`.`LastDegree` AS `LastDegree`, `v_employee`.`eDate` AS `eDate`, `v_employee`.`uDate` AS `uDate`, `v_employee`.`Title` AS `Title`, `v_employee`.`ExtraComission` AS `ExtraComission`, `v_employee`.`SalaryRemarks` AS `SalaryRemarks`, `v_employee`.`StaffType` AS `StaffType`, `v_employee`.`Nationality` AS `Nationality`, `v_employee`.`JobTitleName` AS `JobTitleName` FROM `v_employee` WHERE (timestampdiff(DAY,sysdate(),`v_employee`.`PassportExpiry`) <= 3030)  ;
 
 -- --------------------------------------------------------
 
@@ -6280,7 +6385,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_payment`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_payment`  AS SELECT `payment_master`.`PaymentMasterID` AS `PaymentMasterID`, `payment_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `payment_master`.`PaymentDate` AS `PaymentDate`, `payment_master`.`PaymentAmount` AS `PaymentAmount`, `payment_master`.`PaymentMode` AS `PaymentMode`, `payment_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `payment_master`.`ReferenceNo` AS `ReferenceNo`, `payment_master`.`File` AS `File`, `payment_master`.`Notes` AS `Notes`, `payment_master`.`eDate` AS `eDate`, `party`.`TRN` AS `TRN`, `party`.`Address` AS `Address`, `party`.`Mobile` AS `Mobile`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays` FROM (`payment_master` join `party` on((`payment_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_payment`  AS SELECT `payment_master`.`PaymentMasterID` AS `PaymentMasterID`, `payment_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `payment_master`.`PaymentDate` AS `PaymentDate`, `payment_master`.`PaymentAmount` AS `PaymentAmount`, `payment_master`.`PaymentMode` AS `PaymentMode`, `payment_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `payment_master`.`ReferenceNo` AS `ReferenceNo`, `payment_master`.`File` AS `File`, `payment_master`.`Notes` AS `Notes`, `payment_master`.`eDate` AS `eDate`, `party`.`TRN` AS `TRN`, `party`.`Address` AS `Address`, `party`.`Mobile` AS `Mobile`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays` FROM (`payment_master` join `party` on((`payment_master`.`PartyID` = `party`.`PartyID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6289,7 +6394,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_payment_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_payment_detail`  AS SELECT `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `payment_detail`.`PaymentDetailID` AS `PaymentDetailID`, `payment_detail`.`PaymentMasterID` AS `PaymentMasterID`, `payment_detail`.`PaymentDate` AS `PaymentDate`, `payment_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `payment_detail`.`Payment` AS `Payment`, `payment_detail`.`eDate` AS `eDate` FROM (`payment_detail` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `payment_detail`.`InvoiceMasterID`)))  ;
+CREATE OR REPLACE VIEW `v_payment_detail`  AS SELECT `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `payment_detail`.`PaymentDetailID` AS `PaymentDetailID`, `payment_detail`.`PaymentMasterID` AS `PaymentMasterID`, `payment_detail`.`PaymentDate` AS `PaymentDate`, `payment_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `payment_detail`.`Payment` AS `Payment`, `payment_detail`.`eDate` AS `eDate` FROM (`payment_detail` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `payment_detail`.`InvoiceMasterID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6298,7 +6403,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_payment_summary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_payment_summary`  AS SELECT `payment_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(`payment_detail`.`Payment`) AS `Paid`, `payment_detail`.`PaymentMasterID` AS `PaymentMasterID` FROM `payment_detail` GROUP BY `payment_detail`.`InvoiceMasterID`, `payment_detail`.`PaymentMasterID`  ;
+CREATE OR REPLACE VIEW `v_payment_summary`  AS SELECT `payment_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, sum(`payment_detail`.`Payment`) AS `Paid`, `payment_detail`.`PaymentMasterID` AS `PaymentMasterID` FROM `payment_detail` GROUP BY `payment_detail`.`InvoiceMasterID`, `payment_detail`.`PaymentMasterID`  ;
 
 -- --------------------------------------------------------
 
@@ -6307,7 +6412,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_pettycash_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_pettycash_master`  AS SELECT `pettycash_master`.`PettyMstID` AS `PettyMstID`, `pettycash_master`.`PettyVoucher` AS `PettyVoucher`, `chartofaccount`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`CODE` AS `CODE`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `pettycash_master`.`Date` AS `Date`, `pettycash_master`.`Narration` AS `Narration`, `pettycash_master`.`Credit` AS `Credit` FROM (`chartofaccount` join `pettycash_master` on((`chartofaccount`.`ChartOfAccountID` = `pettycash_master`.`ChOfAcc`)))  ;
+CREATE OR REPLACE VIEW `v_pettycash_master`  AS SELECT `pettycash_master`.`PettyMstID` AS `PettyMstID`, `pettycash_master`.`PettyVoucher` AS `PettyVoucher`, `chartofaccount`.`ChartOfAccountID` AS `ChartOfAccountID`, `chartofaccount`.`CODE` AS `CODE`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `pettycash_master`.`Date` AS `Date`, `pettycash_master`.`Narration` AS `Narration`, `pettycash_master`.`Credit` AS `Credit` FROM (`chartofaccount` join `pettycash_master` on((`chartofaccount`.`ChartOfAccountID` = `pettycash_master`.`ChOfAcc`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6316,7 +6421,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_purchase_order_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_purchase_order_detail`  AS SELECT `purchase_order_detail`.`PurchaseOrderDetailID` AS `PurchaseOrderDetailID`, `purchase_order_detail`.`PurchaseOrderMasterID` AS `PurchaseOrderMasterID`, `purchase_order_detail`.`Date` AS `Date`, `purchase_order_detail`.`ItemID` AS `ItemID`, `purchase_order_detail`.`Description` AS `Description`, `purchase_order_detail`.`Rate` AS `Rate`, `purchase_order_detail`.`Qty` AS `Qty`, `purchase_order_detail`.`Unit` AS `Unit`, `purchase_order_detail`.`DiscountPer` AS `DiscountPer`, `purchase_order_detail`.`Discount` AS `Discount`, `purchase_order_detail`.`Tax` AS `Tax`, `purchase_order_detail`.`TaxPer` AS `TaxPer`, `purchase_order_detail`.`Amount` AS `Amount`, `purchase_order_detail`.`Remarks` AS `Remarks`, `item`.`ItemName` AS `ItemName` FROM (`purchase_order_detail` join `item` on((`purchase_order_detail`.`ItemID` = `item`.`ItemID`)))  ;
+CREATE OR REPLACE VIEW `v_purchase_order_detail`  AS SELECT `purchase_order_detail`.`PurchaseOrderDetailID` AS `PurchaseOrderDetailID`, `purchase_order_detail`.`PurchaseOrderMasterID` AS `PurchaseOrderMasterID`, `purchase_order_detail`.`Date` AS `Date`, `purchase_order_detail`.`ItemID` AS `ItemID`, `purchase_order_detail`.`Description` AS `Description`, `purchase_order_detail`.`Rate` AS `Rate`, `purchase_order_detail`.`Qty` AS `Qty`, `purchase_order_detail`.`Unit` AS `Unit`, `purchase_order_detail`.`DiscountPer` AS `DiscountPer`, `purchase_order_detail`.`Discount` AS `Discount`, `purchase_order_detail`.`Tax` AS `Tax`, `purchase_order_detail`.`TaxPer` AS `TaxPer`, `purchase_order_detail`.`Amount` AS `Amount`, `purchase_order_detail`.`Remarks` AS `Remarks`, `item`.`ItemName` AS `ItemName` FROM (`purchase_order_detail` join `item` on((`purchase_order_detail`.`ItemID` = `item`.`ItemID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6325,7 +6430,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_purchase_order_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_purchase_order_master`  AS SELECT `purchase_order_master`.`PurchaseOrderMasterID` AS `PurchaseOrderMasterID`, `purchase_order_master`.`PON` AS `PON`, `purchase_order_master`.`SupplierID` AS `SupplierID`, `purchase_order_master`.`Date` AS `Date`, `purchase_order_master`.`PONotes` AS `PONotes`, `purchase_order_master`.`UserID` AS `UserID`, `purchase_order_master`.`Subject` AS `Subject`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`TRN` AS `TRN`, `supplier`.`Address` AS `Address`, `supplier`.`Mobile` AS `Mobile`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Website` AS `Website`, `supplier`.`Active` AS `Active`, `supplier`.`InvoiceDueDays` AS `InvoiceDueDays`, `purchase_order_master`.`ReferenceNo` AS `ReferenceNo`, `purchase_order_master`.`Tax` AS `Tax`, `purchase_order_master`.`GrandTotal` AS `GrandTotal`, `purchase_order_master`.`eDate` AS `eDate`, `purchase_order_master`.`DeliveryDate` AS `DeliveryDate`, `purchase_order_master`.`DeliveryNotes` AS `DeliveryNotes`, `purchase_order_master`.`SubTotal` AS `SubTotal`, `purchase_order_master`.`Discount` AS `Discount`, `purchase_order_master`.`DiscountPer` AS `DiscountPer` FROM (`purchase_order_master` join `supplier` on((`purchase_order_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_purchase_order_master`  AS SELECT `purchase_order_master`.`PurchaseOrderMasterID` AS `PurchaseOrderMasterID`, `purchase_order_master`.`PON` AS `PON`, `purchase_order_master`.`SupplierID` AS `SupplierID`, `purchase_order_master`.`Date` AS `Date`, `purchase_order_master`.`PONotes` AS `PONotes`, `purchase_order_master`.`UserID` AS `UserID`, `purchase_order_master`.`Subject` AS `Subject`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`TRN` AS `TRN`, `supplier`.`Address` AS `Address`, `supplier`.`Mobile` AS `Mobile`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Website` AS `Website`, `supplier`.`Active` AS `Active`, `supplier`.`InvoiceDueDays` AS `InvoiceDueDays`, `purchase_order_master`.`ReferenceNo` AS `ReferenceNo`, `purchase_order_master`.`Tax` AS `Tax`, `purchase_order_master`.`GrandTotal` AS `GrandTotal`, `purchase_order_master`.`eDate` AS `eDate`, `purchase_order_master`.`DeliveryDate` AS `DeliveryDate`, `purchase_order_master`.`DeliveryNotes` AS `DeliveryNotes`, `purchase_order_master`.`SubTotal` AS `SubTotal`, `purchase_order_master`.`Discount` AS `Discount`, `purchase_order_master`.`DiscountPer` AS `DiscountPer` FROM (`purchase_order_master` join `supplier` on((`purchase_order_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6334,7 +6439,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_purchase_payment`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_purchase_payment`  AS SELECT `purchasepayment_master`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID`, `purchasepayment_master`.`SupplierID` AS `SupplierID`, `purchasepayment_master`.`PaymentDate` AS `PaymentDate`, `purchasepayment_master`.`PaymentAmount` AS `PaymentAmount`, `purchasepayment_master`.`PaymentMode` AS `PaymentMode`, `purchasepayment_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `purchasepayment_master`.`ReferenceNo` AS `ReferenceNo`, `purchasepayment_master`.`File` AS `File`, `purchasepayment_master`.`Notes` AS `Notes`, `purchasepayment_master`.`eDate` AS `eDate`, `supplier`.`SupplierName` AS `SupplierName` FROM (`purchasepayment_master` join `supplier` on((`purchasepayment_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_purchase_payment`  AS SELECT `purchasepayment_master`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID`, `purchasepayment_master`.`SupplierID` AS `SupplierID`, `purchasepayment_master`.`PaymentDate` AS `PaymentDate`, `purchasepayment_master`.`PaymentAmount` AS `PaymentAmount`, `purchasepayment_master`.`PaymentMode` AS `PaymentMode`, `purchasepayment_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `purchasepayment_master`.`ReferenceNo` AS `ReferenceNo`, `purchasepayment_master`.`File` AS `File`, `purchasepayment_master`.`Notes` AS `Notes`, `purchasepayment_master`.`eDate` AS `eDate`, `supplier`.`SupplierName` AS `SupplierName` FROM (`purchasepayment_master` join `supplier` on((`purchasepayment_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6343,7 +6448,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_purchase_payment_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_purchase_payment_detail`  AS SELECT `purchasepayment_detail`.`PurchasePaymentDetailID` AS `PurchasePaymentDetailID`, `purchasepayment_detail`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID`, `purchasepayment_detail`.`PaymentDate` AS `PaymentDate`, `purchasepayment_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `purchasepayment_detail`.`Payment` AS `Payment`, `purchasepayment_detail`.`eDate` AS `eDate`, `invoice_master`.`InvoiceNo` AS `InvoiceNo` FROM (`purchasepayment_detail` join `invoice_master` on((`purchasepayment_detail`.`InvoiceMasterID` = `invoice_master`.`InvoiceMasterID`)))  ;
+CREATE OR REPLACE VIEW `v_purchase_payment_detail`  AS SELECT `purchasepayment_detail`.`PurchasePaymentDetailID` AS `PurchasePaymentDetailID`, `purchasepayment_detail`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID`, `purchasepayment_detail`.`PaymentDate` AS `PaymentDate`, `purchasepayment_detail`.`InvoiceMasterID` AS `InvoiceMasterID`, `purchasepayment_detail`.`Payment` AS `Payment`, `purchasepayment_detail`.`eDate` AS `eDate`, `invoice_master`.`InvoiceNo` AS `InvoiceNo` FROM (`purchasepayment_detail` join `invoice_master` on((`purchasepayment_detail`.`InvoiceMasterID` = `invoice_master`.`InvoiceMasterID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6352,7 +6457,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_purchase_payment_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_purchase_payment_master`  AS SELECT `purchasepayment_master`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID`, `purchasepayment_master`.`SupplierID` AS `SupplierID`, `purchasepayment_master`.`PaymentDate` AS `PaymentDate`, `purchasepayment_master`.`PaymentAmount` AS `PaymentAmount`, `purchasepayment_master`.`PaymentMode` AS `PaymentMode`, `purchasepayment_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `purchasepayment_master`.`ReferenceNo` AS `ReferenceNo`, `purchasepayment_master`.`File` AS `File`, `purchasepayment_master`.`Notes` AS `Notes`, `purchasepayment_master`.`eDate` AS `eDate`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`Address` AS `Address`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Active` AS `Active` FROM (`purchasepayment_master` join `supplier` on((`purchasepayment_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_purchase_payment_master`  AS SELECT `purchasepayment_master`.`PurchasePaymentMasterID` AS `PurchasePaymentMasterID`, `purchasepayment_master`.`SupplierID` AS `SupplierID`, `purchasepayment_master`.`PaymentDate` AS `PaymentDate`, `purchasepayment_master`.`PaymentAmount` AS `PaymentAmount`, `purchasepayment_master`.`PaymentMode` AS `PaymentMode`, `purchasepayment_master`.`ChartOfAccountID` AS `ChartOfAccountID`, `purchasepayment_master`.`ReferenceNo` AS `ReferenceNo`, `purchasepayment_master`.`File` AS `File`, `purchasepayment_master`.`Notes` AS `Notes`, `purchasepayment_master`.`eDate` AS `eDate`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`Address` AS `Address`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Active` AS `Active` FROM (`purchasepayment_master` join `supplier` on((`purchasepayment_master`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6361,7 +6466,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_receivabledetail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_receivabledetail`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_detail`.`InvoiceDetailID` AS `InvoiceDetailID`, `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`Qty` AS `Qty`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`Paid` AS `Paid`, `invoice_master`.`Balance` AS `Balance`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal` FROM ((`invoice_master` join `invoice_detail` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`))) join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_receivabledetail`  AS SELECT `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`ReferenceNo` AS `ReferenceNo`, `invoice_detail`.`InvoiceDetailID` AS `InvoiceDetailID`, `invoice_detail`.`ItemID` AS `ItemID`, `invoice_detail`.`Qty` AS `Qty`, `invoice_master`.`Total` AS `Total`, `invoice_master`.`Paid` AS `Paid`, `invoice_master`.`Balance` AS `Balance`, `party`.`PartyName` AS `PartyName`, `party`.`Address` AS `Address`, `party`.`PartyID` AS `PartyID`, `invoice_master`.`SubTotal` AS `SubTotal` FROM ((`invoice_master` join `invoice_detail` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`))) join `party` on((`invoice_master`.`PartyID` = `party`.`PartyID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6370,7 +6475,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_rev_exp`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_rev_exp`  AS SELECT (sum(if((`v_journal`.`Cr` is null),0,`v_journal`.`Cr`)) - sum(if((`v_journal`.`Dr` is null),0,`v_journal`.`Dr`))) AS `Rev`, 0 AS `Exp`, date_format(`v_journal`.`Date`,'%M-%Y') AS `DATE_FORMAT(date,'%M-%Y')`, date_format(`v_journal`.`Date`,'%m-%Y') AS `date_format(``v_journal``.``Date``,'%m-%Y')` FROM `v_journal` WHERE (`v_journal`.`CODE` = 'r') GROUP BY date_format(`v_journal`.`Date`,'%M-%Y'), date_format(`v_journal`.`Date`,'%m-%Y'), `v_journal`.`CODE`  ;
+CREATE OR REPLACE VIEW `v_rev_exp`  AS SELECT (sum(if((`v_journal`.`Cr` is null),0,`v_journal`.`Cr`)) - sum(if((`v_journal`.`Dr` is null),0,`v_journal`.`Dr`))) AS `Rev`, 0 AS `Exp`, date_format(`v_journal`.`Date`,'%M-%Y') AS `DATE_FORMAT(date,'%M-%Y')`, date_format(`v_journal`.`Date`,'%m-%Y') AS `date_format(``v_journal``.``Date``,'%m-%Y')` FROM `v_journal` WHERE (`v_journal`.`CODE` = 'r') GROUP BY date_format(`v_journal`.`Date`,'%M-%Y'), date_format(`v_journal`.`Date`,'%m-%Y'), `v_journal`.`CODE`  ;
 
 -- --------------------------------------------------------
 
@@ -6379,7 +6484,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_rev_exp_chart`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_rev_exp_chart`  AS SELECT abs(round(sum(`v_rev_exp`.`Rev`),0)) AS `Rev`, abs(round(sum(`v_rev_exp`.`Exp`),0)) AS `Exp`, `v_rev_exp`.`DATE_FORMAT(date,'%M-%Y')` AS `MonthName` FROM `v_rev_exp` GROUP BY `v_rev_exp`.`DATE_FORMAT(date,'%M-%Y')` ORDER BY `v_rev_exp`.`DATE_FORMAT(date,'%M-%Y')` ASC  ;
+CREATE OR REPLACE VIEW `v_rev_exp_chart`  AS SELECT abs(round(sum(`v_rev_exp`.`Rev`),0)) AS `Rev`, abs(round(sum(`v_rev_exp`.`Exp`),0)) AS `Exp`, `v_rev_exp`.`DATE_FORMAT(date,'%M-%Y')` AS `MonthName` FROM `v_rev_exp` GROUP BY `v_rev_exp`.`DATE_FORMAT(date,'%M-%Y')` ORDER BY `v_rev_exp`.`DATE_FORMAT(date,'%M-%Y')` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -6388,7 +6493,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_salary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_salary`  AS SELECT `salary`.`BranchID` AS `BranchID`, `salary`.`MonthName` AS `MonthName`, `salary`.`eDate` AS `eDate`, `salary`.`UserID` AS `UserID`, `salary`.`SalaryID` AS `SalaryID`, `salary`.`EmployeeID` AS `EmployeeID`, `salary`.`EmployeeName` AS `EmployeeName`, `salary`.`JobTitle` AS `JobTitle`, `salary`.`Department` AS `Department`, `salary`.`StaffType` AS `StaffType`, `salary`.`DaysPresent` AS `DaysPresent`, `salary`.`LWPay` AS `LWPay`, `salary`.`PerDay` AS `PerDay`, `salary`.`BasicSalary` AS `BasicSalary`, `salary`.`HRA` AS `HRA`, `salary`.`Transport` AS `Transport`, `salary`.`OtherAllowance` AS `OtherAllowance`, `salary`.`AdvanceLoan` AS `AdvanceLoan`, `salary`.`LeaveDeduction` AS `LeaveDeduction`, `salary`.`TotalDeduction` AS `TotalDeduction`, `salary`.`GrandSalary` AS `GrandSalary`, `salary`.`NetSalary` AS `NetSalary`, `salary`.`uDate` AS `uDate` FROM `salary`  ;
+CREATE OR REPLACE VIEW `v_salary`  AS SELECT `salary`.`BranchID` AS `BranchID`, `salary`.`MonthName` AS `MonthName`, `salary`.`eDate` AS `eDate`, `salary`.`UserID` AS `UserID`, `salary`.`SalaryID` AS `SalaryID`, `salary`.`EmployeeID` AS `EmployeeID`, `salary`.`EmployeeName` AS `EmployeeName`, `salary`.`JobTitle` AS `JobTitle`, `salary`.`Department` AS `Department`, `salary`.`StaffType` AS `StaffType`, `salary`.`DaysPresent` AS `DaysPresent`, `salary`.`LWPay` AS `LWPay`, `salary`.`PerDay` AS `PerDay`, `salary`.`BasicSalary` AS `BasicSalary`, `salary`.`HRA` AS `HRA`, `salary`.`Transport` AS `Transport`, `salary`.`OtherAllowance` AS `OtherAllowance`, `salary`.`AdvanceLoan` AS `AdvanceLoan`, `salary`.`LeaveDeduction` AS `LeaveDeduction`, `salary`.`TotalDeduction` AS `TotalDeduction`, `salary`.`GrandSalary` AS `GrandSalary`, `salary`.`NetSalary` AS `NetSalary`, `salary`.`uDate` AS `uDate` FROM `salary`  ;
 
 -- --------------------------------------------------------
 
@@ -6397,7 +6502,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_supervisor`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_supervisor`  AS SELECT `employee`.`EmployeeID` AS `EmployeeID`, `employee`.`IsSupervisor` AS `IsSupervisor`, `employee`.`Title` AS `Title`, `employee`.`FirstName` AS `FirstName`, `employee`.`MiddleName` AS `MiddleName`, `employee`.`LastName` AS `LastName`, `employee`.`BranchID` AS `BranchID` FROM `employee` WHERE (`employee`.`IsSupervisor` = 'Yes')  ;
+CREATE OR REPLACE VIEW `v_supervisor`  AS SELECT `employee`.`EmployeeID` AS `EmployeeID`, `employee`.`IsSupervisor` AS `IsSupervisor`, `employee`.`Title` AS `Title`, `employee`.`FirstName` AS `FirstName`, `employee`.`MiddleName` AS `MiddleName`, `employee`.`LastName` AS `LastName`, `employee`.`BranchID` AS `BranchID` FROM `employee` WHERE (`employee`.`IsSupervisor` = 'Yes')  ;
 
 -- --------------------------------------------------------
 
@@ -6406,7 +6511,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_supplier`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_supplier`  AS SELECT `supplier`.`SupplierID` AS `SupplierID`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`TRN` AS `TRN`, `supplier`.`Address` AS `Address`, `supplier`.`Mobile` AS `Mobile`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Website` AS `Website`, `supplier`.`Active` AS `Active`, `supplier`.`InvoiceDueDays` AS `InvoiceDueDays`, `supplier`.`eDate` AS `eDate` FROM `supplier`  ;
+CREATE OR REPLACE VIEW `v_supplier`  AS SELECT `supplier`.`SupplierID` AS `SupplierID`, `supplier`.`SupplierName` AS `SupplierName`, `supplier`.`TRN` AS `TRN`, `supplier`.`Address` AS `Address`, `supplier`.`Mobile` AS `Mobile`, `supplier`.`Phone` AS `Phone`, `supplier`.`Email` AS `Email`, `supplier`.`Website` AS `Website`, `supplier`.`Active` AS `Active`, `supplier`.`InvoiceDueDays` AS `InvoiceDueDays`, `supplier`.`eDate` AS `eDate` FROM `supplier`  ;
 
 -- --------------------------------------------------------
 
@@ -6415,7 +6520,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_supplier_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_supplier_balance`  AS SELECT `journal`.`SupplierID` AS `SupplierID`, date_format(`journal`.`Date`,'%b-%Y') AS `Date`, sum(if((`journal`.`Dr` is null),0,`journal`.`Dr`)) AS `Dr`, sum(if((`journal`.`Cr` is null),0,`journal`.`Cr`)) AS `Cr`, sum((if((`journal`.`Dr` is null),0,`journal`.`Dr`) - if((`journal`.`Cr` is null),0,`journal`.`Cr`))) AS `Balance` FROM `journal` WHERE (`journal`.`ChartOfAccountID` = 210100) GROUP BY `journal`.`SupplierID`, date_format(`journal`.`Date`,'%b-%Y')  ;
+CREATE OR REPLACE VIEW `v_supplier_balance`  AS SELECT `journal`.`SupplierID` AS `SupplierID`, date_format(`journal`.`Date`,'%b-%Y') AS `Date`, sum(if((`journal`.`Dr` is null),0,`journal`.`Dr`)) AS `Dr`, sum(if((`journal`.`Cr` is null),0,`journal`.`Cr`)) AS `Cr`, sum((if((`journal`.`Dr` is null),0,`journal`.`Dr`) - if((`journal`.`Cr` is null),0,`journal`.`Cr`))) AS `Balance` FROM `journal` WHERE (`journal`.`ChartOfAccountID` = 210100) GROUP BY `journal`.`SupplierID`, date_format(`journal`.`Date`,'%b-%Y')  ;
 
 -- --------------------------------------------------------
 
@@ -6424,7 +6529,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_supplier_outstanding`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_supplier_outstanding`  AS SELECT `v_journal`.`InvoiceMasterID` AS `InvoiceMasterID`, `v_journal`.`PartyID` AS `PartyID`, `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`DueDate` AS `DueDate`, sum(ifnull(`v_journal`.`Dr`,0)) AS `PAID`, abs((sum(ifnull(`v_journal`.`Dr`,0)) - sum(ifnull(`v_journal`.`Cr`,0)))) AS `BALANCE`, `v_journal`.`SupplierID` AS `SupplierID`, `invoice_master`.`GrandTotal` AS `GrandTotal` FROM (`v_journal` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `v_journal`.`InvoiceMasterID`))) WHERE (((`v_journal`.`VHNO` like 'BILL%') OR (`v_journal`.`VHNO` like 'BILLPAY%')) AND (`v_journal`.`ChartOfAccountID` = 210100)) GROUP BY `v_journal`.`InvoiceMasterID`, `v_journal`.`PartyID`, `v_journal`.`ChartOfAccountID`, `v_journal`.`ChartOfAccountName`, `invoice_master`.`InvoiceNo`, `invoice_master`.`Date`, `invoice_master`.`DueDate`, `invoice_master`.`GrandTotal`, `v_journal`.`SupplierID`  ;
+CREATE OR REPLACE VIEW `v_supplier_outstanding`  AS SELECT `v_journal`.`InvoiceMasterID` AS `InvoiceMasterID`, `v_journal`.`PartyID` AS `PartyID`, `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, `invoice_master`.`InvoiceNo` AS `InvoiceNo`, `invoice_master`.`Date` AS `Date`, `invoice_master`.`DueDate` AS `DueDate`, sum(ifnull(`v_journal`.`Dr`,0)) AS `PAID`, abs((sum(ifnull(`v_journal`.`Dr`,0)) - sum(ifnull(`v_journal`.`Cr`,0)))) AS `BALANCE`, `v_journal`.`SupplierID` AS `SupplierID`, `invoice_master`.`GrandTotal` AS `GrandTotal` FROM (`v_journal` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `v_journal`.`InvoiceMasterID`))) WHERE (((`v_journal`.`VHNO` like 'BILL%') OR (`v_journal`.`VHNO` like 'BILLPAY%')) AND (`v_journal`.`ChartOfAccountID` = 210100)) GROUP BY `v_journal`.`InvoiceMasterID`, `v_journal`.`PartyID`, `v_journal`.`ChartOfAccountID`, `v_journal`.`ChartOfAccountName`, `invoice_master`.`InvoiceNo`, `invoice_master`.`Date`, `invoice_master`.`DueDate`, `invoice_master`.`GrandTotal`, `v_journal`.`SupplierID`  ;
 
 -- --------------------------------------------------------
 
@@ -6433,7 +6538,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_supplier_over_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_supplier_over_balance`  AS SELECT `v_supplier_outstanding`.`SupplierID` AS `SupplierID`, sum(`v_supplier_outstanding`.`BALANCE`) AS `BALANCE` FROM `v_supplier_outstanding` GROUP BY `v_supplier_outstanding`.`SupplierID`  ;
+CREATE OR REPLACE VIEW `v_supplier_over_balance`  AS SELECT `v_supplier_outstanding`.`SupplierID` AS `SupplierID`, sum(`v_supplier_outstanding`.`BALANCE`) AS `BALANCE` FROM `v_supplier_outstanding` GROUP BY `v_supplier_outstanding`.`SupplierID`  ;
 
 -- --------------------------------------------------------
 
@@ -6442,7 +6547,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_target`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_target`  AS SELECT `target`.`TargetID` AS `TargetID`, `target`.`DepartmentID` AS `DepartmentID`, `department`.`DepartmentName` AS `DepartmentName`, `target`.`TargetType` AS `TargetType`, `target`.`TargetName` AS `TargetName`, `target`.`TargetPeriod` AS `TargetPeriod`, `target`.`Detail` AS `Detail`, `target`.`StartDate` AS `StartDate`, `target`.`EndDate` AS `EndDate`, `target`.`Date` AS `Date`, `target`.`eDate` AS `eDate` FROM (`department` join `target` on((`department`.`DepartmentID` = `target`.`DepartmentID`)))  ;
+CREATE OR REPLACE VIEW `v_target`  AS SELECT `target`.`TargetID` AS `TargetID`, `target`.`DepartmentID` AS `DepartmentID`, `department`.`DepartmentName` AS `DepartmentName`, `target`.`TargetType` AS `TargetType`, `target`.`TargetName` AS `TargetName`, `target`.`TargetPeriod` AS `TargetPeriod`, `target`.`Detail` AS `Detail`, `target`.`StartDate` AS `StartDate`, `target`.`EndDate` AS `EndDate`, `target`.`Date` AS `Date`, `target`.`eDate` AS `eDate` FROM (`department` join `target` on((`department`.`DepartmentID` = `target`.`DepartmentID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6451,7 +6556,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_test`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_test`  AS SELECT `item`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`ItemID` AS `T1`, `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID` FROM ((`item` join `invoice_detail` on((`item`.`ItemID` = `invoice_detail`.`ItemID`))) join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`)))  ;
+CREATE OR REPLACE VIEW `v_test`  AS SELECT `item`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `invoice_detail`.`ItemID` AS `T1`, `invoice_master`.`InvoiceMasterID` AS `InvoiceMasterID` FROM ((`item` join `invoice_detail` on((`item`.`ItemID` = `invoice_detail`.`ItemID`))) join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6460,7 +6565,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_trial`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_trial`  AS SELECT `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, sum(ifnull(`v_journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`v_journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`v_journal`.`Dr`,0)) - sum(ifnull(`v_journal`.`Cr`,0))) AS `Balance` FROM `v_journal` GROUP BY `v_journal`.`ChartOfAccountID`, `v_journal`.`ChartOfAccountName` ORDER BY `v_journal`.`ChartOfAccountName` ASC  ;
+CREATE OR REPLACE VIEW `v_trial`  AS SELECT `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, sum(ifnull(`v_journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`v_journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`v_journal`.`Dr`,0)) - sum(ifnull(`v_journal`.`Cr`,0))) AS `Balance` FROM `v_journal` GROUP BY `v_journal`.`ChartOfAccountID`, `v_journal`.`ChartOfAccountName` ORDER BY `v_journal`.`ChartOfAccountName` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -6469,7 +6574,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_trialreport`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_trialreport`  AS SELECT `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, sum(ifnull(`v_journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`v_journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`v_journal`.`Dr`,0)) - sum(ifnull(`v_journal`.`Cr`,0))) AS `Balance` FROM `v_journal` GROUP BY `v_journal`.`ChartOfAccountID`, `v_journal`.`ChartOfAccountName` ORDER BY `v_journal`.`ChartOfAccountName` ASC  ;
+CREATE OR REPLACE VIEW `v_trialreport`  AS SELECT `v_journal`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_journal`.`ChartOfAccountName` AS `ChartOfAccountName`, sum(ifnull(`v_journal`.`Dr`,0)) AS `Dr`, sum(ifnull(`v_journal`.`Cr`,0)) AS `Cr`, (sum(ifnull(`v_journal`.`Dr`,0)) - sum(ifnull(`v_journal`.`Cr`,0))) AS `Balance` FROM `v_journal` GROUP BY `v_journal`.`ChartOfAccountID`, `v_journal`.`ChartOfAccountName` ORDER BY `v_journal`.`ChartOfAccountName` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -6478,7 +6583,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_trial_balance`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_trial_balance`  AS SELECT `v_trial`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_trial`.`ChartOfAccountName` AS `ChartOfAccountName`, if((`v_trial`.`Balance` >= 0),`v_trial`.`Balance`,0) AS `Dr`, if((`v_trial`.`Balance` < 0),abs(`v_trial`.`Balance`),0) AS `Cr` FROM `v_trial`  ;
+CREATE OR REPLACE VIEW `v_trial_balance`  AS SELECT `v_trial`.`ChartOfAccountID` AS `ChartOfAccountID`, `v_trial`.`ChartOfAccountName` AS `ChartOfAccountName`, if((`v_trial`.`Balance` >= 0),`v_trial`.`Balance`,0) AS `Dr`, if((`v_trial`.`Balance` < 0),abs(`v_trial`.`Balance`),0) AS `Cr` FROM `v_trial`  ;
 
 -- --------------------------------------------------------
 
@@ -6487,7 +6592,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_union_salary`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_union_salary`  AS SELECT `v_agent_salary`.`BranchID` AS `BranchID`, `v_agent_salary`.`EmployeeID` AS `EmployeeID`, `v_agent_salary`.`FTDAmount` AS `FTDAmount`, `v_agent_salary`.`MonthName` AS `MonthName`, `v_agent_salary`.`SupervisorID` AS `SupervisorID`, `v_agent_salary`.`Total` AS `Total`, `v_agent_salary`.`StaffType` AS `StaffType` FROM `v_agent_salary` union select `v_closer_salary`.`BranchID` AS `BranchID`,`v_closer_salary`.`EmployeeID` AS `EmployeeID`,`v_closer_salary`.`FTDAmount` AS `FTDAmount`,`v_closer_salary`.`MonthName` AS `MonthName`,`v_closer_salary`.`SupervisorID` AS `SupervisorID`,`v_closer_salary`.`Total` AS `total`,`v_closer_salary`.`StaffType` AS `StaffType` from `v_closer_salary` union select `v_floor_manager_salary`.`BranchID` AS `BranchID`,`v_floor_manager_salary`.`EmployeeID` AS `EmployeeID`,`v_floor_manager_salary`.`FTDAmount` AS `FTDAmount`,`v_floor_manager_salary`.`MonthName` AS `MonthName`,`v_floor_manager_salary`.`SupervisorID` AS `SupervisorID`,`v_floor_manager_salary`.`Total` AS `total`,`v_floor_manager_salary`.`StaffType` AS `StaffType` from `v_floor_manager_salary`  ;
+CREATE OR REPLACE VIEW `v_union_salary`  AS SELECT `v_agent_salary`.`BranchID` AS `BranchID`, `v_agent_salary`.`EmployeeID` AS `EmployeeID`, `v_agent_salary`.`FTDAmount` AS `FTDAmount`, `v_agent_salary`.`MonthName` AS `MonthName`, `v_agent_salary`.`SupervisorID` AS `SupervisorID`, `v_agent_salary`.`Total` AS `Total`, `v_agent_salary`.`StaffType` AS `StaffType` FROM `v_agent_salary` union select `v_closer_salary`.`BranchID` AS `BranchID`,`v_closer_salary`.`EmployeeID` AS `EmployeeID`,`v_closer_salary`.`FTDAmount` AS `FTDAmount`,`v_closer_salary`.`MonthName` AS `MonthName`,`v_closer_salary`.`SupervisorID` AS `SupervisorID`,`v_closer_salary`.`Total` AS `total`,`v_closer_salary`.`StaffType` AS `StaffType` from `v_closer_salary` union select `v_floor_manager_salary`.`BranchID` AS `BranchID`,`v_floor_manager_salary`.`EmployeeID` AS `EmployeeID`,`v_floor_manager_salary`.`FTDAmount` AS `FTDAmount`,`v_floor_manager_salary`.`MonthName` AS `MonthName`,`v_floor_manager_salary`.`SupervisorID` AS `SupervisorID`,`v_floor_manager_salary`.`Total` AS `total`,`v_floor_manager_salary`.`StaffType` AS `StaffType` from `v_floor_manager_salary`  ;
 
 -- --------------------------------------------------------
 
@@ -6496,7 +6601,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_users`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_users`  AS SELECT `user`.`UserID` AS `UserID`, `user`.`BranchID` AS `BranchID`, `user`.`FullName` AS `FullName`, `user`.`Email` AS `Email`, `user`.`Password` AS `Password`, `user`.`UserType` AS `UserType`, `user`.`eDate` AS `eDate`, `user`.`Active` AS `Active`, `branch`.`BranchName` AS `BranchName` FROM (`user` join `branch` on((`user`.`BranchID` = `branch`.`BranchID`)))  ;
+CREATE OR REPLACE VIEW `v_users`  AS SELECT `user`.`UserID` AS `UserID`, `user`.`BranchID` AS `BranchID`, `user`.`FullName` AS `FullName`, `user`.`Email` AS `Email`, `user`.`Password` AS `Password`, `user`.`UserType` AS `UserType`, `user`.`eDate` AS `eDate`, `user`.`Active` AS `Active`, `branch`.`BranchName` AS `BranchName` FROM (`user` join `branch` on((`user`.`BranchID` = `branch`.`BranchID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6505,7 +6610,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_visaexpiry`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_visaexpiry`  AS SELECT count(`v_alerts`.`VisaExpiry`) AS `Total`, `v_alerts`.`BranchID` AS `BranchID` FROM `v_alerts` WHERE (`v_alerts`.`VisaExpiry` <= 30) GROUP BY `v_alerts`.`BranchID`  ;
+CREATE OR REPLACE VIEW `v_visaexpiry`  AS SELECT count(`v_alerts`.`VisaExpiry`) AS `Total`, `v_alerts`.`BranchID` AS `BranchID` FROM `v_alerts` WHERE (`v_alerts`.`VisaExpiry` <= 30) GROUP BY `v_alerts`.`BranchID`  ;
 
 -- --------------------------------------------------------
 
@@ -6514,7 +6619,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_visa_expiry_list`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_visa_expiry_list`  AS SELECT `v_employee`.`FirstName` AS `FirstName`, `v_employee`.`MiddleName` AS `MiddleName`, `v_employee`.`LastName` AS `LastName`, `v_employee`.`JobTitleName` AS `JobTitleName`, `v_employee`.`DepartmentName` AS `DepartmentName`, `v_employee`.`BranchName` AS `BranchName`, `v_employee`.`EmployeeID` AS `EmployeeID`, `v_employee`.`Picture` AS `Picture`, `v_employee`.`Email` AS `Email`, `v_employee`.`MobileNo` AS `MobileNo`, `v_employee`.`BranchID` AS `BranchID`, `v_employee`.`IsSupervisor` AS `IsSupervisor`, `v_employee`.`DateOfBirth` AS `DateOfBirth`, `v_employee`.`VisaIssueDate` AS `VisaIssueDate`, `v_employee`.`VisaExpiryDate` AS `VisaExpiryDate`, `v_employee`.`PassportNo` AS `PassportNo`, `v_employee`.`PassportExpiry` AS `PassportExpiry`, `v_employee`.`EidNo` AS `EidNo`, `v_employee`.`EidExpiry` AS `EidExpiry`, `v_employee`.`FullAddress` AS `FullAddress`, `v_employee`.`HomePhone` AS `HomePhone`, `v_employee`.`Gender` AS `Gender`, `v_employee`.`SSNorGID` AS `SSNorGID`, `v_employee`.`MaritalStatus` AS `MaritalStatus`, `v_employee`.`SpouseName` AS `SpouseName`, `v_employee`.`SpouseEmployer` AS `SpouseEmployer`, `v_employee`.`SpouseWorkPhone` AS `SpouseWorkPhone`, `v_employee`.`JobTitleID` AS `JobTitleID`, `v_employee`.`DepartmentID` AS `DepartmentID`, `v_employee`.`SupervisorID` AS `SupervisorID`, `v_employee`.`WorkLocation` AS `WorkLocation`, `v_employee`.`EmailOffical` AS `EmailOffical`, `v_employee`.`WorkPhone` AS `WorkPhone`, `v_employee`.`StartDate` AS `StartDate`, `v_employee`.`Salary` AS `Salary`, `v_employee`.`NextofKinName` AS `NextofKinName`, `v_employee`.`NextofKinAddress` AS `NextofKinAddress`, `v_employee`.`NextofKinPhone` AS `NextofKinPhone`, `v_employee`.`NextofKinRelationship` AS `NextofKinRelationship`, `v_employee`.`EducationLevel` AS `EducationLevel`, `v_employee`.`LastDegree` AS `LastDegree`, `v_employee`.`eDate` AS `eDate`, `v_employee`.`uDate` AS `uDate`, `v_employee`.`Title` AS `Title`, `v_employee`.`ExtraComission` AS `ExtraComission`, `v_employee`.`SalaryRemarks` AS `SalaryRemarks`, `v_employee`.`StaffType` AS `StaffType`, `v_employee`.`Nationality` AS `Nationality` FROM `v_employee` WHERE (timestampdiff(DAY,sysdate(),`v_employee`.`VisaExpiryDate`) <= 3030)  ;
+CREATE OR REPLACE VIEW `v_visa_expiry_list`  AS SELECT `v_employee`.`FirstName` AS `FirstName`, `v_employee`.`MiddleName` AS `MiddleName`, `v_employee`.`LastName` AS `LastName`, `v_employee`.`JobTitleName` AS `JobTitleName`, `v_employee`.`DepartmentName` AS `DepartmentName`, `v_employee`.`BranchName` AS `BranchName`, `v_employee`.`EmployeeID` AS `EmployeeID`, `v_employee`.`Picture` AS `Picture`, `v_employee`.`Email` AS `Email`, `v_employee`.`MobileNo` AS `MobileNo`, `v_employee`.`BranchID` AS `BranchID`, `v_employee`.`IsSupervisor` AS `IsSupervisor`, `v_employee`.`DateOfBirth` AS `DateOfBirth`, `v_employee`.`VisaIssueDate` AS `VisaIssueDate`, `v_employee`.`VisaExpiryDate` AS `VisaExpiryDate`, `v_employee`.`PassportNo` AS `PassportNo`, `v_employee`.`PassportExpiry` AS `PassportExpiry`, `v_employee`.`EidNo` AS `EidNo`, `v_employee`.`EidExpiry` AS `EidExpiry`, `v_employee`.`FullAddress` AS `FullAddress`, `v_employee`.`HomePhone` AS `HomePhone`, `v_employee`.`Gender` AS `Gender`, `v_employee`.`SSNorGID` AS `SSNorGID`, `v_employee`.`MaritalStatus` AS `MaritalStatus`, `v_employee`.`SpouseName` AS `SpouseName`, `v_employee`.`SpouseEmployer` AS `SpouseEmployer`, `v_employee`.`SpouseWorkPhone` AS `SpouseWorkPhone`, `v_employee`.`JobTitleID` AS `JobTitleID`, `v_employee`.`DepartmentID` AS `DepartmentID`, `v_employee`.`SupervisorID` AS `SupervisorID`, `v_employee`.`WorkLocation` AS `WorkLocation`, `v_employee`.`EmailOffical` AS `EmailOffical`, `v_employee`.`WorkPhone` AS `WorkPhone`, `v_employee`.`StartDate` AS `StartDate`, `v_employee`.`Salary` AS `Salary`, `v_employee`.`NextofKinName` AS `NextofKinName`, `v_employee`.`NextofKinAddress` AS `NextofKinAddress`, `v_employee`.`NextofKinPhone` AS `NextofKinPhone`, `v_employee`.`NextofKinRelationship` AS `NextofKinRelationship`, `v_employee`.`EducationLevel` AS `EducationLevel`, `v_employee`.`LastDegree` AS `LastDegree`, `v_employee`.`eDate` AS `eDate`, `v_employee`.`uDate` AS `uDate`, `v_employee`.`Title` AS `Title`, `v_employee`.`ExtraComission` AS `ExtraComission`, `v_employee`.`SalaryRemarks` AS `SalaryRemarks`, `v_employee`.`StaffType` AS `StaffType`, `v_employee`.`Nationality` AS `Nationality` FROM `v_employee` WHERE (timestampdiff(DAY,sysdate(),`v_employee`.`VisaExpiryDate`) <= 3030)  ;
 
 -- --------------------------------------------------------
 
@@ -6523,7 +6628,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_voucher`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_voucher`  AS SELECT `voucher_master`.`VoucherMstID` AS `VoucherMstID`, `voucher_type`.`VoucherCode` AS `VoucherCode`, `voucher_type`.`VoucherTypeName` AS `VoucherTypeName`, `voucher_master`.`Voucher` AS `Voucher`, `voucher_master`.`Date` AS `Date`, `voucher_master`.`Narration` AS `Narration` FROM (`voucher_master` join `voucher_type` on((`voucher_master`.`VoucherCodeID` = `voucher_type`.`VoucherTypeID`)))  ;
+CREATE OR REPLACE VIEW `v_voucher`  AS SELECT `voucher_master`.`VoucherMstID` AS `VoucherMstID`, `voucher_type`.`VoucherCode` AS `VoucherCode`, `voucher_type`.`VoucherTypeName` AS `VoucherTypeName`, `voucher_master`.`Voucher` AS `Voucher`, `voucher_master`.`Date` AS `Date`, `voucher_master`.`Narration` AS `Narration` FROM (`voucher_master` join `voucher_type` on((`voucher_master`.`VoucherCodeID` = `voucher_type`.`VoucherTypeID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6532,7 +6637,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_voucher_detail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_voucher_detail`  AS SELECT `voucher_master`.`VoucherMstID` AS `VoucherMstID`, `voucher_master`.`VoucherCodeID` AS `VoucherCodeID`, `voucher_master`.`Voucher` AS `Voucher`, `voucher_master`.`Narration` AS `NarrationMaster`, `voucher_detail`.`Date` AS `Date`, `voucher_detail`.`ChOfAcc` AS `ChOfAcc`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `voucher_detail`.`Debit` AS `Debit`, `voucher_detail`.`Credit` AS `Credit`, `voucher_detail`.`InvoiceNo` AS `InvoiceNo`, `voucher_detail`.`Narration` AS `Narration`, `voucher_detail`.`SupplierID` AS `SupplierID`, `voucher_detail`.`PartyID` AS `PartyID`, `voucher_detail`.`RefNo` AS `RefNo`, `party`.`PartyName` AS `PartyName`, `supplier`.`SupplierName` AS `SupplierName` FROM ((((`voucher_detail` join `voucher_master` on((`voucher_master`.`VoucherMstID` = `voucher_detail`.`VoucherMstID`))) join `chartofaccount` on((`chartofaccount`.`ChartOfAccountID` = `voucher_detail`.`ChOfAcc`))) left join `party` on((`voucher_detail`.`PartyID` = `party`.`PartyID`))) left join `supplier` on((`voucher_detail`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_voucher_detail`  AS SELECT `voucher_master`.`VoucherMstID` AS `VoucherMstID`, `voucher_master`.`VoucherCodeID` AS `VoucherCodeID`, `voucher_master`.`Voucher` AS `Voucher`, `voucher_master`.`Narration` AS `NarrationMaster`, `voucher_detail`.`Date` AS `Date`, `voucher_detail`.`ChOfAcc` AS `ChOfAcc`, `chartofaccount`.`ChartOfAccountName` AS `ChartOfAccountName`, `voucher_detail`.`Debit` AS `Debit`, `voucher_detail`.`Credit` AS `Credit`, `voucher_detail`.`InvoiceNo` AS `InvoiceNo`, `voucher_detail`.`Narration` AS `Narration`, `voucher_detail`.`SupplierID` AS `SupplierID`, `voucher_detail`.`PartyID` AS `PartyID`, `voucher_detail`.`RefNo` AS `RefNo`, `party`.`PartyName` AS `PartyName`, `supplier`.`SupplierName` AS `SupplierName` FROM ((((`voucher_detail` join `voucher_master` on((`voucher_master`.`VoucherMstID` = `voucher_detail`.`VoucherMstID`))) join `chartofaccount` on((`chartofaccount`.`ChartOfAccountID` = `voucher_detail`.`ChOfAcc`))) left join `party` on((`voucher_detail`.`PartyID` = `party`.`PartyID`))) left join `supplier` on((`voucher_detail`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 -- --------------------------------------------------------
 
@@ -6541,7 +6646,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_voucher_master`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_voucher_master`  AS SELECT `voucher_master`.`VoucherMstID` AS `VoucherMstID`, `voucher_master`.`VoucherCodeID` AS `VoucherCodeID`, `voucher_master`.`Voucher` AS `Voucher`, `voucher_master`.`Date` AS `Date`, `voucher_master`.`Narration` AS `Narration`, `voucher_type`.`VoucherTypeID` AS `VoucherTypeID`, `voucher_type`.`VoucherCode` AS `VoucherCode`, `voucher_type`.`VoucherTypeName` AS `VoucherTypeName`, `voucher_detail`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `voucher_detail`.`Debit` AS `Debit`, `voucher_detail`.`Credit` AS `Credit`, `voucher_detail`.`SupplierID` AS `SupplierID`, `supplier`.`SupplierName` AS `SupplierName` FROM ((((`voucher_master` join `voucher_type` on((`voucher_master`.`VoucherCodeID` = `voucher_type`.`VoucherTypeID`))) join `voucher_detail` on((`voucher_master`.`VoucherMstID` = `voucher_detail`.`VoucherMstID`))) left join `party` on((`voucher_detail`.`PartyID` = `party`.`PartyID`))) left join `supplier` on((`voucher_detail`.`SupplierID` = `supplier`.`SupplierID`)))  ;
+CREATE OR REPLACE VIEW `v_voucher_master`  AS SELECT `voucher_master`.`VoucherMstID` AS `VoucherMstID`, `voucher_master`.`VoucherCodeID` AS `VoucherCodeID`, `voucher_master`.`Voucher` AS `Voucher`, `voucher_master`.`Date` AS `Date`, `voucher_master`.`Narration` AS `Narration`, `voucher_type`.`VoucherTypeID` AS `VoucherTypeID`, `voucher_type`.`VoucherCode` AS `VoucherCode`, `voucher_type`.`VoucherTypeName` AS `VoucherTypeName`, `voucher_detail`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `voucher_detail`.`Debit` AS `Debit`, `voucher_detail`.`Credit` AS `Credit`, `voucher_detail`.`SupplierID` AS `SupplierID`, `supplier`.`SupplierName` AS `SupplierName` FROM ((((`voucher_master` join `voucher_type` on((`voucher_master`.`VoucherCodeID` = `voucher_type`.`VoucherTypeID`))) join `voucher_detail` on((`voucher_master`.`VoucherMstID` = `voucher_detail`.`VoucherMstID`))) left join `party` on((`voucher_detail`.`PartyID` = `party`.`PartyID`))) left join `supplier` on((`voucher_detail`.`SupplierID` = `supplier`.`SupplierID`)))  ;
 
 --
 -- Indexes for dumped tables
@@ -6650,6 +6755,12 @@ ALTER TABLE `company`
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`CountryID`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`PartyID`);
 
 --
 -- Indexes for table `daily_report`
@@ -6822,6 +6933,12 @@ ALTER TABLE `item`
 --
 ALTER TABLE `item__`
   ADD PRIMARY KEY (`ItemID`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jobtitle`
@@ -7046,6 +7163,12 @@ ALTER TABLE `tax`
   ADD PRIMARY KEY (`TaxID`);
 
 --
+-- Indexes for table `tax_treatment`
+--
+ALTER TABLE `tax_treatment`
+  ADD PRIMARY KEY (`TaxTreatmentID`);
+
+--
 -- Indexes for table `title`
 --
 ALTER TABLE `title`
@@ -7172,6 +7295,12 @@ ALTER TABLE `challan_master`
   MODIFY `ChallanMasterID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `PartyID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
@@ -7250,6 +7379,12 @@ ALTER TABLE `item__`
   MODIFY `ItemID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `journal`
 --
 ALTER TABLE `journal`
@@ -7259,7 +7394,7 @@ ALTER TABLE `journal`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `party`
@@ -7356,6 +7491,12 @@ ALTER TABLE `supplier_category`
 --
 ALTER TABLE `tax`
   MODIFY `TaxID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tax_treatment`
+--
+ALTER TABLE `tax_treatment`
+  MODIFY `TaxTreatmentID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `unit`
