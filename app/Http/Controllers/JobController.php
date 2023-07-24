@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Job;
+use App\Models\User;
+use App\Models\Notification;
+use Session;
 
 class JobController extends Controller
 {
@@ -15,8 +18,15 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
         $pagetitle='Jobs';
+        if(Session::get('UserType') == 'Admin'){
+            $jobs = Job::all();
+        }
+        else{
+            $user = User::where('UserID',Session::get('UserID'))->first();
+            $jobs = $user->jobs;
+        }
+        
         return view('job.index',compact('pagetitle','jobs'));
     }
 
@@ -28,14 +38,8 @@ class JobController extends Controller
     public function create()
     {
         $pagetitle='Add Job';
-
-        $country = DB::table('country')->get();
-        $tax_treatments = DB::table('tax_treatment')->get();
-        $customers = DB::table('customers')->get();
-        $estimates = DB::table('v_estimate_master')->get();
-        $departments = DB::table('department')->get();
-        $employee = DB::table('v_employee')->get();
-        return view ('job.create',compact('pagetitle','estimates','departments','employee','customers','country','tax_treatments'));
+        $users = DB::table('v_users')->where('UserType','User')->get();
+        return view ('job.create',compact('pagetitle','users'));
     }
 
     /**
@@ -54,10 +58,10 @@ class JobController extends Controller
         ]);
 
         $input = $request->all();
+        $input['created_by'] = session::get('UserID');
 
         if ($request->file('file'))
         {
-          
              $this->validate($request, [
 
                 'file' => 'required|mimes:jpeg,png,jpg,gif,svg,xlsx,pdf|max:1000',
@@ -76,9 +80,32 @@ class JobController extends Controller
 
         }
 
-        Job::create($input);
+        $job = Job::create($input);
+
+        $job->users()->attach($input['user_ids']);
+
+        $userIds = $input['user_ids'];
+        foreach($userIds as $userId){
+            $notification = new Notification();
+            $notification->user_id = $userId;
+            $notification->job_id = $job->id;
+            $notification->type = 'Job';
+            $notification->save();
+        }
 
         return redirect('jobs-list')->with('error', 'Job Saved Successfully.')->with('class','success');
+    }
+
+    public function updateJobStatus(Request $request)
+    {
+        $userJob = DB::table('user_jobs')->where(['user_id' => Session::get('UserID'), 'job_id' => $request->job_id])->update(['reply' => $request->reply, 'status' => $request->job_status]);
+
+        if($request->job_status == 'completed')
+            $notification = Notification::where(['user_id' => Session::get('UserID'), 'job_id' => $request->job_id])->update(['read' => 1]);
+        else
+            $notification = Notification::where(['user_id' => Session::get('UserID'), 'job_id' => $request->job_id])->update(['read' => 0]);
+        
+        return redirect('jobs-list')->with('error', 'Job status updated successfully!')->with('class','success');
     }
 
     /**
@@ -89,7 +116,10 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $pagetitle = 'View Job';
+        $job = Job::findOrFail($id);
+        $userJob = DB::table('user_jobs')->where(['user_id' => Session::get('UserID'), 'job_id' => $job->id])->first();
+        return view('job.show',compact('job','userJob','pagetitle'));
     }
 
     /**

@@ -42,8 +42,8 @@
                         <div class="row col-md-12">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="basicpill-firstname-input">Project Name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="Project Name">
+                                    <label for="basicpill-firstname-input">Job Title<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="Job Title">
                                 </div>
                             </div>
                             <div class="col-md-4 mt-1">  
@@ -189,6 +189,24 @@
                                   <div class="mb-3">
                                     <label for="basicpill-firstname-input">Upload File<span class="text-danger">*</span></label>
                                     <input type="file" class="form-control" name="file" value="{{old('file')}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-12 mt-5">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Assign Job </label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <select name="user_ids[]" id="users" class="form-select select2" multiple="multiple"  required="">
+                                            <!-- <option value="">Select Users</option> -->
+                                            @foreach ($users as $key => $value)
+                                                <option value="{{$value->UserID}}">{{$value->FullName}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>

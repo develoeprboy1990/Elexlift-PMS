@@ -28,11 +28,13 @@
                 <div class="col-12">
                   <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                     <h4 class="mb-sm-0 font-size-18">JOBS LIST</h4>
+                    @if(session::get('UserType') == 'Admin')
                     <div class="page-title-right ">
                       <div class="btn-group  shadow-sm dropstart">
                          <a href="{{URL('/add-job')}}" class="btn btn-primary"> + New </a>
                       </div>
                     </div>
+                    @endif
                   </div>
                 </div>  
             </div>         
@@ -73,9 +75,14 @@
                                                                 <a  target="_blank" href="{{URL('/ProjectViewPDF/'.@$row->ProjectID)}}">
                                                                     <i class="font-size-18 mdi mdi-file-pdf-outline align-middle me-1 text-secondary"></i>
                                                                 </a>  -->
+                                                                <a  target="_blank" href="{{URL('/viewJob/'.$job->id)}}">
+                                                                    <i class="font-size-18 mdi mdi-eye-outline align-middle me-1 text-secondary"></i>
+                                                                </a>
+                                                                @if(session::get('UserType') == 'Admin')
                                                                 <a href="javascript:void(0)" onclick="delete_confirm2('deleteJob',{{$job->id}})">
                                                                     <i class="font-size-18 mdi mdi-trash-can-outline align-middle me-1 text-secondary"></i>
-                                                                </a> 
+                                                                </a>
+                                                                @endif 
                                                             </div>
                                                         </td>
                                                     </tr>

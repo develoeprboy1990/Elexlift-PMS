@@ -851,9 +851,11 @@ route::get('/TaskView/{id}',[Work::class,'TaskView']);
 
 
 //Jobs
-Route::get('/jobs-list',[JobController::class,'index']);
+Route::get('/jobs-list',[JobController::class,'index'])->name('jobs.list');
 Route::get('/add-job',[JobController::class,'create']);
 Route::post('/saveJob',[JobController::class,'store']);
+Route::post('/updateJobStatus',[JobController::class,'updateJobStatus'])->name('job.updateStatus');
+Route::get('/viewJob/{id}',[JobController::class,'show']);
 Route::get('/deleteJob/{id}',[JobController::class,'destroy']);
 
 

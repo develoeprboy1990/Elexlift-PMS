@@ -29,3 +29,12 @@ php artisan migrate --path=database/migrations/2023_07_22_073017_create_jobs_tab
 
 
 -----------------------------------
+date: 24-7-2023
+
+php artisan migrate --path=database/migrations/2023_07_24_140422_create_user_jobs_table.php
+
+php artisan migrate --path=database/migrations/2023_07_24_144912_add_created_by_to_jobs.php
+
+php artisan migrate --path=database/migrations/2023_07_24_145348_create_notifications_table.php
+
+--------------------------------

@@ -10,10 +10,15 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name','controller_type','no_of_steps','overspeed_governer_voltage','brake_voltage','moter','encoder_type','no_of_entrance','resue','delivery_date','door_type','file','other_materials','additional_details'
+        'name','controller_type','no_of_steps','overspeed_governer_voltage','brake_voltage','moter','encoder_type','no_of_entrance','resue','delivery_date','door_type','file','other_materials','additional_details','created_by'
     ];
 
     protected $casts = [
         'other_materials' => 'array'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_jobs','job_id', 'user_id')->withTimestamps();
+    }
 }

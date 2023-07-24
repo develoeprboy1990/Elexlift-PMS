@@ -198,13 +198,16 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
         </div>
     </div>
 </div> -->
+@php
+    $user = App\Models\User::where('UserID',Session::get('UserID'))->first();
+    $notifications = $user->notifications->where('read',false);
+@endphp
 
-<!--
 <div class="dropdown d-inline-block">
     <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="bx bx-bell bx-tada"></i>
-    <span class="badge bg-danger rounded-pill">3</span>
+    <span class="badge bg-danger rounded-pill">{{count($notifications)}}</span>
     </button>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
         aria-labelledby="page-header-notifications-dropdown">
@@ -219,23 +222,27 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
             </div>
         </div>
         <div data-simplebar style="max-height: 230px;">
-            <a href="#" class="text-reset notification-item">
-                <div class="media">
-                    <div class="avatar-xs me-3">
-                        <span class="avatar-title bg-primary rounded-circle font-size-16">
-                            <i class="bx bx-cart"></i>
-                        </span>
-                    </div>
-                    <div class="media-body">
-                        <h6 class="mt-0 mb-1" key="t-your-order">Your order is placed</h6>
-                        <div class="font-size-12 text-muted">
-                            <p class="mb-1" key="t-grammer">If several languages coalesce the grammar</p>
-                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">3 min ago</span></p>
+            @if(count($notifications) > 0)
+            @foreach($notifications as $notification)
+                <a href="{{route('jobs.list')}}" class="text-reset notification-item">
+                    <div class="media">
+                        <div class="avatar-xs me-3">
+                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                <i class="bx bx-cart"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h6 class="mt-0 mb-1" key="t-your-order">New Job Assigned to You</h6>
+                            <div class="font-size-12 text-muted">
+                                <p class="mb-1" key="t-grammer">Job tilte: {{$notification->job->name ?? 'Job Title'}}</p>
+                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">{{$notification->created_at->diffForHumans()}}</span></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="#" class="text-reset notification-item">
+                </a>
+            @endforeach
+            @endif
+            <!-- <a href="#" class="text-reset notification-item">
                 <div class="media">
                     <img src="{{URL('/')}}/assets/images/users/avatar-3.jpg"
                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -276,7 +283,7 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
                         </div>
                     </div>
                 </div>
-            </a>
+            </a> -->
         </div>
         <div class="p-2 border-top d-grid">
             <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
@@ -285,7 +292,7 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
         </div>
     </div>
 </div>
--->
+
 <div class="dropdown d-inline-block">
     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

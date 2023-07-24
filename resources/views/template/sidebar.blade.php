@@ -217,7 +217,7 @@
                 <li>
                     <a href="{{URL('/jobs-list')}}" class="waves-effect">
                         <i class="bx bx-briefcase-alt-2"></i>
-                        <span key="t-dashboards">Job List</span>
+                        <span key="t-dashboards">{{session::get('UserType') == 'Admin' ? 'Job List': 'My Jobs'}}</span>
                     </a>
                   
                 </li>

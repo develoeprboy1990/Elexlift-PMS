@@ -28,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         /* NEW TEQ POS SETTING */
        /*  if(isset($_COOKIE['language'])) {
             \App::setLocale($_COOKIE['language']);
