@@ -31,7 +31,7 @@
                     @if(session::get('UserType') == 'Admin')
                     <div class="page-title-right ">
                       <div class="btn-group  shadow-sm dropstart">
-                         <a href="{{URL('/add-job')}}" class="btn btn-primary"> + New </a>
+                         <a href="{{URL('/AddJob')}}" class="btn btn-primary"> + New </a>
                       </div>
                     </div>
                     @endif
@@ -47,8 +47,9 @@
                                                 <tr>
                                                     <th scope="col">No#</th>
                                                     <th scope="col">Project Name</th>
-                                                    <th scope="col">Delivery Date Date</th>
+                                                    <th scope="col">Delivery Date</th>
                                                     <th scope="col">Controller Type</th>
+                                                    <th scope="col">Job Asssigned To</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
@@ -65,21 +66,15 @@
                                                         <td>{{$job->delivery_date ?? 'N/A'}}</td>
                                                         <td>{{$job->controller_type ?? 'N/A'}}</td>
                                                         <td>
+                                                            {{ implode(', ', $job->users->pluck('FullName')->toArray()) }}
+                                                        </td>
+                                                        <td>
                                                             <div class="d-flex align-items-center col-actions">
-                                                                <!-- <a href="{{URL('/ProjectView/1'.@$row->ProjectID)}}">
-                                                                    <i class="font-size-18 mdi mdi-eye-outline align-middle me-1 text-secondary"></i>
-                                                                </a> 
-                                                                <a href="{{URL('/ProjectEdit/'.@$row->ProjectID)}}">
-                                                                    <i class="font-size-18 mdi mdi-pencil align-middle me-1 text-secondary"></i>
-                                                                </a> 
-                                                                <a  target="_blank" href="{{URL('/ProjectViewPDF/'.@$row->ProjectID)}}">
-                                                                    <i class="font-size-18 mdi mdi-file-pdf-outline align-middle me-1 text-secondary"></i>
-                                                                </a>  -->
-                                                                <a  target="_blank" href="{{URL('/viewJob/'.$job->id)}}">
+                                                                <a  target="_blank" href="{{URL('/ViewJob/'.$job->id)}}">
                                                                     <i class="font-size-18 mdi mdi-eye-outline align-middle me-1 text-secondary"></i>
                                                                 </a>
                                                                 @if(session::get('UserType') == 'Admin')
-                                                                <a href="javascript:void(0)" onclick="delete_confirm2('deleteJob',{{$job->id}})">
+                                                                <a href="javascript:void(0)" onclick="delete_confirm2('DeleteJob',{{$job->id}})">
                                                                     <i class="font-size-18 mdi mdi-trash-can-outline align-middle me-1 text-secondary"></i>
                                                                 </a>
                                                                 @endif 

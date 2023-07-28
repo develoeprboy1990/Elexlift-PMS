@@ -38,3 +38,28 @@ php artisan migrate --path=database/migrations/2023_07_24_144912_add_created_by_
 php artisan migrate --path=database/migrations/2023_07_24_145348_create_notifications_table.php
 
 --------------------------------
+
+
+date: 28-7-2023
+
+ALTER TABLE `user` DROP `BranchID`;
+
+
+
+DROP VIEW IF EXISTS v_users;
+
+-- Recreate the view without the BranchID column
+CREATE ALGORITHM = UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_users` AS
+SELECT 
+    `ext_pms`.`user`.`UserID` AS `UserID`,
+    `ext_pms`.`user`.`FullName` AS `FullName`,
+    `ext_pms`.`user`.`Email` AS `Email`,
+    `ext_pms`.`user`.`Password` AS `Password`,
+    `ext_pms`.`user`.`UserType` AS `UserType`,
+    `ext_pms`.`user`.`eDate` AS `eDate`,
+    `ext_pms`.`user`.`Active` AS `Active`
+FROM
+    `ext_pms`.`user`;
+
+
+----------------------------------------

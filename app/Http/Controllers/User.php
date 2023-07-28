@@ -84,7 +84,7 @@ class User extends Controller
     {
         
         
-        $id = DB::table('user')->where('UserID',$id)->delete();
+        $id = User::where('UserID',$id)->delete();
         echo "del";
         
     }
@@ -105,7 +105,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
  session::put('menu','User');     
         $pagetitle = 'User';
        
-        $user= DB::table('user')->get();
+        $user= User::get();
         
         return  view ('user',compact('user','pagetitle'));
      }
@@ -147,7 +147,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 
 
 
-        $id =DB::table('user')->insert($data);
+        $id =User::create($data);
         return redirect('User')->with('error','User Created Successfully')->with('class','success');
 
      }
@@ -164,7 +164,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 }
 ////////////////////////////END SCRIPT ////////////////////////////////////////////////
 
-         $v_users= DB::table('user')->where('UserID',$id)->get();
+         $v_users= User::where('UserID',$id)->get();
 
         return  view ('user_edit',compact('v_users','pagetitle'));
      }
@@ -203,7 +203,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
         );
 
  
-        $id= DB::table('user')->where('UserID',$request->input('UserID'))->update($data);
+        $id= User::where('UserID',$request->input('UserID'))->update($data);
         return redirect('User')->with('error','Users Updated Successfully')->with('class','success');
      }
 
@@ -219,7 +219,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 }
 ////////////////////////////END SCRIPT ////////////////////////////////////////////////
 
-            $id = DB::table('user')->where('UserID',$id)->delete();
+            $id = User::where('UserID',$id)->delete();
             return redirect('User')->with('error','User Deleted Successfully')->with('class','success');
 
      }

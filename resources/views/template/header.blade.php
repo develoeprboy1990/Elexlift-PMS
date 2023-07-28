@@ -200,7 +200,7 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
 </div> -->
 @php
     $user = App\Models\User::where('UserID',Session::get('UserID'))->first();
-    $notifications = $user->notifications->where('read',false);
+    $notifications = $user->notifications;
 @endphp
 
 <div class="dropdown d-inline-block">

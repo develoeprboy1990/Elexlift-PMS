@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
@@ -12,7 +13,7 @@ class CompanyController extends Controller
     {
         $pagetitle = 'Company';
 
-        $company = DB::table('company')->get();
+        $company = Company::get();
         //   dd($company);
         return view('company', compact('company'));
     }
@@ -74,7 +75,7 @@ $pagetitle = 'Company';
 
         );
 
-        $id = DB::table('company')->insertGetId($data);
+        $id = Company::create($data);
 
  
         return redirect('Company' )->with('error', 'Save Successfully.')->with('class', 'success');
@@ -86,7 +87,7 @@ $pagetitle = 'Company';
         session::put('menu', 'Company');
         $pagetitle = 'Company';
 
-        $company = DB::table('company')->where('CompanyID', $id)->get();
+        $company = Company::where('CompanyID', $id)->get();
         // dd($company);
         return view('company_edit', compact('pagetitle', 'company'));
     }
@@ -138,19 +139,19 @@ $pagetitle = 'Company';
         }
        
 
-        $id = DB::table('company')->where('CompanyID', $request->input('CompanyID'))->update($data);
+        $id = Company::where('CompanyID', $request->input('CompanyID'))->update($data);
         $pagetitle = 'Company';
 
-        $company = DB::table('company')->get();
+        $company = Company::get();
         return redirect('Company')->with('error', 'Save Successfully.')->with('class', 'success');
     }
     public  function CompanyDelete($id)
     {
         $pagetitle = 'Company';
 
-        $company = DB::table('company')->get();
+        $company = Company::get();
 
-        $id = DB::table('company')->where('CompanyID', $id)->delete();
+        $id = Company::where('CompanyID', $id)->delete();
         return redirect('Company')->with('error', 'Deleted Successfully.')->with('class', 'success');
     }
 }

@@ -15,7 +15,7 @@ class User extends Model
 
     public function jobs()
     {
-        return $this->belongsToMany(Job::class, 'user_jobs','user_id', 'job_id')->withTimestamps();
+        return $this->belongsToMany(Job::class, 'user_jobs','user_id', 'job_id')->withPivot(['reply','status']);
     }
 
     public function notifications()

@@ -87,9 +87,7 @@
                                     <p class="fw-bold">Other Materials</p>
                                         @if($job->other_materials)
                                         <p>
-                                        @foreach($job->other_materials as $material)
-                                            <span class="card-text">{{$material}}</span>,
-                                        @endforeach
+                                        <span class="card-text">{{ implode(', ', $job->other_materials) }}</span>
                                         </p>
                                         @endif
                                 </div>
@@ -99,6 +97,42 @@
                                     <p class="fw-bold">Additional Details</p>
                                     <p> <span class="card-text">{{$job->additional_details ?? 'N/A'}}</span></p>
                                 </div>
+                                @if((session::get('UserType') == 'Admin'))
+                                    <div class="col-12 col-sm-8 col-md-6">
+                                        <p class="fw-bold">Job Reply & Status</p>
+
+                                        @forelse($job->users as $user)
+                                        <p>
+                                            @php
+                                                $userJob = $user->jobs->where('id',$job->id)->first()->pivot;
+                                            @endphp
+                                             <span class="card-text"><b>{{$user->FullName ?? 'N/A'}}:</b>
+                                             </span>
+                                             <span class="card-text">{{$userJob->reply ?? 'No Reply yet!'}}
+                                             </span>
+                                             @if($userJob->status == 'pending')
+                                             <span class="badge bg-warning">Pending</span>
+                                             @elseif($userJob->status == 'in-progress')
+                                             <span class="badge bg-primary">In Progress</span>
+                                             @elseif($userJob->status == 'completed')
+                                             <span class="badge bg-success">Completed</span>
+                                             @endif
+                                        </p>
+                                        @empty
+                                        <p>
+                                             <span class="card-text text-danger"><b>No reply found!</b>
+                                             </span>
+                                        </p>
+                                        @endforelse
+                                    </div>
+                                @else
+
+                                    <div class="col-12 col-sm-8 col-md-6">
+                                        <p class="fw-bold">Job Reply & Status</p>
+                                        <p> <span class="card-text">{{@$userJob->reply ?? 'No Reply Yet!'}}</span></p>
+                                    </div>
+
+                                @endif
                             </div>
                         </div>
                     </div>

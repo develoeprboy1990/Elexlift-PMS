@@ -1,1 +1,0 @@
- <?php echo $issue_letter[0]->Content; ?>

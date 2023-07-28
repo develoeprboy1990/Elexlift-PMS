@@ -38,7 +38,7 @@ class JobController extends Controller
     public function create()
     {
         $pagetitle='Add Job';
-        $users = DB::table('v_users')->where('UserType','User')->get();
+        $users = User::where('UserType','User')->get();
         return view ('job.create',compact('pagetitle','users'));
     }
 
@@ -93,7 +93,7 @@ class JobController extends Controller
             $notification->save();
         }
 
-        return redirect('jobs-list')->with('error', 'Job Saved Successfully.')->with('class','success');
+        return redirect()->route('jobs.list')->with('error', 'Job Saved Successfully.')->with('class','success');
     }
 
     public function updateJobStatus(Request $request)
@@ -105,7 +105,7 @@ class JobController extends Controller
         else
             $notification = Notification::where(['user_id' => Session::get('UserID'), 'job_id' => $request->job_id])->update(['read' => 0]);
         
-        return redirect('jobs-list')->with('error', 'Job status updated successfully!')->with('class','success');
+        return redirect()->route('jobs.list')->with('error', 'Job status updated successfully!')->with('class','success');
     }
 
     /**
@@ -153,7 +153,10 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        Job::findOrFail($id)->delete();
-        return redirect('jobs-list')->with('error','Job Deleted Successfully')->with('class','success');
+        $job = Job::findOrFail($id);
+        $job->users()->detach();
+        Notification::where('job_id',$id)->delete();
+        $job->delete();
+        return redirect()->route('jobs.list')->with('error','Job Deleted Successfully')->with('class','success');
     }
 }

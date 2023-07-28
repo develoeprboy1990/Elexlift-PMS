@@ -37,7 +37,7 @@
                       Add Job
                 </div>
                 <div class="card-body">
-                    <form action="{{URL('/saveJob')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{URL('/SaveJob')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                         <div class="row col-md-12">
                             <div class="col-md-4">

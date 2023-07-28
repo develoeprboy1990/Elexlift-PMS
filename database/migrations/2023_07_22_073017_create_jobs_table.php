@@ -29,7 +29,10 @@ return new class extends Migration
             $table->string('file')->nullable();
             $table->string('other_materials')->nullable();
             $table->text('additional_details')->nullable();
+            $table->enum('status',['active','in-active'])->default('active');
+            $table->bigInteger('created_by')->unsigned()->nullable();
             $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
