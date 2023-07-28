@@ -97,9 +97,20 @@
                                     <p class="fw-bold">Additional Details</p>
                                     <p> <span class="card-text">{{$job->additional_details ?? 'N/A'}}</span></p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-12">
+                        <div class="card card-hover">
+                            <div class="card-header">
+                                <h4 class="mb-0 text-dark">Job Reply & Status</h4>
+                            </div>
+                            <div class="card-body">
                                 @if((session::get('UserType') == 'Admin'))
-                                    <div class="col-12 col-sm-8 col-md-6">
-                                        <p class="fw-bold">Job Reply & Status</p>
+                                    <div class="col-12 col-sm-12 col-md-12">
 
                                         @forelse($job->users as $user)
                                         <p>
@@ -114,6 +125,8 @@
                                              <span class="badge bg-warning">Pending</span>
                                              @elseif($userJob->status == 'in-progress')
                                              <span class="badge bg-primary">In Progress</span>
+                                             @elseif($userJob->status == 'reviewed')
+                                             <span class="badge bg-secondary">Review</span>
                                              @elseif($userJob->status == 'completed')
                                              <span class="badge bg-success">Completed</span>
                                              @endif
@@ -127,8 +140,7 @@
                                     </div>
                                 @else
 
-                                    <div class="col-12 col-sm-8 col-md-6">
-                                        <p class="fw-bold">Job Reply & Status</p>
+                                    <div class="col-12 col-sm-12 col-md-12">
                                         <p> <span class="card-text">{{@$userJob->reply ?? 'No Reply Yet!'}}</span></p>
                                     </div>
 
@@ -137,7 +149,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             @if(session::get('UserType') == 'User')
                 <div class="row">
                     <div class="col-12">
@@ -164,6 +175,7 @@
                                                 <select name="job_status" id="status" class="form-select select2" required="" style="width:90%">
                                                     <option value="pending" {{@$userJob->status == 'pending' ? 'selected': ''}}>Pending</option>
                                                     <option value="in-progress" {{@$userJob->status == 'in-progress' ? 'selected': ''}}>In Progress</option>
+                                                    <option value="reviewed" {{@$userJob->status == 'reviewed' ? 'selected': ''}}>Reviewed</option>
                                                     <option value="completed" {{@$userJob->status == 'completed' ? 'selected': ''}}>Completed</option>
                                                 </select>
                                             </div>

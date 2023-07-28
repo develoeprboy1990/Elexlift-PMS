@@ -21,4 +21,8 @@ class Job extends Model
     {
         return $this->belongsToMany(User::class, 'user_jobs','job_id', 'user_id')->withPivot(['reply','status']);
     }
+
+    public function notifications(){
+        return $this->hasMany(Notification::class);
+    }
 }

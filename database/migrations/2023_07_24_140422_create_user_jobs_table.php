@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('job_id')->nullable();
-            $table->enum('status',['pending','in-progress','completed'])->default('pending');
+            $table->enum('status',['pending','in-progress','reviewed','completed'])->default('pending');
             $table->longText('reply')->nullable();
 
             $table->foreign('user_id')->references('UserID')->on('user')->onDelete('cascade');

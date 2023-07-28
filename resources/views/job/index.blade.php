@@ -50,6 +50,7 @@
                                                     <th scope="col">Delivery Date</th>
                                                     <th scope="col">Controller Type</th>
                                                     <th scope="col">Job Asssigned To</th>
+                                                    <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
@@ -68,6 +69,19 @@
                                                         <td>
                                                             {{ implode(', ', $job->users->pluck('FullName')->toArray()) }}
                                                         </td>
+                                                        
+                                                        <td>
+                                                            @if(@$job->users[0]->pivot->status == 'pending')
+                                                                <span class="badge bg-warning">Pending</span>
+                                                            @elseif(@$job->users[0]->pivot->status == 'in-progress')
+                                                                 <span class="badge bg-primary">In Progress</span>
+                                                            @elseif(@$job->users[0]->pivot->status == 'reviewed')
+                                                                 <span class="badge bg-secondary">Reviewed</span>
+                                                            @elseif(@$job->users[0]->pivot->status == 'completed')
+                                                                 <span class="badge bg-success">Completed</span>
+                                                            @endif
+                                                        </td>
+                                                        
                                                         <td>
                                                             <div class="d-flex align-items-center col-actions">
                                                                 <a  target="_blank" href="{{URL('/ViewJob/'.$job->id)}}">

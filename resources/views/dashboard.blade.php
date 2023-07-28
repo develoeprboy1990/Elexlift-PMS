@@ -110,7 +110,7 @@
        
         <div class="col-xl-12">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="card">
                         <div class="card-body border-secondary border-top border-3 rounded-top">
                             <div class="d-flex align-items-center mb-3">
@@ -134,7 +134,7 @@
 
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="card">
                         <div class="card-body border-secondary border-top border-3 rounded-top">
                             <div class="d-flex align-items-center mb-3">
@@ -155,7 +155,32 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body border-secondary border-top border-3 rounded-top">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
+                                        <i class="mdi mdi-calendar-cursor font-size-30 "></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Pending Jobs </h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4 class="text-center"><a href="#">{{ $pendingJobs }} 
+
+
+                                </a> </h4>
+                                
+                                <div class="d-flex">
+                                     <span class="ms-2 text-truncate mt-3"> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
                     <div class="card">
                         <div class="card-body border-secondary border-top border-3 rounded-top">
                             <div class="d-flex align-items-center mb-3">
@@ -184,6 +209,36 @@
             </div>
             <!-- end row -->
         </div>
+    </div>
+
+    <div class="row">
+       
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body border-secondary border-top border-3 rounded-top">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
+                                        <i class="mdi mdi-passport"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Reviewed Jobs</h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4 class="text-center"><a href="#">{{ $reviewedJobs }} </a> </h4>
+                                <div class="d-flex">
+                                     <span class="ms-2 text-truncate mt-3"> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
     </div>
  
 

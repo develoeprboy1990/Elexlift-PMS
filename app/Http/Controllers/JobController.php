@@ -118,6 +118,13 @@ class JobController extends Controller
     {
         $pagetitle = 'View Job';
         $job = Job::findOrFail($id);
+        $notification = Notification::where(['user_id' => Session::get('UserID'), 'job_id' => $id])->first();
+
+        if($notification && $notification->read == 0){
+           $notification->read = 1;
+           $notification->save(); 
+        }
+            
         $userJob = DB::table('user_jobs')->where(['user_id' => Session::get('UserID'), 'job_id' => $job->id])->first();
         return view('job.show',compact('job','userJob','pagetitle'));
     }

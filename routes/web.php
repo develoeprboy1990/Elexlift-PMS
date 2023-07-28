@@ -27,6 +27,7 @@ use App\Http\Controllers\Work;
  
 Route::get('/',[Accounts::class,'Login']);
 Route::get('/Login',[Accounts::class,'Login']);
+Route::get('/Logout', [Accounts::class, 'Logout']);
 Route::post('/UserVerify',[Accounts::class,'UserVerify']);
 
 
@@ -97,7 +98,7 @@ Route::get('/JobList',[JobController::class,'index'])->name('jobs.list');
 Route::get('/AddJob',[JobController::class,'create']);
 Route::post('/SaveJob',[JobController::class,'store']);
 Route::post('/UpdateJobStatus',[JobController::class,'updateJobStatus'])->name('job.updateStatus');
-Route::get('/ViewJob/{id}',[JobController::class,'show']);
+Route::get('/ViewJob/{id}',[JobController::class,'show'])->name('job.show');
 Route::get('DeleteJob/{id}',[JobController::class,'destroy']);
 
 

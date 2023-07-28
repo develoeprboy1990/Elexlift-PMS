@@ -53,14 +53,18 @@ class Accounts extends Controller
         if(Session::get('UserType') == 'Admin'){
             $totalJobs = Job::count();
             $inProgressJobs = DB::table('user_jobs')->where('status','in-progress')->count();
+            $pendingJobs = DB::table('user_jobs')->where('status','pending')->count();
+            $reviewedJobs = DB::table('user_jobs')->where('status','reviewed')->count();
             $completedJobs = DB::table('user_jobs')->where('status','completed')->count();
         }
         else{
             $totalJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->count();
             $inProgressJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','in-progress')->count();
+            $pendingJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','pending')->count();
+            $reviewedJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','reviewed')->count();
             $completedJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','completed')->count();
         }
-        return view ('dashboard',compact('pagetitle','totalJobs','inProgressJobs','completedJobs'));
+        return view ('dashboard',compact('pagetitle','totalJobs','inProgressJobs','completedJobs','pendingJobs','reviewedJobs'));
     }
 
     public  function Logout()

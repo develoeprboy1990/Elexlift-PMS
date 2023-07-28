@@ -35,12 +35,12 @@
                 </li>
             
                 @if(session::get('UserType') == 'Admin')
-                <li>
+                <!-- <li>
                     <a href="{{URL('/User')}}" class="waves-effect">
                         <i class="bx bxs-user-plus"></i>
                         <span key="t-calendar">User</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{URL('/Company')}}" class="waves-effect">
                         <i class="bx bxs-user-plus"></i>

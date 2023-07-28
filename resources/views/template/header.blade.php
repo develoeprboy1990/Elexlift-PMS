@@ -201,13 +201,14 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
 @php
     $user = App\Models\User::where('UserID',Session::get('UserID'))->first();
     $notifications = $user->notifications;
+    $unreadNotifications = $user->notifications->where('read',0);
 @endphp
 
 <div class="dropdown d-inline-block">
     <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="bx bx-bell bx-tada"></i>
-    <span class="badge bg-danger rounded-pill">{{count($notifications)}}</span>
+    <span class="badge bg-danger rounded-pill">{{count($unreadNotifications)}}</span>
     </button>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
         aria-labelledby="page-header-notifications-dropdown">
@@ -224,14 +225,14 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
         <div data-simplebar style="max-height: 230px;">
             @if(count($notifications) > 0)
             @foreach($notifications as $notification)
-                <a href="{{route('jobs.list')}}" class="text-reset notification-item">
-                    <div class="media">
+                <a href="{{route('job.show',['id' => $notification->job_id])}}" class="text-reset notification-item">
+                    <div class="media {{$notification->read == 0 ? 'bg bg-warning' : 'bg bg-success'}}">
                         <div class="avatar-xs me-3">
                             <span class="avatar-title bg-primary rounded-circle font-size-16">
                                 <i class="bx bx-cart"></i>
                             </span>
                         </div>
-                        <div class="media-body">
+                        <div class="media-body ">
                             <h6 class="mt-0 mb-1" key="t-your-order">New Job Assigned to You</h6>
                             <div class="font-size-12 text-muted">
                                 <p class="mb-1" key="t-grammer">Job tilte: {{$notification->job->name ?? 'Job Title'}}</p>
