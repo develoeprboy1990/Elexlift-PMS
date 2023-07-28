@@ -32,7 +32,7 @@ class CompanySeeder extends Seeder
         $comp = Company::count();
 
         if($comp == 0){
-            Company::create($arr);
+            Company::create($compArr);
         }
     }
 }

@@ -11,6 +11,8 @@ class User extends Model
 
     protected $table = "user";
 
+    public $timestamps = false;
+
     protected $primaryKey = 'UserID';
 
     public function jobs()
