@@ -122,7 +122,7 @@
                                 <h5 class="font-size-14 mb-0">Total Jobs</h5>
                             </div>
                             <div class="text-muted mt-4">
-                                <h4 class="text-center"><a href="#">{{ $totalJobs }} </a> </h4>
+                                <h4 class="text-center"><a href="{{route('jobs.list')}}">{{ $totalJobs }} </a> </h4>
                                 <div class="d-flex">
                                      <span class="ms-2 text-truncate mt-3"> </span>
                                 </div>
@@ -146,7 +146,7 @@
                                 <h5 class="font-size-14 mb-0">In Progress Jobs</h5>
                             </div>
                             <div class="text-muted mt-4">
-                                <h4 class="text-center"><a href="#" >{{ $inProgressJobs}}  </a> </h4>
+                                <h4 class="text-center"><a href="{{route('jobs.list',['status' => 'In-Progress'])}}" >{{ $inProgressJobs}}  </a> </h4>
                                 <div class="d-flex">
                                      <span class="ms-2 text-truncate mt-3"> </span>
                                 </div>
@@ -167,7 +167,7 @@
                                 <h5 class="font-size-14 mb-0">Pending Jobs </h5>
                             </div>
                             <div class="text-muted mt-4">
-                                <h4 class="text-center"><a href="#">{{ $pendingJobs }} 
+                                <h4 class="text-center"><a href="{{route('jobs.list',['status' => 'Pending'])}}">{{ $pendingJobs }} 
 
 
                                 </a> </h4>
@@ -192,7 +192,7 @@
                                 <h5 class="font-size-14 mb-0">Completed Jobs </h5>
                             </div>
                             <div class="text-muted mt-4">
-                                <h4 class="text-center"><a href="#">{{ $completedJobs }} 
+                                <h4 class="text-center"><a href="{{route('jobs.list',['status' => 'Completed'])}}">{{ $completedJobs }} 
 
 
                                 </a> </h4>
@@ -227,7 +227,7 @@
                                 <h5 class="font-size-14 mb-0">Reviewed Jobs</h5>
                             </div>
                             <div class="text-muted mt-4">
-                                <h4 class="text-center"><a href="#">{{ $reviewedJobs }} </a> </h4>
+                                <h4 class="text-center"><a href="{{route('jobs.list',['status' => 'Reviewed'])}}">{{ $reviewedJobs }} </a> </h4>
                                 <div class="d-flex">
                                      <span class="ms-2 text-truncate mt-3"> </span>
                                 </div>

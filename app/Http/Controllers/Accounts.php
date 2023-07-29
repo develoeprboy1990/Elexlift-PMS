@@ -24,6 +24,7 @@ use Image;
 use File;
 use PDF;
 use App\Models\Job;
+use App\Models\User;
 use App\Models\Company;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -52,17 +53,18 @@ class Accounts extends Controller
 
         if(Session::get('UserType') == 'Admin'){
             $totalJobs = Job::count();
-            $inProgressJobs = DB::table('user_jobs')->where('status','in-progress')->count();
-            $pendingJobs = DB::table('user_jobs')->where('status','pending')->count();
-            $reviewedJobs = DB::table('user_jobs')->where('status','reviewed')->count();
-            $completedJobs = DB::table('user_jobs')->where('status','completed')->count();
+            $inProgressJobs = Job::where('JobStatus','In-Progress')->count();
+            $pendingJobs = Job::where('JobStatus','Pending')->count();
+            $reviewedJobs = Job::where('JobStatus','Reviewed')->count();
+            $completedJobs = Job::where('JobStatus','Completed')->count();
         }
         else{
-            $totalJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->count();
-            $inProgressJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','in-progress')->count();
-            $pendingJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','pending')->count();
-            $reviewedJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','reviewed')->count();
-            $completedJobs = DB::table('user_jobs')->where('user_id',Session::get('UserID'))->where('status','completed')->count();
+            $user = User::where('UserID',Session::get('UserID'))->first();
+            $totalJobs = $user->jobs->count();
+            $inProgressJobs = $user->jobs->where('JobStatus','In-Progress')->count();
+            $pendingJobs = $user->jobs->where('JobStatus','Pending')->count();
+            $reviewedJobs = $user->jobs->where('JobStatus','Reviewed')->count();
+            $completedJobs = $user->jobs->where('JobStatus','Completed')->count();
         }
         return view ('dashboard',compact('pagetitle','totalJobs','inProgressJobs','completedJobs','pendingJobs','reviewedJobs'));
     }
@@ -80,87 +82,40 @@ class Accounts extends Controller
     }
 public function UserVerify( request $request)
 {
-//
-if($request->StaffType=='Management'){
-//dd($request->all());
-$input = $request->only(['username', 'password']);
+    $input = $request->only(['username', 'password']);
 
 
-$username = $input['username'];
-$password =  $input['password'];
+    $username = $input['username'];
+    $password =  $input['password'];
 
-$data=DB::table('user')->where('Email', '=', $username )
-->where('Password', '=', $password )
-->where('Active', '=', 'Yes' )
-->get();
-$company = Company::get();
+    $data=DB::table('user')->where('Email', '=', $username )
+    ->where('Password', '=', $password )
+    ->where('Active', '=', 'Yes' )
+    ->get();
+    $company = Company::get();
 
-if(count($data)>0)
-{
-Session::put('FullName', $data[0]->FullName);
-Session::put('UserID', $data[0]->UserID);
-Session::put('Email', $data[0]->Email);
-Session::put('UserType', $data[0]->UserType);
+    if(count($data)>0)
+    {
+    Session::put('FullName', $data[0]->FullName);
+    Session::put('UserID', $data[0]->UserID);
+    Session::put('Email', $data[0]->Email);
+    Session::put('UserType', $data[0]->UserType);
 
-Session::put('Currency', $company[0]->Currency);
-Session::put('CompanyName', $company[0]->Name . ' '.$company[0]->Name2);
-// Session::put('isAdmin', $data[0]->isAdmin);
+    Session::put('Currency', $company[0]->Currency);
+    Session::put('CompanyName', $company[0]->Name . ' '.$company[0]->Name2);
+    // Session::put('isAdmin', $data[0]->isAdmin);
 
 
 
-return redirect('Dashboard')->with('error','Welcome to '. session::get('CompanyName').' Software')->with('class','success');
+    return redirect('Dashboard')->with('error','Welcome to '. session::get('CompanyName').' Software')->with('class','success');
 
-}
+    }
 
-else
-{
-//session::flash('error', 'Invalid username or Password. Try again');
-return redirect ('Login')->withinput($request->all())->with('error', 'Invalid username or Password. Try again')->with('class','danger');
-}
-
-}
-
- else
- {
-
-        $username = $request->input('username');
-         $password =  $request->input('password');
- 
-
-         $data=DB::table('employee')->where('Email', '=', $username )
-                                ->where('Password', '=', $password )
-                                // ->where('Active', '=', 'Y' )
-                                ->get(); 
-
-
-
-
-         
-
-           if(count($data)>0)
-            {   
-
-              
-           Session::put('FullName', $data[0]->FirstName . ''.$data[0]->MiddleName.''.$data[0]->LastName); 
-           Session::put('EmployeeID', $data[0]->EmployeeID);
-           Session::put('Email', $data[0]->Email);
-           Session::put('StaffType', $data[0]->StaffType);
-           
-
-
- 
-                 return redirect ('StaffDashboard' );
-               }
-               else
-
-            {   
-
-
-                //session::flash('error', 'Invalid username or Password. Try again'); 
-
-                return redirect ('Login')->withinput($request->all())->with('error', 'Invalid username or Password. Try again');
-            }
-          }
+    else
+    {
+    //session::flash('error', 'Invalid username or Password. Try again');
+    return redirect ('Login')->withinput($request->all())->with('error', 'Invalid username or Password. Try again')->with('class','danger');
+    }
 
 // for staff login
 }

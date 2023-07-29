@@ -477,8 +477,8 @@ CREATE TABLE `user_job_reply` (
 --
 
 INSERT INTO `user_job_reply` (`ReplyID`, `JobID`, `UserID`, `UserReply`, `UserJobStatus`, `CreatedAt`) VALUES
-(5, 4, 2, NULL, 'In Progress', '2023-07-29 14:24:40'),
-(4, 2, 2, NULL, 'In Progress', '2023-07-29 13:09:05');
+(5, 4, 2, NULL, 'In-Progress', '2023-07-29 14:24:40'),
+(4, 2, 2, NULL, 'In-Progress', '2023-07-29 13:09:05');
 
 -- --------------------------------------------------------
 

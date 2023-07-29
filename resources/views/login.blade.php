@@ -118,19 +118,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-3">
-                                                        <label class="d-block mb-2">Choose Login Type</label>
-
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="StaffType" id="inlineRadio1" value="Management" checked="">
-                                                            <label class="form-check-label" for="inlineRadio1">Management (HR,GM,OM)</label>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="StaffType" id="inlineRadio2" value="Employee" {{ old('StaffType') == 'Employee' ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="inlineRadio2">Employee</label>
-                                                        </div>                                                          
-                                                    </div>
 
                                       
                                         

@@ -46,9 +46,9 @@
                                     <label for="basicpill-firstname-input">Estimate<span class="text-danger">*</span></label>
                                     <select name="EstimateNo" id="EstimateNo" class="form-select select2" name="PartyID" required="">
                                         <option value="">Select</option>
-                                        <?php foreach ($estimates as $key => $value) : ?>
+                                        @foreach ($estimates as $key => $value)
                                             <option value="{{$value->EstimateNo}}">{{$value->EstimateNo}}</option>
-                                        <?php endforeach ?>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -219,8 +219,8 @@
                                         <label class="col-form-label" for="password">Assign Job </label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <select name="user_ids[]" id="users" class="form-select select2" multiple="multiple"  required="">
-                                            <!-- <option value="">Select Users</option> -->
+                                        <select name="user_id" id="users" class="form-select select2" required="">
+                                            <option value="">Select User</option>
                                             @foreach ($users as $key => $value)
                                                 <option value="{{$value->UserID}}">{{$value->FullName}}</option>
                                             @endforeach

@@ -95,12 +95,13 @@ route::get('/TaskView/{id}',[Work::class,'TaskView']);
 
 
 //Jobs
-Route::get('/JobList',[JobController::class,'index'])->name('jobs.list');
+Route::get('/JobList/{status?}',[JobController::class,'index'])->name('jobs.list');
 Route::get('/AddJob',[JobController::class,'create']);
 Route::post('/SaveJob',[JobController::class,'store']);
 Route::post('/UpdateJobStatus',[JobController::class,'updateJobStatus'])->name('job.updateStatus');
 Route::get('/ViewJob/{id}',[JobController::class,'show'])->name('job.show');
 Route::get('DeleteJob/{id}',[JobController::class,'destroy']);
+Route::get('/JobViewPDF/{id}', [JobController::class, 'jobViewPDF']);
 
 
 // ..............Estimate.............

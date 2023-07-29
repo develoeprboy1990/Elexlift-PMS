@@ -70,7 +70,7 @@
                                     <p> <span class="card-text">{{$job->no_of_entrance ?? 'N/A'}}</span></p>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-4">
-                                    <p class="fw-bold">Resue</p>
+                                    <p class="fw-bold">Rescue</p>
                                     <p> <span class="card-text">{{$job->resue ?? 'N/A'}}</span></p>
                                 </div>
                             </div>
@@ -134,53 +134,7 @@
                                 </div>
                             </div>
             </div>
-           <!--  <div class="row">
-                    <div class="col-12">
-                        <div class="card card-hover">
-                            <div class="card-header">
-                                <h4 class="mb-0 text-dark">Job Reply & Status</h4>
-                            </div>
-                            <div class="card-body">
-                                @if((session::get('UserType') == 'Admin'))
-                                    <div class="col-12 col-sm-12 col-md-12">
-
-                                        @forelse($job->users as $user)
-                                        <p>
-                                            @php
-                                                $userJob = $user->jobs->where('id',$job->id)->first()->pivot;
-                                            @endphp
-                                             <span class="card-text"><b>{{$user->FullName ?? 'N/A'}}:</b>
-                                             </span>
-                                             <span class="card-text">{{$userJob->reply ?? 'No Reply yet!'}}
-                                             </span>
-                                             @if($userJob->status == 'pending')
-                                             <span class="badge bg-warning">Pending</span>
-                                             @elseif($userJob->status == 'in-progress')
-                                             <span class="badge bg-primary">In Progress</span>
-                                             @elseif($userJob->status == 'reviewed')
-                                             <span class="badge bg-secondary">Review</span>
-                                             @elseif($userJob->status == 'completed')
-                                             <span class="badge bg-success">Completed</span>
-                                             @endif
-                                        </p>
-                                        @empty
-                                        <p>
-                                             <span class="card-text text-danger"><b>No reply found!</b>
-                                             </span>
-                                        </p>
-                                        @endforelse
-                                    </div>
-                                @else
-
-                                    <div class="col-12 col-sm-12 col-md-12">
-                                        <p> <span class="card-text">{{@$userJob->reply ?? 'No Reply Yet!'}}</span></p>
-                                    </div>
-
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+           
             @if(session::get('UserType') == 'User')
                 <div class="row">
                     <div class="col-12">
@@ -193,20 +147,12 @@
                                     {{csrf_field()}}
                                     <input type="hidden" name="job_id" value="{{$job->id}}">
                                     <div class="row mt-4">
-                                        <!-- <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="basicpill-firstname-input">Reply<span class="text-danger">*</span></label>
-                                                <textarea name="reply" class="form-control" rows="15" required>
-                                                    {{@$userJob->reply}}
-                                                </textarea>
-                                            </div>
-                                        </div> -->
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="col-form-label">Status<span class="text-danger">*</span></label><br>
                                                 <select name="job_status" id="status" class="form-select select2" required="" style="width:90%">
                                                     <option value="Pending" {{@$job->JobStatus == 'Pending' ? 'selected': ''}}>Pending</option>
-                                                    <option value="In Progress" {{@$job->JobStatus == 'In Progress' ? 'selected': ''}}>In Progress</option>
+                                                    <option value="In-Progress" {{@$job->JobStatus == 'In-Progress' ? 'selected': ''}}>In Progress</option>
                                                     <option value="Reviewed" {{@$job->JobStatus == 'Reviewed' ? 'selected': ''}}>Reviewed</option>
                                                     <option value="Completed" {{@$job->JobStatus == 'Completed' ? 'selected': ''}}>Completed</option>
                                                 </select>

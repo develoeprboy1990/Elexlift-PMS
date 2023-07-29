@@ -84,6 +84,7 @@
                                                                 <a  target="_blank" href="{{URL('/ViewJob/'.$job->id)}}">
                                                                     <i class="font-size-18 mdi mdi-eye-outline align-middle me-1 text-secondary"></i>
                                                                 </a>
+                                                                <a href="{{URL('/JobViewPDF/' . $job->id)}}" target="_blank"><i class="font-size-18 me-1 mdi mdi-file-pdf-outline align-middle me-1 text-secondary"></i></a>
                                                                 @if(session::get('UserType') == 'Admin')
                                                                 <a href="javascript:void(0)" onclick="delete_confirm2('DeleteJob',{{$job->id}})">
                                                                     <i class="font-size-18 mdi mdi-trash-can-outline align-middle me-1 text-secondary"></i>
@@ -93,6 +94,9 @@
                                                         </td>
                                                     </tr>
                                                 @empty
+                                                <tr>
+                                                    <td colspan="9" class="text-center">No Data Available!</td>
+                                                </tr>
                                                 @endforelse
                                             </tbody>
                                         </table>

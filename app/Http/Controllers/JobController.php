@@ -8,6 +8,7 @@ use App\Models\Job;
 use App\Models\User;
 use App\Models\Notification;
 use Session;
+use PDF;
 
 class JobController extends Controller
 {
@@ -16,15 +17,22 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($status = null)
     {
         $pagetitle='Jobs';
         if(Session::get('UserType') == 'Admin'){
-            $jobs = Job::all();
+            if(!is_null($status))
+                $jobs = Job::where('JobStatus',$status)->get();
+            else
+                $jobs = Job::get();
+
         }
         else{
             $user = User::where('UserID',Session::get('UserID'))->first();
-            $jobs = $user->jobs;
+            if(!is_null($status))
+                $jobs = $user->jobs->where('JobStatus',$status);
+            else
+                $jobs = $user->jobs;
         }
         
         return view('job.index',compact('pagetitle','jobs'));
@@ -83,17 +91,13 @@ class JobController extends Controller
 
         $job = Job::create($input);
 
-        $job->users()->attach($input['user_ids']);
+        $job->users()->attach($input['user_id']);
 
-
-        $userIds = $input['user_ids'];
-        foreach($userIds as $userId){
-            $notification = new Notification();
-            $notification->user_id = $userId;
-            $notification->job_id = $job->id;
-            $notification->type = 'New Job Assigned to You';
-            $notification->save();
-        }
+        $notification = new Notification();
+        $notification->user_id = $input['user_id'];
+        $notification->job_id = $job->id;
+        $notification->type = 'New Job Assigned to You';
+        $notification->save();
 
         return redirect()->route('jobs.list')->with('error', 'Job Saved Successfully.')->with('class','success');
     }
@@ -133,8 +137,7 @@ class JobController extends Controller
            $notification->save(); 
         }
             
-        $userJob = DB::table('user_jobs')->where(['user_id' => Session::get('UserID'), 'job_id' => $job->id])->first();
-        return view('job.show',compact('job','userJob','pagetitle'));
+        return view('job.show',compact('job','pagetitle'));
     }
 
     /**
@@ -174,4 +177,19 @@ class JobController extends Controller
         $job->delete();
         return redirect()->route('jobs.list')->with('error','Job Deleted Successfully')->with('class','success');
     }
+
+   public  function jobViewPDF($id)
+   {
+    $pagetitle = 'Jobs PDF';
+
+
+    session::put('menu', 'SalesInvoice');
+    $job = Job::findOrFail($id);
+
+    $pdf = PDF::loadView('job.pdfView', compact('job', 'pagetitle'))->setOptions(['defaultFont' => 'sans-serif']);
+    //return $pdf->download('pdfview.pdf');
+    // $pdf->setpaper('A4', 'portiate');
+    return $pdf->stream();
+
+   }
 }
