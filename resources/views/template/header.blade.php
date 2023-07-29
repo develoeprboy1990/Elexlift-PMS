@@ -27,88 +27,6 @@
 <form class="app-search  d-none d-xl-block">
 <div class="position-relative">
 <div class="d-flex gap-2 flex-wrap">
-
-
-<div class="btn-group">
-<button type="button" class="  btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class=" text-success far fa-bookmark
-font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i></button>
-<div class="dropdown-menu" style="margin: 0px;">
-    
-    <a class="dropdown-item" href="{{URL('/SalesInvoiceCreate')}}"><i class="bx bx-plus "></i> Invoice</a>
-    <div class="dropdown-divider"></div>
-    
-    <a class="dropdown-item" href="{{URL('/VoucherCreate/BP')}}"><i class="bx bx-plus "></i> BP-Bank Payment</a>
-    <a class="dropdown-item" href="{{URL('/VoucherCreate/BR')}}"><i class="bx bx-plus "></i> BR-Bank Receipt</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="{{URL('/VoucherCreate/CP')}}"><i class="bx bx-plus "></i> CP-Cash Payment</a>
-    <a class="dropdown-item" href="{{URL('/VoucherCreate/CR')}}"><i class="bx bx-plus "></i> CR-Cash Receipt</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="{{URL('/JV')}}"><i class="bx bx-plus "></i> Journal Voucher</a>
-    
-    
-</div>
-</div><!-- /btn-group -->
-<div class="btn-group">
-    <button type="button" class="  btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Party Reports <i class="mdi mdi-chevron-down"></i></button>
-    <div class="dropdown-menu" style="margin: 0px;">
-        <a class="dropdown-item" href="{{URL('/Invoice')}}">Invoice</a>
-        <a class="dropdown-item" href="{{URL('/PartyLedger')}}">Party Ledger</a>
-        <a class="dropdown-item" href="{{URL('/PartyBalance')}}">Party Balance</a>
-        <a class="dropdown-item" href="{{URL('/PartyYearlyBalance')}}">Yearly Report</a>
-           <a class="dropdown-item" href="{{URL('/PartyAgingPDF')}}">Aging Report</a>
-        <!-- <a class="dropdown-item" href="#">Party Analysis</a> -->
-        <a class="dropdown-item" href="{{URL('/PartyList')}}">Party List</a>
-        <a class="dropdown-item" href="{{URL('/PartyWiseSale')}}">Partywise Sale</a>
-        <a class="dropdown-item" href="{{URL('/OutStandingInvoice')}}">Outstanding Invoices</a>
-            <a class="dropdown-item" href="{{URL('/TaxReport')}}">Tax Report</a>
-            <a class="dropdown-item" href="{{URL('/CitywiseReport')}}">Saleman Party Balances</a>
-    </div>
-    </div><!-- /btn-group -->
-    
-<div class="btn-group">
-<button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Supplier Reports <i class="mdi mdi-chevron-down"></i></button>
-<div class="dropdown-menu">
-    <a class="dropdown-item" href="{{URL('/SupplierLedger')}}">Supplier Ledger</a>
-    <a class="dropdown-item" href="{{URL('/SupplierBalance')}}">Supplier Balance</a>
-    <a class="dropdown-item" href="{{URL('/Invoice')}}">Sale Invoice</a>
-    <a class="dropdown-item" href="{{URL('/SalemanReport')}}">Sales Man Report</a>
-    <a class="dropdown-item" href="{{URL('/TaxReportSupplier')}}">Tax Report</a>
-    <a class="dropdown-item" href="{{URL('/SupplierWiseSale')}}">Sales Report</a>
-</div>
-</div><!-- /btn-group -->
-<div class="btn-group">
-    <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Accounts Reports <i class="mdi mdi-chevron-down"></i></button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item  " href="{{URL('/VoucherReport')}}">Voucher</a>
-        <a class="dropdown-item" href="{{URL('/CashbookReport')}}">Cash Book</a>
-        <div class="dropdown-divider"></div>
-        <!-- <a class="dropdown-item" href="#">Sales man wise cash book</a> -->
-        <a class="dropdown-item" href="{{URL('/DailyIncomeExpense')}}">Daily Income / Expense</a>
-
-
-        <a class="dropdown-item" href="{{URL('/DaybookReport')}}">Day book</a>
-        <a class="dropdown-item" href="{{URL('/GeneralLedger')}}">General Ledger</a>
-        
-        <a class="dropdown-item" href="{{URL('/TrialBalance')}}">Trial Balance</a>
-        
-        <a class="dropdown-item" href="{{URL('/trialreportsearch')}}">Trial Balance New Report</a>
-
-
-        <a class="dropdown-item" href="{{URL('/TrialBalanceActivity')}}">Trial with acitivity</a>
-        <!-- <a class="dropdown-item" href="#">yearly summary</a> -->
-        <a class="dropdown-item" href="{{URL('/ProfitAndLoss')}}">profit and loss</a>
-        <a class="dropdown-item" href="{{URL('/BalanceSheet')}}">balance sheet</a>
-        <a class="dropdown-item" href="{{URL('/PartyBalance')}}">party balance</a>
-        <!--     <a class="dropdown-item" href="#">ageing report</a>
-        <a class="dropdown-item" href="#">cash flow</a> -->
-        <a class="dropdown-item" href="{{URL('/TaxOverallReport')}}">Tax Report</a>
-        <a class="dropdown-item" href="{{URL('/ReconcileReport')}}">Bank Reconciliation</a>
-        <a class="dropdown-item" href="{{URL('/InvoiceSummary')}}">invoice summary list</a>
-        <a class="dropdown-item" href="{{URL('/Inventory')}}">Stock Inventory</a>
-        <a class="dropdown-item" href="{{URL('/ExpenseReport')}}">Expense Report</a>
-        
-    </div>
-    </div><!-- /btn-group -->
     <!--   <div class="btn-group ">
         <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Reports <i class="mdi mdi-chevron-down"></i></button>
         <div class="dropdown-menu">
@@ -212,36 +130,35 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
     </button>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
         aria-labelledby="page-header-notifications-dropdown">
-        <div class="p-3">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h6 class="m-0" key="t-notifications"> Notifications </h6>
-                </div>
-                <div class="col-auto">
-                    <a href="#!" class="small" key="t-view-all"> View All</a>
-                </div>
-            </div>
-        </div>
         <div data-simplebar style="max-height: 230px;">
             @if(count($notifications) > 0)
             @foreach($notifications as $notification)
                 <a href="{{route('job.show',['id' => $notification->job_id])}}" class="text-reset notification-item">
-                    <div class="media {{$notification->read == 0 ? 'bg bg-warning' : 'bg bg-success'}}">
-                        <div class="avatar-xs me-3">
+                    <div class="media" style="background-color:{{$notification->read == 0 ? '#dddada' : ''}}">
+                        <!-- <div class="avatar-xs me-3">
                             <span class="avatar-title bg-primary rounded-circle font-size-16">
                                 <i class="bx bx-cart"></i>
                             </span>
-                        </div>
+                        </div> -->
                         <div class="media-body ">
-                            <h6 class="mt-0 mb-1" key="t-your-order">New Job Assigned to You</h6>
+                            <h6 class="mt-0 mb-1" key="t-your-order">{{$notification->type}}</h6>
                             <div class="font-size-12 text-muted">
-                                <p class="mb-1" key="t-grammer">Job tilte: {{$notification->job->name ?? 'Job Title'}}</p>
+                                <p class="mb-1" key="t-grammer">Job: {{$notification->job->name ?? 'Job Title'}}</p>
                                 <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">{{$notification->created_at->diffForHumans()}}</span></p>
                             </div>
                         </div>
                     </div>
                 </a>
             @endforeach
+            @else
+            <div class="p-3">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="m-0" key="t-notifications">No Notifications </h6>
+                </div>
+                <div class="col-auto"></div>
+            </div>
+            </div>
             @endif
             <!-- <a href="#" class="text-reset notification-item">
                 <div class="media">
@@ -286,11 +203,11 @@ font-size-16 align-middle me-2"></i>Favorite <i class="mdi mdi-chevron-down"></i
                 </div>
             </a> -->
         </div>
-        <div class="p-2 border-top d-grid">
+        <!-- <div class="p-2 border-top d-grid">
             <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
                 <i class="mdi mdi-arrow-right-circle me-1"></i> <span key="t-view-more">View More..</span>
             </a>
-        </div>
+        </div> -->
     </div>
 </div>
 

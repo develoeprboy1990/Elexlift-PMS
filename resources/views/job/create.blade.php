@@ -39,6 +39,7 @@
                 <div class="card-body">
                     <form action="{{URL('/SaveJob')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
+                    <input type="hidden" name="JobStatus" value="Pending">
                         <div class="row col-md-12">
                             <div class="col-md-4">
                                 <div class="mb-3">

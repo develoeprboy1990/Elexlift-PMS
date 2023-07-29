@@ -49,7 +49,8 @@
                                                     <th scope="col">Project Name</th>
                                                     <th scope="col">Delivery Date</th>
                                                     <th scope="col">Controller Type</th>
-                                                    <th scope="col">Job Asssigned To</th>
+                                                    <th scope="col">Asssigned To</th>
+                                                    <th scope="col">Start Date</th> 
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
@@ -69,17 +70,9 @@
                                                         <td>
                                                             {{ implode(', ', $job->users->pluck('FullName')->toArray()) }}
                                                         </td>
-                                                        
+                                                         <td>{{$job->created_at ?? 'N/A'}}</td>
                                                         <td>
-                                                            @if(@$job->users[0]->pivot->status == 'pending')
-                                                                <span class="badge bg-warning">Pending</span>
-                                                            @elseif(@$job->users[0]->pivot->status == 'in-progress')
-                                                                 <span class="badge bg-primary">In Progress</span>
-                                                            @elseif(@$job->users[0]->pivot->status == 'reviewed')
-                                                                 <span class="badge bg-secondary">Reviewed</span>
-                                                            @elseif(@$job->users[0]->pivot->status == 'completed')
-                                                                 <span class="badge bg-success">Completed</span>
-                                                            @endif
+                                                            <span class="badge bg-success">{{$job->JobStatus ?? 'N/A'}}</span>
                                                         </td>
                                                         
                                                         <td>

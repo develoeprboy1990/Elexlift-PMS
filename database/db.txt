@@ -63,3 +63,15 @@ FROM
 
 
 ----------------------------------------
+
+
+29-07-2023
+CREATE TABLE `extbooks_elexlift_pms`.`user_job_reply` (`ReplyID` INT NOT NULL AUTO_INCREMENT , `UserReply` TEXT NULL DEFAULT NULL , `UserReplyStatus` VARCHAR(255) NULL DEFAULT NULL , `CreatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`ReplyID`)) ENGINE = MyISAM;
+
+ALTER TABLE `user_job_reply` ADD `JobID` INT NULL DEFAULT NULL AFTER `ReplyID`, ADD `UserID` INT NULL DEFAULT NULL AFTER `JobID`;
+
+
+ALTER TABLE `jobs` ADD `JobStatus` VARCHAR(255) NULL DEFAULT NULL AFTER `status`;
+
+ALTER TABLE `user_job_reply` CHANGE `UserReplyStatus` `UserJobStatus` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+

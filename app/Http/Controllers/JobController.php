@@ -84,12 +84,13 @@ class JobController extends Controller
 
         $job->users()->attach($input['user_ids']);
 
+
         $userIds = $input['user_ids'];
         foreach($userIds as $userId){
             $notification = new Notification();
             $notification->user_id = $userId;
             $notification->job_id = $job->id;
-            $notification->type = 'Job';
+            $notification->type = 'New Job Assigned to You';
             $notification->save();
         }
 
@@ -98,12 +99,18 @@ class JobController extends Controller
 
     public function updateJobStatus(Request $request)
     {
-        $userJob = DB::table('user_jobs')->where(['user_id' => Session::get('UserID'), 'job_id' => $request->job_id])->update(['reply' => $request->reply, 'status' => $request->job_status]);
+        $JobDesc = DB::table('jobs')->where(['id' => $request->job_id])->first();
 
-        if($request->job_status == 'completed')
-            $notification = Notification::where(['user_id' => Session::get('UserID'), 'job_id' => $request->job_id])->update(['read' => 1]);
-        else
-            $notification = Notification::where(['user_id' => Session::get('UserID'), 'job_id' => $request->job_id])->update(['read' => 0]);
+        $userJob = DB::table('user_job_reply')->insert(['UserID' => Session::get('UserID'), 'JobID' => $request->job_id,'UserJobStatus' => $request->job_status]);
+
+        $Job = DB::table('jobs')->where(['id' => $request->job_id])->update(['JobStatus' => $request->job_status]);
+
+        $notification = new Notification();
+        $notification->user_id = $JobDesc->created_by;
+        $notification->job_id = $request->job_id;
+        $notification->type = 'Status Updated to '.$request->job_status;
+        $notification->save();
+
         
         return redirect()->route('jobs.list')->with('error', 'Job status updated successfully!')->with('class','success');
     }

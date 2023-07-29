@@ -25,10 +25,10 @@
             </div>
             @endif            
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-8">
                     <div class="card card-hover">
                         <div class="card-header">
-                            <h4 class="mb-0 text-dark">Job Details</h4>
+                            <h4 class="mb-0 text-dark">Job Overview</h4>
                         </div>
                         <div class="card-body">
                             <div class="row mt-4">
@@ -101,8 +101,36 @@
                         </div>
                     </div>
                 </div>
+                 <div class="col-lg-4">
+                                <div class="card card-hover">
+                                    <div class="card-header">
+                                        <h4 class="mb-0 text-dark">Job Detials</h4>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                            <table class="table align-middle table-nowrap">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Assign To</td>
+                                                        <td>{{ implode(', ', $job->users->pluck('FullName')->toArray()) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 50px;">Start Date</td>
+                                                        <td>{{$job->created_at ?? 'N/A'}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Status</td>
+                                                        <td>{{$job->JobStatus ?? 'N/A'}}</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                </div>
+                            </div>
             </div>
-            <div class="row">
+           <!--  <div class="row">
                     <div class="col-12">
                         <div class="card card-hover">
                             <div class="card-header">
@@ -148,35 +176,35 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             @if(session::get('UserType') == 'User')
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-hover">
                             <div class="card-header">
-                                <h4 class="mb-0 text-dark">Reply</h4>
+                                <h4 class="mb-0 text-dark">Update Status</h4>
                             </div>
                             <div class="card-body">
                                 <form method="post" action="{{route('job.updateStatus')}}">
                                     {{csrf_field()}}
                                     <input type="hidden" name="job_id" value="{{$job->id}}">
                                     <div class="row mt-4">
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="basicpill-firstname-input">Reply<span class="text-danger">*</span></label>
                                                 <textarea name="reply" class="form-control" rows="15" required>
                                                     {{@$userJob->reply}}
                                                 </textarea>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        </div> -->
+                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="col-form-label">Status<span class="text-danger">*</span></label><br>
                                                 <select name="job_status" id="status" class="form-select select2" required="" style="width:90%">
-                                                    <option value="pending" {{@$userJob->status == 'pending' ? 'selected': ''}}>Pending</option>
-                                                    <option value="in-progress" {{@$userJob->status == 'in-progress' ? 'selected': ''}}>In Progress</option>
-                                                    <option value="reviewed" {{@$userJob->status == 'reviewed' ? 'selected': ''}}>Reviewed</option>
-                                                    <option value="completed" {{@$userJob->status == 'completed' ? 'selected': ''}}>Completed</option>
+                                                    <option value="Pending" {{@$job->JobStatus == 'Pending' ? 'selected': ''}}>Pending</option>
+                                                    <option value="In Progress" {{@$job->JobStatus == 'In Progress' ? 'selected': ''}}>In Progress</option>
+                                                    <option value="Reviewed" {{@$job->JobStatus == 'Reviewed' ? 'selected': ''}}>Reviewed</option>
+                                                    <option value="Completed" {{@$job->JobStatus == 'Completed' ? 'selected': ''}}>Completed</option>
                                                 </select>
                                             </div>
                                         </div>
