@@ -181,7 +181,10 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="basicpill-firstname-input">Delivery Date<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="delivery_date" value="{{old('delivery_date')}}">
+                                     <div class="input-group" id="datepicker21">
+                                                <input type="text" name="delivery_date" autocomplete="off" class="form-control" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-date-container="#datepicker21" data-provide="datepicker" data-date-autoclose="true" value="{{date('Y-m-d')}}">
+                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4 mt-1">  
@@ -232,9 +235,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="basicpill-firstname-input">Additional Details<span class="text-danger">*</span></label>
-                                    <textarea name="additional_details" class="form-control" rows="15">
-                                        
-                                    </textarea>
+                                    <textarea name="additional_details" class="form-control" rows="15"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6 mt-1">  
