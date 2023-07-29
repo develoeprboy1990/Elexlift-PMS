@@ -16,3 +16,4 @@ yarn-error.log
 /.vscode
 /public/upload
 composer.lock
+/public/documents
