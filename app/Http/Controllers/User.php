@@ -105,7 +105,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
  session::put('menu','User');     
         $pagetitle = 'User';
 
-           $user = DB::table('User')->get();
+           $user = DB::table('user')->get();
 
         
         return  view ('user',compact('user','pagetitle'));
