@@ -167,4 +167,98 @@ return redirect ('Login')->withinput($request->all())->with('error', 'Invalid us
 
 
 
+function Attachment()
+  {
+    return view('attachment');
+  }
+
+
+  function AttachmentSave(Request $request)
+  {
+  
+        
+
+  
+
+
+
+if($request->hasfile('filenames'))
+         {
+            foreach($request->file('filenames') as $file)
+            {
+                $name = rand(0,999999).time().'.'.$file->extension();
+                $file->move(public_path().'/documents/', $name);  
+                $data[] = $name;  
+
+
+                $fileData = array(
+          'InvoiceNo' => $request->InvoiceNo,
+          'FileName' =>  $name
+
+        );
+        // dd($fileData);
+        $fileid = DB::table('attachment')->insertGetId($fileData);
+            }
+
+
+ 
+       
+
+         }
+
+
+      
+
+        return back()->with('success', 'Data Your files has been successfully added');
+    }
+
+
+
+
+
+       
+
+
+public function AttachmentRead(){ 
+       $directory = 'documents'; 
+       $files_info = []; 
+       
+       $file_name = session::get('VHNO');; 
+
+       $image=DB::table('attachment')->where('InvoiceNo',$file_name)->get();
+     
+       // Read files
+       foreach ($image as $file) { 
+          
+            //  $filename = $file->getFilename(); 
+            //  $size = $file->getSize(); // Bytes 
+            //  $sizeinMB = round($size / (1000 * 1024), 2);// MB 
+           
+            //  if($sizeinMB <= 2){ // Check file size is <= 2 MB 
+                 $files_info[] = array( 
+                       "name" => $file->FileName, 
+                       "size" => 12, 
+                       "path" => url($directory.'/'.$file->FileName) 
+                 ); 
+            //  } 
+        //   } 
+       } 
+       return response()->json($files_info); 
+    }
+
+
+
+  public function AttachmentDelete($id,$filename)
+  {
+      $id =  $id;
+      $filename =  $filename;
+      DB::table('attachment')->where('AttachmentID',$id)->delete();
+      $path=public_path().'/documents/'.$filename;
+      if (file_exists($path)) {
+          unlink($path);
+      }
+     return redirect('Attachment')->with('error', 'File Deleted')->with('class', 'success');
+  
+  }
+
 } // end of controller

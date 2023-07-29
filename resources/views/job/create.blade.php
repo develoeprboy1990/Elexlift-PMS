@@ -40,6 +40,21 @@
                     <form action="{{URL('/SaveJob')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <input type="hidden" name="JobStatus" value="Pending">
+                    <div class="row col-md-12">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="basicpill-firstname-input">Estimate<span class="text-danger">*</span></label>
+                                    <select name="EstimateNo" id="EstimateNo" class="form-select select2" name="PartyID" required="">
+                                        <option value="">Select</option>
+                                        <?php foreach ($estimates as $key => $value) : ?>
+                                            <option value="{{$value->EstimateNo}}">{{$value->EstimateNo}}</option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="row col-md-12">
                             <div class="col-md-4">
                                 <div class="mb-3">

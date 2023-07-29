@@ -13,7 +13,13 @@
                     </a>
                     
                 </li>
-
+                @if(session::get('UserType') == 'Admin')
+                <li><a href="{{URL('/Estimate')}}" class="waves-effect" >
+                <i class="bx bxs-user-plus"></i>
+                        <span key="t-calendar">Estimate</span>
+                    </a>
+                </li>
+                @endif
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-briefcase"></i>
@@ -35,12 +41,13 @@
                 </li>
             
                 @if(session::get('UserType') == 'Admin')
-                <!-- <li>
+                <li>
                     <a href="{{URL('/User')}}" class="waves-effect">
                         <i class="bx bxs-user-plus"></i>
                         <span key="t-calendar">User</span>
                     </a>
-                </li> -->
+                </li>
+
                 <li>
                     <a href="{{URL('/Company')}}" class="waves-effect">
                         <i class="bx bxs-user-plus"></i>

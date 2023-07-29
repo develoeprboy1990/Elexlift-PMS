@@ -46,6 +46,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No#</th>
+                                                    <th scope="col">EstimateNo</th>
                                                     <th scope="col">Project Name</th>
                                                     <th scope="col">Delivery Date</th>
                                                     <th scope="col">Controller Type</th>
@@ -61,6 +62,9 @@
 
                                                         <td>
                                                             {{++$key}}
+                                                        </td>
+                                                        <td>
+                                                            {{$job->EstimateNo ?? 'N/A'}}
                                                         </td>
                                                         <td>
                                                             {{$job->name ?? 'N/A'}}

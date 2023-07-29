@@ -39,7 +39,8 @@ class JobController extends Controller
     {
         $pagetitle='Add Job';
         $users = User::where('UserType','User')->get();
-        return view ('job.create',compact('pagetitle','users'));
+        $estimates = DB::table('v_estimate_master')->get();
+        return view ('job.create',compact('pagetitle','users','estimates'));
     }
 
     /**

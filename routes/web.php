@@ -13,6 +13,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Accounts;
+use App\Http\Controllers\EstimateController;
 use App\Http\Controllers\User;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
@@ -102,5 +103,27 @@ Route::get('/ViewJob/{id}',[JobController::class,'show'])->name('job.show');
 Route::get('DeleteJob/{id}',[JobController::class,'destroy']);
 
 
+// ..............Estimate.............
+route::get('/Estimate/',[EstimateController::class,'Estimate']);
+
+route::get('/EstimateCreate/',[EstimateController::class,'EstimateCreate']);
+
+route::post('/EstimateSave/',[EstimateController::class,'EstimateSave']);
+route::get('/ajax_estimate/',[EstimateController::class,'ajax_estimate']);
+
+route::get('/EstimateDelete/{id}',[EstimateController::class,'EstimateDelete']);
+route::get('/EstimateView/{id}',[EstimateController::class,'EstimateView']);
+route::get('/EstimateEdit/{id}',[EstimateController::class,'EstimateEdit']);
+route::post('/EstimateUpdate/',[EstimateController::class,'EstimateUpdate']);
+route::get('/BlankReport/',[Accounts::class,'BlankReport']);
+route::get('/EstimateViewPDF/{id}',[EstimateController::class,'EstimateViewPDF']);
+
+
+// ..............attachment iframe for all invoices ......
+route::get('/Attachment',[Accounts::class,'Attachment']);
+Route::post('AttachmentSave',[Accounts::class,'AttachmentSave']);
+Route::get('AttachmentDelete/{id}/{filename}',[Accounts::class,'AttachmentDelete']);
+
+Route::get('AttachmentRead', [Accounts::class,'AttachmentRead']);
 });  
 // middleware end

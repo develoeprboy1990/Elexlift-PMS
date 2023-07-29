@@ -112,6 +112,10 @@
                                             <table class="table align-middle table-nowrap">
                                                 <tbody>
                                                     <tr>
+                                                        <td>EstimateNo</td>
+                                                        <td>{{$job->EstimateNo ?? 'N/A'}}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Assign To</td>
                                                         <td>{{ implode(', ', $job->users->pluck('FullName')->toArray()) }}</td>
                                                     </tr>
