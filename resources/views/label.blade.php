@@ -139,7 +139,7 @@
         <table class="table table-sm m-0" id="datatable">
             <thead>
                <tr>
-                <th><input type="checkbox" value="" id="check-all"></th>
+                <th><!-- <input type="checkbox" value="" id="check-all"> --></th>
                 <th>Order Number</th>
                 <th>Client</th>
                 <th>Content</th>
@@ -152,7 +152,7 @@
             <?php $no=1; ?> 
             @foreach($labels as $label)
            <tr>
-                <td><input type="checkbox" value="" name=""></td>
+                <td><input type="checkbox" value="" name="" class="label-checkbox" data-label-id="{{$label->OrderNumber}}"></td>
                 <td scope="row">{{$label->OrderNumber}}</td>
                 <td>{{$label->ClientName}}</td>
                 <td>{{$label->Content}}</td>
@@ -189,6 +189,26 @@
 </div>
 <script type="text/javascript">
         $("#generate-lable").on("click", function(event) {
+
+         var checkedCount = $('.label-checkbox:checked').length;
+        
+         if (checkedCount > 0) {
+
+            var saleIds = [];
+
+            $('.label-checkbox:checked').each(function() {
+                var id = $(this).data('sale-id');
+                saleIds.push(id);
+            });
+
+
+
+
+        } else {
+
+            alert('Select any sale to generate pdf');
+
+        }
         
         var code = [];
         var qty = 1;
