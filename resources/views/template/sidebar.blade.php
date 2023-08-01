@@ -42,6 +42,13 @@
             
                 @if(session::get('UserType') == 'Admin')
                 <li>
+                    <a href="{{URL('/Lables')}}" class="waves-effect">
+                        <i class="bx bxs-user-plus"></i>
+                        <span key="t-calendar">Lables</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{URL('/User')}}" class="waves-effect">
                         <i class="bx bxs-user-plus"></i>
                         <span key="t-calendar">User</span>

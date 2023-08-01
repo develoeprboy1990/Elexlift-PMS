@@ -17,7 +17,7 @@ use App\Http\Controllers\EstimateController;
 use App\Http\Controllers\User;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
-;
+use App\Http\Controllers\Label;
 
 //PMS
 use App\Http\Controllers\Work;
@@ -45,6 +45,17 @@ Route::post('/UserSave',[User::class,'UserSave']);
 Route::get('/UserEdit/{id}',[User::class,'UserEdit']);
 Route::post('/UserUpdate/',[User::class,'UserUpdate']);
 Route::get('/UserDelete/{id}',[User::class,'UserDelete']); 
+
+
+Route::get('/Lables',[Label::class,'Show']);
+Route::get('Lables/sticer_search', [Label::class, 'StickerSearch']);
+Route::get('Lables/sticker_print', [Label::class, 'StickerPrint']);
+
+
+//Route::post('/UserSave',[User::class,'UserSave']);
+//Route::get('/UserEdit/{id}',[User::class,'UserEdit']);
+//Route::post('/UserUpdate/',[User::class,'UserUpdate']);
+//Route::get('/UserDelete/{id}',[User::class,'UserDelete']); 
 
  route::get('/UserProfile',[Accounts::class,'UserProfile']);
  route::get('/ChangePassword',[Accounts::class,'ChangePassword']);

@@ -74,4 +74,21 @@ ALTER TABLE `user_job_reply` ADD `JobID` INT NULL DEFAULT NULL AFTER `ReplyID`, 
 ALTER TABLE `jobs` ADD `JobStatus` VARCHAR(255) NULL DEFAULT NULL AFTER `status`;
 
 ALTER TABLE `user_job_reply` CHANGE `UserReplyStatus` `UserJobStatus` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+================================================
+01-08-2023
+1) import sticker.sql file in the database to create sticker Table
 
+2) Create View.
+Create Or Replace View `v_sticker` AS 
+select 
+sum(`sticker`.`qty`) AS `qty`,
+`labels`.`OrderNumber` AS `OrderNumber`,
+`labels`.`ClientName` AS `ClientName`,
+`labels`.`Content` AS `Content`,
+`labels`.`CustomerOrderDate` AS `CustomerOrderDate`,
+`labels`.`UnitNumber` AS `UnitNumber`,
+`labels`.`Description` AS `Description`
+from (`sticker` join `labels` on((`sticker`.`itemid` = `labels`.`LabelID`))) 
+group by `sticker`.`itemid`,
+`labels`.`LabelID`,
+`labels`.`OrderNumber`
