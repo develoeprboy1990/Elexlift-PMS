@@ -6,10 +6,6 @@
         body {
             margin: 0 auto;
             font-size: 10px;
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
         }
         body,
         td,
@@ -23,18 +19,40 @@
     @for($i=1; $i<=$value2->qty; $i++)
         <table width="100%" align="center" cellpadding="0" cellspacing="0">
             <tr>
-                <td style="font-size: 14px; white-space: nowrap;">{{$companyName}}</td>
+                <td style="font-size: 14px; white-space: nowrap;" align="left"><img style="width: 50px;height: 50px;" src="{{ URL('/documents/' . $company->Logo) }}" ></td>
+                <td style="font-size: 14px; white-space: nowrap;" align="right"><img style="width: 50px;height: 50px;" src="{{ URL('/documents/' . $company->BackgroundLogo) }}" ></td>
+                
             </tr>
             <tr>
-                <td style="font-size: 10px;">{{ucwords($value2->name)}}</td>
-            </tr>
-            <tr>
-                <td colspan="2"> <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($value2->code, 'I25')}}" alt="barcode" />
+                <td colspan="2" align="center"> <img style="text-align:center;margin-bottom: 10px;" src="data:image/png;base64,{{DNS2D::getBarcodePNG($value2->LabelDeails, 'QRCODE')}}" alt="barcode" />
                 </td>
             </tr>
+
             <tr>
-                <td style="font-size: 10px;">{{ $value2->code }} <span style="float: right;">Rs: {{$value2->price}}</span></td>
+                <td align="left" style="width: 100px;">Order Number:</td>
+                <td style="font-size: 10px;" align="right">{{ $value2->OrderNumber }}</td>
             </tr>
+            <tr>
+                <td align="left">Client Name:</td>
+                <td style="font-size: 10px;" align="right">{{ $value2->ClientName }}</td>
+            </tr>
+            <tr>
+                <td align="left">Content:</td>
+                <td style="font-size: 10px;" align="right">{{ $value2->Content }}</td>
+            </tr>
+            <tr>
+                <td align="left">Order Date:</td>
+                <td style="font-size: 10px;" align="right">{{ $value2->CustomerOrderDate }}</td>
+            </tr>
+            <tr>
+                <td align="left">Unit Number:</td>
+                <td style="font-size: 10px;" align="right">{{ $value2->UnitNumber }}</td>
+            </tr>
+            <tr>
+                <td align="left">Description:</td>
+                <td style="font-size: 10px;" align="right">{{ $value2->Description }}</td>
+            </tr>
+
         </table>
         @endfor
         @endforeach

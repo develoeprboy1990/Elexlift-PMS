@@ -48,11 +48,11 @@ Route::get('/UserDelete/{id}',[User::class,'UserDelete']);
 
 
 Route::get('/Lables',[Label::class,'Show']);
+Route::post('/LabelSave',[Label::class,'LabelSave']);
 Route::get('Lables/sticer_search', [Label::class, 'StickerSearch']);
 Route::get('Lables/sticker_print', [Label::class, 'StickerPrint']);
 
 
-//Route::post('/UserSave',[User::class,'UserSave']);
 //Route::get('/UserEdit/{id}',[User::class,'UserEdit']);
 //Route::post('/UserUpdate/',[User::class,'UserUpdate']);
 //Route::get('/UserDelete/{id}',[User::class,'UserDelete']); 

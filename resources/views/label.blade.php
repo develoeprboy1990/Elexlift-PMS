@@ -17,11 +17,6 @@
  <h4 class="mb-sm-0 font-size-18">Manage Labels</h4>
 
  <div class="page-title-right">
-<div class="page-title-right">
-<div class="text-sm-end">
-                <button type="button" id="generate-lable" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"> Generate Label</button>
-            </div>
-</div>
 </div>
 </div>
 </div>
@@ -55,75 +50,77 @@
             @endif
 <div class="row">
  <div class="col-12">
-    <form action="{{URL('/SaveUser')}}" method="post">
+    <form action="{{URL('/LabelSave')}}" method="post">
         {{csrf_field()}}
 <div class="card">
 <div class="card-body">
-<!--
+
 <h4 class="card-title">Add New Label</h4>
 <p class="card-title-desc"></p>
 
  
 <div class="mb-3 row">
-<label for="example-email-input" class="col-md-2 col-form-label">Full Name</label>
+<label for="example-email-input" class="col-md-2 col-form-label">Order Number</label>
 <div class="col-md-10">
-<input class="form-control" type="text"  value="{{old('FullName')}}"  name="FullName" id="example-email-input">
+<input class="form-control" type="text"  value="{{old('OrderNumber')}}"  name="OrderNumber" id="example-email-input">
 </div>
 </div>
 <div class="mb-3 row">
-<label for="example-url-input" class="col-md-2 col-form-label">Username</label>
+<label for="example-url-input" class="col-md-2 col-form-label">Client Name</label>
 <div class="col-md-10">
-<input class="form-control" type="text"  value="{{old('Email')}}" name="Email" required>
-</div>
-
-</div>
-<div class="mb-3 row">
-<label for="example-url-input" class="col-md-2 col-form-label">Password</label>
-<div class="col-md-10">
-<input class="form-control" type="text"  name="Password" value="{{old('Password')}}" required>
+<input class="form-control" type="text"  value="{{old('ClientName')}}" name="ClientName" required>
 </div>
 
 </div>
 <div class="mb-3 row">
-<label for="example-tel-input" class="col-md-2 col-form-label">User Type</label>
+<label for="example-url-input" class="col-md-2 col-form-label">Content</label>
 <div class="col-md-10">
-<select name="UserType" class="form-select">
+<input class="form-control" type="text"  name="Content" value="{{old('Content')}}" >
+</div>
+</div>
 
-     
-      <option value="HR">HR</option>
-    <option value="OM">OM</option>
-    <option value="GM">GM</option>
-    
-
-
-</select> </div>
- </div>
 <div class="mb-3 row">
-<label for="example-tel-input" class="col-md-2 col-form-label">Active</label>
+<label for="example-url-input" class="col-md-2 col-form-label">Customer Order Date</label>
 <div class="col-md-10">
-<select name="Active" class="form-select">
+<div class="input-group" id="datepicker21">
+<input type="text" name="CustomerOrderDate" autocomplete="off" class="form-control" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-date-container="#datepicker21" data-provide="datepicker" data-date-autoclose="true" value="{{date('Y-m-d')}}">
+<span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+</div>
 
-     
-    <option value="Y">Yes</option>
-    <option value="N">No</option>
-    
+<!-- <input class="form-control" type="text"  name="CustomerOrderDate" value="{{old('CustomerOrderDate')}}" required> -->
+</div>
+</div>
+
+<div class="mb-3 row">
+<label for="example-url-input" class="col-md-2 col-form-label">Unit Number</label>
+<div class="col-md-10">
+<input class="form-control" type="text"  name="UnitNumber" value="{{old('UnitNumber')}}" required>
+</div>
+</div>
+
+<div class="mb-3 row">
+<label for="example-url-input" class="col-md-2 col-form-label">Description</label>
+<div class="col-md-10">
+<input class="form-control" type="text"  name="Description" value="{{old('Description')}}" required>
+</div>
+</div>
+
+<div class="mb-3 row">
+<label for="example-url-input" class="col-md-2 col-form-label">Label Deails</label>
+<div class="col-md-10">
+    <textarea name="LabelDeails" required cols="100" rows="10"></textarea>
+</div>
+</div>
 
 
-</select> </div>
- </div> 
-<input type="submit" class="btn btn-primary w-md">                                   
-                                   
-        
-                                      
-                                        
 
-                                       
+<input type="submit" class="btn btn-primary w-md">        
 
                                     </div>
                                 </div>
 
                             </form>
-                            </div> <!-- end col -->
+                            </div> 
                         </div>
                     
   <div class="row">
@@ -133,7 +130,13 @@
               
           <div class="card-body">
             <h4 class="card-title pb-3">Manage Labels</h4>
-             <!-- <p class="card-title-desc"> Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.</p>  -->   
+            <div class="page-title-right">
+<div class="text-sm-end">
+                <button type="button" id="generate-lable" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"> Generate Label</button>
+            </div>
+</div>
+
+           
                                         
        <div class="table-responsive">
         <table class="table table-sm m-0" id="datatable">
@@ -158,31 +161,21 @@
                 <td>{{$label->Content}}</td>
                 <td>{{$label->CustomerOrderDate}}</td>
                 <td>{{$label->UnitNumber}}</td>               
-                <td>{{$label->Description}}</td>
-
-                 
+                <td>{{$label->Description}}</td>                 
             </tr>
-
             @endforeach
              
-              </tbody>
-               </table>
+            </tbody>
+        </table>
         
-                  </div>
+        </div>
         
-                   </div>
-          </div>
-      </div>
-
-
-
-  </div>                     
- 
-                         
-                     
-                        
-                    </div> <!-- container-fluid -->
-                </div>
+    </div>
+</div>
+</div>
+</div>                     
+</div> <!-- container-fluid -->
+</div>
 
 
     
@@ -194,35 +187,18 @@
         
          if (checkedCount > 0) {
 
-            var saleIds = [];
+            var codes = [];
 
             $('.label-checkbox:checked').each(function() {
-                var id = $(this).data('sale-id');
-                saleIds.push(id);
+                var id = $(this).data('label-id');
+                codes.push(id);
             });
 
-
-
-
-        } else {
-
-            alert('Select any sale to generate pdf');
-
-        }
-        
-        var code = [];
-        var qty = 1;
-        /*var rownumber = $('table.order-list tbody tr:last').index();
-        for(i = 0; i <= rownumber; i++){
-            code.push($('table.order-list tbody tr:nth-child(' + (i + 1) + ')').find('td:nth-child(2)').text());
-            qty.push($('table.order-list tbody tr:nth-child(' + (i + 1) + ')').find('.qty').val());
-        }*/
-        $.ajax({
+            $.ajax({
             type: 'GET',
             url: 'Lables/sticer_search',
             data: {
-                code:code,
-                qty:qty
+                codes:codes
             },
             success: function(data) {
 
@@ -230,6 +206,13 @@
                 
             }
         });
+
+        } else {
+
+            alert('Select any Label to generate pdf');
+
+        }
+        
 
     });
 

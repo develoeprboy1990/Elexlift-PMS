@@ -113,19 +113,15 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 
     public function StickerSearch(Request $request)
     {
-        foreach ($request['code'] as $key => $product) {
+        foreach ($request['codes'] as $key => $code) {
             $data = array(
-                "qty" => $request['qty'][$key],
-                "itemid" => $product,
+                "qty" => '1',
+                "itemid" => $code,
             );
             $sticker = DB::table('sticker')->insert($data);
         }
 
         return response()->json(['url' => url('Lables/sticker_print')]);
-
-
-
-        // return $product;
     }
 
 
@@ -134,11 +130,14 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 
         $stickerxy = DB::table('v_sticker')->get();
         // dd($stickerxy);
-        $companyName = Session::get('CompanyName');
-     
-        $pdf = PDF::loadView('printbarcodedata', compact('stickerxy', 'companyName'));
-        $customPaper = array(0, 0, 200, 130);
-        //$customPaper = array(0, 0, 151, 116);
+
+        $company = DB::table('companies')->first();
+        //dd($company);
+
+        //return  view ('printbarcodedata',compact('stickerxy','company'));
+
+        $pdf = PDF::loadView('printbarcodedata', compact('stickerxy','company'));
+        $customPaper = array(0, 0, 200, 250);
         $pdf->set_paper($customPaper);
 
         DB::table('sticker')->truncate();
@@ -148,7 +147,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 
 
 
-     public function UserSave (request $request)
+     public function LabelSave(request $request)
      {
 
 
@@ -162,29 +161,19 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 
 
 
-            $this->validate($request,[
-          
-         'Email'=>'required|max:40|unique:user',         
-         'Password'=>'required'
-         
-      ]);
-
-
         $data = array (
-
-                 'FullName' => $request->input('FullName'),
-                'Email' => $request->input('Email'),
-                'Password' => $request->input('Password'),
-                'UserType' => $request->input('UserType'),
-                
-                'Active' => $request->input('Active')
-                
-
+                 'OrderNumber' => $request->input('OrderNumber'),
+                'ClientName' => $request->input('ClientName'),
+                'Content' => $request->input('Content'),
+                'CustomerOrderDate' => $request->input('CustomerOrderDate'),
+                'UnitNumber' => $request->input('UnitNumber'),
+                'Description' => $request->input('Description'),
+                'LabelDeails' => $request->input('LabelDeails')
                  );
 
-$id = DB::table('user')->insertGetId($data);
+$id = DB::table('labels')->insertGetId($data);
 
-        return redirect('User')->with('error','User Created Successfully')->with('class','success');
+        return redirect('Lables')->with('error','User Created Successfully')->with('class','success');
 
      }
 
