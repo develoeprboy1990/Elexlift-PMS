@@ -137,7 +137,7 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
         //return  view ('printbarcodedata',compact('stickerxy','company'));
 
         $pdf = PDF::loadView('printbarcodedata', compact('stickerxy','company'));
-        $customPaper = array(0, 0, 200, 250);
+        $customPaper = array(0, 0, 200, 300);
         $pdf->set_paper($customPaper);
 
         DB::table('sticker')->truncate();

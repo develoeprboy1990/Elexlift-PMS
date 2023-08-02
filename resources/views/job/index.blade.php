@@ -86,6 +86,8 @@
                                                                 </a>
                                                                 <a href="{{URL('/JobViewPDF/' . $job->id)}}" target="_blank"><i class="font-size-18 me-1 mdi mdi-file-pdf-outline align-middle me-1 text-secondary"></i></a>
                                                                 @if(session::get('UserType') == 'Admin')
+                                                                <a href="{{ URL('/JobEdit/' . $job->id) }}"><i class="font-size-18 mdi mdi-pencil align-middle me-1 text-secondary"></i></a>
+
                                                                 <a href="javascript:void(0)" onclick="delete_confirm2('DeleteJob',{{$job->id}})">
                                                                     <i class="font-size-18 mdi mdi-trash-can-outline align-middle me-1 text-secondary"></i>
                                                                 </a>

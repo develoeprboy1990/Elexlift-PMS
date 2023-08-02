@@ -192,4 +192,21 @@ class JobController extends Controller
     return $pdf->stream();
 
    }
+
+     public function JobEdit($id)
+  {
+    // dd($id);
+    $pagetitle = 'Job';
+    $job = DB::table('jobs')->where('id', $id)->first();
+    //dd($job->other_materials);
+    $other_materials =   json_decode($job->other_materials); 
+
+    $user_jobs = DB::table('user_jobs')->where('job_id', $job->id)->first();
+    
+    $estimates = DB::table('v_estimate_master')->get();
+    $users = User::where('UserType','User')->get();
+    
+    return view('job.edit', compact( 'job','user_jobs','other_materials','estimates','users', 'pagetitle'));
+  }
+
 }

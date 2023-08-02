@@ -113,6 +113,7 @@ Route::post('/UpdateJobStatus',[JobController::class,'updateJobStatus'])->name('
 Route::get('/ViewJob/{id}',[JobController::class,'show'])->name('job.show');
 Route::get('DeleteJob/{id}',[JobController::class,'destroy']);
 Route::get('/JobViewPDF/{id}', [JobController::class, 'jobViewPDF']);
+route::get('/JobEdit/{id}',[JobController::class,'JobEdit']);
 
 
 // ..............Estimate.............
