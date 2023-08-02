@@ -79,16 +79,15 @@ ALTER TABLE `user_job_reply` CHANGE `UserReplyStatus` `UserJobStatus` VARCHAR(25
 1) import sticker.sql file in the database to create sticker Table
 
 2) Create View.
+
 Create Or Replace View `v_sticker` AS 
-select 
-sum(`sticker`.`qty`) AS `qty`,
+select sum(`sticker`.`qty`) AS `qty`,
 `labels`.`OrderNumber` AS `OrderNumber`,
 `labels`.`ClientName` AS `ClientName`,
 `labels`.`Content` AS `Content`,
 `labels`.`CustomerOrderDate` AS `CustomerOrderDate`,
 `labels`.`UnitNumber` AS `UnitNumber`,
-`labels`.`Description` AS `Description`
-from (`sticker` join `labels` on((`sticker`.`itemid` = `labels`.`LabelID`))) 
-group by `sticker`.`itemid`,
+`labels`.`Description` AS `Description`,
+`labels`.`LabelDeails` AS `LabelDeails` from (`sticker` join `labels` on((`sticker`.`itemid` = `labels`.`OrderNumber`))) group by `sticker`.`itemid`,
 `labels`.`LabelID`,
 `labels`.`OrderNumber`
