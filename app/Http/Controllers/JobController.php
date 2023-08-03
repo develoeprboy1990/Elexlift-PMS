@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Notification;
 use Session;
 use PDF;
+use File;
 
 class JobController extends Controller
 {
@@ -207,6 +208,65 @@ class JobController extends Controller
     $users = User::where('UserType','User')->get();
     
     return view('job.edit', compact( 'job','user_jobs','other_materials','estimates','users', 'pagetitle'));
+  }
+
+
+  public  function JobUpdate(request $request)
+  {
+
+     if ($request->file('file'))
+        {
+             $this->validate($request, [
+
+                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,xlsx,pdf|max:1000',
+            ],
+            [
+            'file.required' => 'Please upload file',
+            ]);
+
+             $file = $request->file('file');
+             $input['file'] = time().'.'.$file->extension();
+
+             $destinationPath = public_path('/documents/jobs');
+
+             $file->move($destinationPath, $input['file']);
+
+            $image_name = $request->input('old_file');
+            $image_path = public_path('/documents/jobs/'.$image_name);
+            if(File::exists($image_path)) {
+            File::delete($image_path);
+            }
+
+        }else{
+            $input['file'] = $request->input('old_file');
+        }
+
+
+ 
+     $job_mst = array(
+      'EstimateNo' => $request->input('EstimateNo'),
+      'name' => $request->input('name'),
+      'controller_type' => $request->input('controller_type'),
+      'no_of_steps' => $request->input('no_of_steps'),
+      'overspeed_governer_voltage' => $request->input('overspeed_governer_voltage'),
+      'brake_voltage' => $request->input('brake_voltage'),
+      'moter' => $request->input('moter'),
+      'encoder_type' => $request->input('encoder_type'),
+      'no_of_entrance' => $request->input('no_of_entrance'),      
+      'resue' => $request->input('resue'),      
+      'delivery_date' => $request->input('delivery_date'),      
+      'door_type' => $request->input('door_type'),      
+      'file' => $input['file'],
+      'other_materials' => $request->input('other_materials'),
+      'additional_details' => $request->input('additional_details'),
+    );
+
+    $Jobmaster = DB::table('jobs')->where('id', $request->JobID)->update($job_mst);
+
+    
+     
+
+    return redirect('JobEdit/'.$request->JobID)->with('error', 'Job Saved')->with('class', 'success');
   }
 
 }

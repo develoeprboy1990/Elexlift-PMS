@@ -27,19 +27,18 @@
             <div class="row">
                 <div class="col-12">
                   <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Create New Job</h4>
+                    <h4 class="mb-sm-0 font-size-18">Job Update</h4>
                   </div>
                 </div>  
             </div>
             <div class="card shadow-sm">
                 <div class="card-header bg-transparent border-bottom h5">
-
-                      Add Job
+                      Update Job
                 </div>
                 <div class="card-body">
-                    <form action="{{URL('/SaveJob')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{URL('/JobUpdate')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
-                    <input type="hidden" name="JobStatus" value="Pending">
+                    <input type="hidden" name="JobID" value="{{$job->id}}">
                     <div class="row col-md-12">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -207,7 +206,11 @@
                             <div class="col-md-4 mt-1">  
                                   <div class="mb-3">
                                     <label for="basicpill-firstname-input">Upload File<span class="text-danger">*</span></label>
-                                    <input type="file" class="form-control" name="file" value="{{old('file')}}">
+                                    @if($job->file != '')
+                                    <img src="{{ URL('/documents/jobs/' . $job->file) }}" style="width:100px;height: 100px;margin-bottom: 10px;">
+                                    <input type="hidden" name="old_file" value="{{@$job->file}}">
+                                    @endif
+                                    <input type="file" class="form-control" name="file" value="">
                                 </div>
                             </div>
                         </div>
@@ -274,9 +277,9 @@
                                       <label>
                                   </div>
                                   <div class="custom-control custom-checkbox">
-                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="2 limit switch (eos up,dn)"
+                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="2 limit"
 
-                                      @if(in_array('2 bistable', $other_materials))
+                                      @if(in_array('2 limit', $other_materials))
                                         checked 
                                         @endif
 
@@ -285,9 +288,9 @@
                                       <label>
                                   </div>
                                   <div class="custom-control custom-checkbox">
-                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="2 limit switch (final limit)"
+                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="final limit"
 
-                                      @if(in_array('2 bistable', $other_materials))
+                                      @if(in_array('final limit', $other_materials))
                                         checked 
                                         @endif
                                         >
@@ -295,9 +298,9 @@
                                       <label>
                                   </div>
                                   <div class="custom-control custom-checkbox">
-                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="4 NO (sdfs up,sdfs dn,RLV,DZ)"
+                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="4 NO"
 
-                                      @if(in_array('2 bistable', $other_materials))
+                                      @if(in_array('4 NO', $other_materials))
                                         checked 
                                         @endif
                                         >
@@ -305,9 +308,9 @@
                                       <label>
                                   </div>
                                   <div class="custom-control custom-checkbox">
-                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="1 NC (EM)"
+                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="1 NC"
 
-                                      @if(in_array('2 bistable', $other_materials))
+                                      @if(in_array('1 NC', $other_materials))
                                         checked 
                                         @endif
 
@@ -316,9 +319,9 @@
                                       <label>
                                   </div>
                                   <div class="custom-control custom-checkbox">
-                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="2 Magnet 120cm"
+                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="2 Magnet"
 
-                                      @if(in_array('2 bistable', $other_materials))
+                                      @if(in_array('2 Magnet', $other_materials))
                                         checked 
                                         @endif
 
@@ -327,9 +330,9 @@
                                       <label>
                                   </div>
                                   <div class="custom-control custom-checkbox">
-                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="4 round magnet"
+                                      <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="4 round"
 
-                                      @if(in_array('2 bistable', $other_materials))
+                                      @if(in_array('4 round', $other_materials))
                                         checked 
                                         @endif
 
@@ -339,7 +342,7 @@
                                   </div>
                                   <div class="custom-control custom-checkbox">
                                       <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="COP"
-                                      @if(in_array('2 bistable', $other_materials))
+                                      @if(in_array('COP', $other_materials))
                                         checked 
                                         @endif
                                         >
