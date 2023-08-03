@@ -218,7 +218,7 @@ class JobController extends Controller
         {
              $this->validate($request, [
 
-                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,xlsx,pdf|max:1000',
+                'file' => 'required|mimes:jpeg,png,jpg,xlsx,pdf|max:1000',
             ],
             [
             'file.required' => 'Please upload file',

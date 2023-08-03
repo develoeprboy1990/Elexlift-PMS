@@ -207,7 +207,14 @@
                                   <div class="mb-3">
                                     <label for="basicpill-firstname-input">Upload File<span class="text-danger">*</span></label>
                                     @if($job->file != '')
-                                    <img src="{{ URL('/documents/jobs/' . $job->file) }}" style="width:100px;height: 100px;margin-bottom: 10px;">
+                                    <?php
+                                    $ext = pathinfo($job->file, PATHINFO_EXTENSION);
+                                    ?>
+                                        @if($ext == 'jpeg' || $ext == 'png' || $ext == 'jpg')
+                                        <img src="{{ URL('/documents/jobs/' . $job->file) }}" style="width:100px;height: 100px;margin-bottom: 10px;">
+                                        @else
+                                        <b>{{ @$job->file }}</b>
+                                        @endif
                                     <input type="hidden" name="old_file" value="{{@$job->file}}">
                                     @endif
                                     <input type="file" class="form-control" name="file" value="">
