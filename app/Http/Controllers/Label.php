@@ -80,14 +80,6 @@ class Label extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        
-        
-        $id = DB::table('user')->where('UserID',$id)->delete();
-        echo "del";
-        
-    }
 
 
 
@@ -248,6 +240,13 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
             return redirect('User')->with('error','User Deleted Successfully')->with('class','success');
 
      }
+
+         public function destroy($id)
+    {
+
+        $id = DB::table('labels')->where('LabelID',$id)->delete();
+        return redirect('Lables')->with('error','User Deleted Successfully')->with('class','success');
+    }
 
 
 }

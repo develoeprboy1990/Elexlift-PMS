@@ -131,9 +131,9 @@
           <div class="card-body">
             <h4 class="card-title pb-3">Manage Labels</h4>
             <div class="page-title-right">
-<div class="text-sm-end">
+<!-- <div class="text-sm-end">
                 <button type="button" id="generate-lable" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"> Generate Label</button>
-            </div>
+            </div> -->
 </div>
 
            
@@ -142,26 +142,34 @@
         <table class="table table-sm m-0" id="datatable">
             <thead>
                <tr>
-                <th><!-- <input type="checkbox" value="" id="check-all"> --></th>
+                <!--<th> <input type="checkbox" value="" id="check-all"> </th>-->
                 <th>Order Number</th>
                 <th>Client</th>
                 <th>Content</th>
                 <th>Customer Order Date</th>
                 <th>Unit Number</th>
                 <th>Descritpion</th>
+                <th>Action</th>
+                <th>Generate Label</th>
               </tr>
              </thead>
             <tbody>
             <?php $no=1; ?> 
             @foreach($labels as $label)
            <tr>
-                <td><input type="checkbox" value="" name="" class="label-checkbox" data-label-id="{{$label->OrderNumber}}"></td>
+                <!-- <td><input type="checkbox" value="" name="" class="label-checkbox" data-label-id="{{$label->OrderNumber}}"></td> -->
                 <td scope="row">{{$label->OrderNumber}}</td>
                 <td>{{$label->ClientName}}</td>
                 <td>{{$label->Content}}</td>
                 <td>{{$label->CustomerOrderDate}}</td>
                 <td>{{$label->UnitNumber}}</td>               
-                <td>{{$label->Description}}</td>                 
+                <td>{{$label->Description}}</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="delete_confirm2('DeleteLabel',{{$label->LabelID}})">
+                        <i class="font-size-18 mdi mdi-trash-can-outline align-middle me-1 text-secondary"></i>
+                    </a>
+                </td>
+                <td><button type="button"  data-label-id="{{$label->OrderNumber}}" class="generate-lable btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"> Generate Label</button></td>                 
             </tr>
             @endforeach
              
@@ -176,23 +184,49 @@
 </div>                     
 </div> <!-- container-fluid -->
 </div>
-
+<!-- my own model -->
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+           <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirmation</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+         <div class="modal-body">
+         <p class="text-center">Are you sure to delete this information ?</p>
+         <p class="text-center">
+            
+            
+ 
+                <a href="#" class="btn btn-danger " id="delete_link">Delete</a>
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancel</button>
+                    
+         </p>
+         </div>
+              
+         </div>
+    </div>
+ </div>
+<!-- END: Content-->
 
     
 </div>
 <script type="text/javascript">
-        $("#generate-lable").on("click", function(event) {
+        $(".generate-lable").on("click", function(event) {
 
-         var checkedCount = $('.label-checkbox:checked').length;
+        // var checkedCount = $('.label-checkbox:checked').length;
         
-         if (checkedCount > 0) {
+        // if (checkedCount > 0) {
 
             var codes = [];
 
-            $('.label-checkbox:checked').each(function() {
+            /*$('.label-checkbox:checked').each(function() {
                 var id = $(this).data('label-id');
                 codes.push(id);
-            });
+            });*/
+
+            var id = $(this).data('label-id');
+            codes.push(id);
 
             $.ajax({
             type: 'GET',
@@ -207,14 +241,27 @@
             }
         });
 
-        } else {
+        /*} else {
 
             alert('Select any Label to generate pdf');
 
-        }
+        }*/
         
 
     });
+$(document).ready(function() {
 
+    function delete_confirm2(url,id) {        
+
+
+        url = '{{URL::TO('/')}}/'+url+'/'+ id;
+        
+    
+       
+        jQuery('#staticBackdrop').modal('show', {backdrop: 'static'});
+        document.getElementById('delete_link').setAttribute('href' , url);
+         
+    }
+});
 </script>
   @endsection
