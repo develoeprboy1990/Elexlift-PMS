@@ -133,14 +133,14 @@ return redirect()->back()->with('error', 'You access is limited')->with('class',
 
         $company = DB::table('companies')->first();
         //dd($company);
-
-        //return  view ('printbarcodedata',compact('stickerxy','company'));
-
-        $pdf = PDF::loadView('printbarcodedata', compact('stickerxy','company'));
-        $customPaper = array(0, 0, 200, 300);
-        $pdf->set_paper($customPaper);
-
         DB::table('sticker')->truncate();
+        return  view ('printbarcodedata',compact('stickerxy','company'));
+
+        //$pdf = PDF::loadView('printbarcodedata', compact('stickerxy','company'));
+        //$customPaper = array(0, 0, 200, 300);
+        //$pdf->set_paper($customPaper);
+
+        
         return $pdf->stream();
     }
 
