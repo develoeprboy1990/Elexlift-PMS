@@ -91,3 +91,5 @@ select sum(`sticker`.`qty`) AS `qty`,
 `labels`.`LabelDeails` AS `LabelDeails` from (`sticker` join `labels` on((`sticker`.`itemid` = `labels`.`OrderNumber`))) group by `sticker`.`itemid`,
 `labels`.`LabelID`,
 `labels`.`OrderNumber`
+-------------------------------------------------------------------------------------------
+ALTER TABLE `jobs` ADD `cabin_model` VARCHAR(255) NULL DEFAULT NULL AFTER `resue`, ADD `doors` VARCHAR(255) NULL DEFAULT NULL AFTER `cabin_model`, ADD `flooring` VARCHAR(255) NULL DEFAULT NULL AFTER `doors`, ADD `ropes` VARCHAR(255) NULL DEFAULT NULL AFTER `flooring`, ADD `meters` VARCHAR(255) NULL DEFAULT NULL AFTER `ropes`, ADD `bundle` VARCHAR(255) NULL DEFAULT NULL AFTER `meters`;
