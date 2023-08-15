@@ -177,6 +177,104 @@
                             </div>
                         </div>
 
+
+                        <div class="row col-md-12 mt-5">
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">Cabin Model<span class="text-danger">*</span></label>
+                                  </div>
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="cabin_model" id="mr" value="hairline" required="">
+                                      <label class="form-check-label" for="mr">Hairline</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="cabin_model" id="mr" value="hairline_mirror">
+                                      <label class="form-check-label" for="mr">Hairline & Mirror</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="cabin_model" id="mr" value="other">
+                                      <label class="form-check-label" for="mr">Other</label>
+                                  </div>
+                            </div>
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">DOORS<span class="text-danger">*</span></label>
+                                  </div>      
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="doors" id="mr" value="right" required="">
+                                      <label class="form-check-label" for="mr">Right</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="doors" id="mr" value="left">
+                                      <label class="form-check-label" for="mr">Left</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="doors" id="mr" value="centre">
+                                      <label class="form-check-label" for="mr">Centre</label>
+                                  </div>
+
+                            </div>
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">Flooring<span class="text-danger">*</span></label>
+                                  </div>         
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="flooring" id="mr" value="pvc" required="">
+                                      <label class="form-check-label" for="mr">PVC</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="flooring" id="mr" value="no">
+                                      <label class="form-check-label" for="mr">No</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="flooring" id="mr" value="granite">
+                                      <label class="form-check-label" for="mr">Granite</label>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-12 mt-5">
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">Ropes<span class="text-danger">*</span></label>
+                                  </div>                 
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="ropes" id="mr" value="6mm" required="">
+                                      <label class="form-check-label" for="mr">6mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="6.5mm">
+                                      <label class="form-check-label" for="mr">6.5mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="8mm">
+                                      <label class="form-check-label" for="mr">8mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="10mm">
+                                      <label class="form-check-label" for="mr">10mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="other">
+                                      <label class="form-check-label" for="mr">other</label>
+                                  </div>
+                                  
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="basicpill-firstname-input">Meters<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="meters" value="{{old('meters')}}" placeholder="Meters">
+                                </div>
+                             </div>
+                             <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="basicpill-firstname-input">Bundle<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="bundle" value="{{old('bundle')}}" placeholder="Bundle">
+                                </div>
+                             </div>
+                        </div>
+
+
                         <div class="row col-md-12 mt-5">
                             <div class="col-md-4">
                                 <div class="mb-3">

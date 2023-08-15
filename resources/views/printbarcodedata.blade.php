@@ -14,7 +14,7 @@
     <style type="text/css">
         * {
             font-size: 14px;
-            line-height: 24px;
+            line-height: 16px;
             font-family: 'Ubuntu', sans-serif;
             text-transform: capitalize;
         }
@@ -57,7 +57,7 @@
 
         td,
         th {
-            padding: 7px 0;
+            padding: 0px;
             width: 50%;
         }
 
@@ -81,12 +81,12 @@
         @media print {
             * {
                 font-size: 12px;
-                line-height: 20px;
+                line-height: 12px;
             }
 
             td,
             th {
-                padding: 5px 0;
+                padding: 0px 0;
             }
 
             .hidden-print {
@@ -98,7 +98,7 @@
             }
 
             @page: first {
-                margin-top: 0.5cm;
+                margin-top: 0cm;
             }
 
             tfoot::after {
@@ -115,6 +115,7 @@
             height: 1px !important;
             background: #000 !important;
             background: repeating-linear-gradient(90deg, #000 0px, #000 6px, transparent 6px, transparent 12px) !important;
+            margin: 0px;
         }
     </style>
 
@@ -134,74 +135,50 @@
         </div>
 
         <div id="receipt-data">
-            <br>
             <div class="centered">
-
-               <!--  @if (@$company->Logo)
-                <img src="{{ URL('/documents/' . $company->Logo) }}"  style="margin:10px 0;" class="left">
-                @endif
-
-                 @if (@$company->BackgroundLogo)
-                <img src="{{ URL('/documents/' . $company->BackgroundLogo) }}"  style="margin:10px 0;" class="right">
-                @endif -->
                 <table width="100%" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto">
                 <tr>
-                <td style="font-size: 14px; " align="left"><img style="width: 150px;height: 50px;" src="{{ URL('/documents/' . $company->Logo) }}" ></td>
-                <td style="font-size: 14px;" align="right"><img style="width: 150px;height: 50px;" src="{{ URL('/documents/' . $company->BackgroundLogo) }}" ></td>
+                <td style="font-size: 14px; " align="left"><img style="width: 120px;height: 50px;" src="{{ URL('/documents/' . $company->Logo) }}" ></td>
+                <td style="font-size: 14px;" align="right"><img style="width: 120px;height: 50px;" src="{{ URL('/documents/' . $company->BackgroundLogo) }}" ></td>
                 </tr>
                 </table>
-                
-                <p>{{ trans('file.Address') }}: {{ $company->Address }}
-                    <br>{{ trans('file.Phone Number') }}: {{ $company->Contact }}
-                </p>
             </div>
             
             <hr class="dashed-2">
             <table class="table-data ">
                 <thead>
                     <tr>
-                        <td class="centered" colspan="2">
-                            <?php echo '<img style="height: 150px; width: 160px;text-align:center;" src="data:image/png;base64,' . DNS2D::getBarcodePNG($value2->LabelDeails, 'QRCODE') . '" width="300" alt="barcode"   />'; ?>
-                        </td>
+                        <th style="text-align:left;">Order Number:</th>
+                        <th style="text-align:left;">{{ $value2->OrderNumber }}</th>
+                        <th style="text-align:center;" rowspan="4"> <?php echo '<img style="height: 50px; width: 50px;text-align:center;" src="data:image/png;base64,' . DNS2D::getBarcodePNG($value2->LabelDeails, 'QRCODE') . '" width="300" alt="barcode"   />'; ?></th>
                     </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th style="text-align:left">Order Number:</th>
-                        <th style="text-align:right">{{ $value2->OrderNumber }}</th>
-                    </tr>
-
                     <tr>
                         <th style="text-align:left">Client Name:</th>
-                        <th style="text-align:right">{{ $value2->ClientName }}</th>
+                        <th colspan="2" style="text-align:left" >{{ $value2->ClientName }}</th>
                     </tr>
                     <tr>
                         <th style="text-align:left">Content:</th>
-                        <th style="text-align:right">{{ $value2->Content }}</th>
+                        <th  colspan="2" style="text-align:left">{{ $value2->Content }}</th>
                     </tr>
                     <tr>
                         <th style="text-align:left">Order Date:</th>
-                        <th style="text-align:right">{{ $value2->CustomerOrderDate }}</th>
+                        <th colspan="2" style="text-align:left">{{ $value2->CustomerOrderDate }}</th>
                     </tr>
                     <tr>
                         <th style="text-align:left">Unit Number:</th>
-                        <th style="text-align:right">{{ $value2->UnitNumber }}</th>
+                        <th colspan="2" style="text-align:left">{{ $value2->UnitNumber }}</th>
                     </tr>
                     <tr>
                         <th style="text-align:left">Description:</th>
-                        <th style="text-align:right">{{ $value2->Description }}</th>
+                        <th colspan="2" style="text-align:left">{{ $value2->Description }}</th>
                     </tr>
-                </tfoot>
-            </table>
-            <table>
-                <tbody>
-                    <!-- <tr>
-                        <td class="centered" colspan="5">
-                            <?php echo '<img style="height: 150px; width: 160px;" src="data:image/png;base64,' . DNS2D::getBarcodePNG($value2->LabelDeails, 'QRCODE') . '" width="300" alt="barcode"   />'; ?>
-                        </td>
-                    </tr> -->
-                </tbody>
-                <tfoot></tfoot>
+                
+                 </thead>
+                 <!-- <tfoot>
+                    <tr>
+                        <th style="text-align:center;" colspan="3"> <?php //echo '<img style="height: 50px; width: 50px;text-align:center;" src="data:image/png;base64,' . DNS2D::getBarcodePNG($value2->LabelDeails, 'QRCODE') . '" width="300" alt="barcode"   />'; ?></th>
+                    </tr>
+                </tfoot> -->
             </table>
             <hr class="dashed-2">
         </div>
