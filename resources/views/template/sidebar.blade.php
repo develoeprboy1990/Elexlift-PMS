@@ -14,6 +14,12 @@
                     
                 </li>
                 @if(session::get('UserType') == 'Admin')
+                <li><a href="{{URL('/Parties')}}" class="waves-effect" >
+                <i class="bx bxs-user-plus"></i>
+                        <span key="t-calendar">Customers</span>
+                    </a>
+                </li>
+                
                 <li><a href="{{URL('/Estimate')}}" class="waves-effect" >
                 <i class="bx bxs-user-plus"></i>
                         <span key="t-calendar">Estimate</span>

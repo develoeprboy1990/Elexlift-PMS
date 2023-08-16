@@ -45,8 +45,8 @@ class Accounts extends Controller
 * @return \Illuminate\Http\Response
 */
 
-    public function Dashboard()
-    {
+public function Dashboard()
+{
         session::put('menu','Dashboard');
 
         $pagetitle='Dashboard';
@@ -68,15 +68,13 @@ class Accounts extends Controller
         }
         return view ('dashboard',compact('pagetitle','totalJobs','inProgressJobs','completedJobs','pendingJobs','reviewedJobs'));
     }
-
-    public  function Logout()
-    {
+public  function Logout()
+{
         Session::flush(); // removes all session data
         return redirect ('/')->with('error', 'Logout Successfully.')->with('class','success');
     }
-
-    public function Login()
-    {
+public function Login()
+{
         $company = Company::get();
         return view ('login',compact('company'));
     }
@@ -119,17 +117,12 @@ public function UserVerify( request $request)
 
 // for staff login
 }
-
-
-
 function Attachment()
-  {
+{
     return view('attachment');
   }
-
-
-  function AttachmentSave(Request $request)
-  {
+function AttachmentSave(Request $request)
+{
   
         
 
@@ -166,14 +159,6 @@ if($request->hasfile('filenames'))
 
         return back()->with('success', 'Data Your files has been successfully added');
     }
-
-
-
-
-
-       
-
-
 public function AttachmentRead(){ 
        $directory = 'documents'; 
        $files_info = []; 
@@ -200,11 +185,8 @@ public function AttachmentRead(){
        } 
        return response()->json($files_info); 
     }
-
-
-
-  public function AttachmentDelete($id,$filename)
-  {
+public function AttachmentDelete($id,$filename)
+{
       $id =  $id;
       $filename =  $filename;
       DB::table('attachment')->where('AttachmentID',$id)->delete();
@@ -215,5 +197,116 @@ public function AttachmentRead(){
      return redirect('Attachment')->with('error', 'File Deleted')->with('class', 'success');
   
   }
+
+// parties
+public  function Parties()
+{
+
+session::put('menu','Party');
+$pagetitle='Parties';
+
+$supplier = DB::table('party')->get();
+return view ('party',compact('pagetitle','supplier'));
+}
+public  function SaveParties(request $request)
+{
+$this->validate($request,[
+'PartyName'=>'required',
+
+'Active'=>'required',
+
+
+],
+[
+'PartyName.required' => 'Party / Cusomter Name is required',
+
+
+
+]);
+$data = array(
+
+'PartyName' => $request->input('PartyName'),
+'TRN' => $request->input('TRN'),
+'Address' => $request->input('Address'),
+'City' => $request->input('City'),
+'Mobile' => $request->input('Mobile'),
+'Phone' => $request->input('Phone'),
+'Email' => $request->input('Email'),
+'Website' => $request->input('Website'),
+'Active' => $request->input('Active'),
+'InvoiceDueDays' => $request->input('InvoiceDueDays'),
+
+
+
+);
+
+$id= DB::table('party')->insertGetId($data);
+
+
+
+
+return redirect ('Parties')->with('error', 'Save Successfully.')->with('class','success');
+}
+public  function PartiesEdit($id)
+{
+
+session::put('menu','Party');
+$pagetitle='Party';
+
+$supplier = DB::table('party')->where('PartyID',$id)->get();
+
+return view ('party_edit',compact('pagetitle','supplier'));
+}
+public  function PartiesUpdate(request $request)
+{
+$this->validate($request,[
+'PartyName'=>'required',
+
+'Active'=>'required',
+
+
+
+
+],
+[
+'PartyName.required' => 'Party / Cusomter Name is required',
+
+
+
+]);
+
+
+$data = array(
+
+'PartyName' => $request->input('PartyName'),
+'TRN' => $request->input('TRN'),
+'Address' => $request->input('Address'),
+'City' => $request->input('City'),
+'Mobile' => $request->input('Mobile'),
+'Phone' => $request->input('Phone'),
+'Email' => $request->input('Email'),
+'Website' => $request->input('Website'),
+'Active' => $request->input('Active'),
+'InvoiceDueDays' => $request->input('InvoiceDueDays'),
+
+
+
+);
+
+$id= DB::table('party')->where('PartyID',$request->input('PartyID'))->update($data);
+
+
+
+
+return redirect ('Parties')->with('error', 'Updated Successfully.')->with('class','success');
+}
+public  function PartiesDelete($id)
+{
+
+$id = DB::table('party')->where('PartyID',$id)->delete();
+return redirect('Parties')->with('error','Deleted Successfully')->with('class','success');
+
+
+}
 
 } // end of controller

@@ -140,5 +140,14 @@ Route::post('AttachmentSave',[Accounts::class,'AttachmentSave']);
 Route::get('AttachmentDelete/{id}/{filename}',[Accounts::class,'AttachmentDelete']);
 
 Route::get('AttachmentRead', [Accounts::class,'AttachmentRead']);
+
+//Parties
+
+Route::get('/Parties',[Accounts::class,'Parties']);
+Route::post('/SaveParties',[Accounts::class,'SaveParties']);
+Route::get('/PartiesEdit/{id}',[Accounts::class,'PartiesEdit']);
+Route::post('/PartiesUpdate/',[Accounts::class,'PartiesUpdate']);
+Route::get('/PartiesDelete/{id}',[Accounts::class,'PartiesDelete']);
+
 });  
 // middleware end
