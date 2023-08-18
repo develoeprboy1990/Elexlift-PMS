@@ -177,6 +177,103 @@
                         </div>
 
                         <div class="row col-md-12 mt-5">
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">Cabin Model<span class="text-danger">*</span></label>
+                                  </div>
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="cabin_model" id="mr" value="hairline" required="" {{( 'hairline' == $job->cabin_model) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">Hairline</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="cabin_model" id="mr" value="hairline_mirror" {{( 'hairline_mirror' == $job->cabin_model) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">Hairline & Mirror</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="cabin_model" id="mr" value="other" {{( 'other' == $job->cabin_model) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">Other</label>
+                                  </div>
+                            </div>
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">DOORS<span class="text-danger">*</span></label>
+                                  </div>      
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="doors" id="mr" value="right" required="" {{( 'right' == $job->doors) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">Right</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="doors" id="mr" value="left" {{( 'left' == $job->doors) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">Left</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="doors" id="mr" value="centre" {{( 'centre' == $job->doors) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">Centre</label>
+                                  </div>
+
+                            </div>
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">Flooring<span class="text-danger">*</span></label>
+                                  </div>         
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="flooring" id="mr" value="pvc" required="" {{( 'pvc' == $job->flooring) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">PVC</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="flooring" id="mr" value="no" {{( 'no' == $job->flooring) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">No</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="flooring" id="mr" value="granite" {{( 'granite' == $job->flooring) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">Granite</label>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-12 mt-5">
+                            <div class="col-md-4">  
+                                  <div class="form-group">
+                                       <label class="control-label" for="controller">Ropes<span class="text-danger">*</span></label>
+                                  </div>                 
+                                  <div class="form-check form-check-inline pt-1">
+                                      <input class="form-check-input" type="radio" name="ropes" id="mr" value="6mm" required="" {{( '6mm' == $job->ropes) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">6mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="6.5mm" {{( '6.5mm' == $job->ropes) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">6.5mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="8mm" {{( '8mm' == $job->ropes) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">8mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="10mm" {{( '10mm' == $job->ropes) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">10mm</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" required="" name="ropes" id="mr" value="other" {{( 'other' == $job->ropes) ? 'checked':'' }}>
+                                      <label class="form-check-label" for="mr">other</label>
+                                  </div>
+                                  
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="basicpill-firstname-input">Meters<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="meters" value="{{$job->meters}}" placeholder="Meters">
+                                </div>
+                             </div>
+                             <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="basicpill-firstname-input">Bundle<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="bundle" value="{{$job->bundle}}" placeholder="Bundle">
+                                </div>
+                             </div>
+                        </div>
+
+
+                        <div class="row col-md-12 mt-5">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="basicpill-firstname-input">Delivery Date<span class="text-danger">*</span></label>
@@ -254,10 +351,9 @@
                                   </div>
                                   <div class="custom-control custom-checkbox">
                                       <input name="other_materials[]" type="checkbox" class="custom-control-input" id=""  value="Intercom" 
-                                        @if(in_array('Intercom', $other_materials))
+                                        @if(in_array('Intercom', @$other_materials))
                                         checked 
-                                        @endif
-                                        >
+                                        @endif >
                                       <label class="custom-control-label" for="customCheck33079">Intercom </label>
                                       <label>
                                   </div>
