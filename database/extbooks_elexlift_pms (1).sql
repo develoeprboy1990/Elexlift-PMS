@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 15, 2023 at 05:59 AM
--- Server version: 8.0.27
--- PHP Version: 8.1.0
+-- Host: localhost:3306
+-- Generation Time: Aug 23, 2023 at 12:54 AM
+-- Server version: 5.7.23-23
+-- PHP Version: 8.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `attachment` (
-  `AttachmentID` int NOT NULL,
+  `AttachmentID` int(11) NOT NULL,
   `InvoiceNo` varchar(25) DEFAULT NULL,
   `FileName` varchar(75) DEFAULT NULL,
   `eDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -41,7 +41,7 @@ CREATE TABLE `attachment` (
 --
 
 CREATE TABLE `companies` (
-  `CompanyID` bigint UNSIGNED NOT NULL,
+  `CompanyID` bigint(20) UNSIGNED NOT NULL,
   `Name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Name2` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `TRN` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'tax registration no',
@@ -70,7 +70,7 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`CompanyID`, `Name`, `Name2`, `TRN`, `Currency`, `Mobile`, `Contact`, `Email`, `Website`, `Address`, `Logo`, `BackgroundLogo`, `Signature`, `DigitalSignature`, `EstimateInvoiceTitle`, `SaleInvoiceTitle`, `DeliveryChallanTitle`, `CreditNoteTitle`, `PurchaseInvoiceTitle`, `DebitNoteTitle`, `created_at`, `updated_at`) VALUES
-(1, 'ELEXLIFT', 'ELEVATOR & COMPONENTS', '123456789', 'AED', NULL, '+971 58 890 9073', 'info@gmail.com', 'https://elexlift.com/', '5 Street - Ras Al Khor Industrial Area 1 Dubai - United Arab Emirates', '1690966338.png', '1690966338.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-28 09:46:01', '2023-08-02 04:15:25');
+(1, 'ELEXLIFT', 'ELEVATOR & COMPONENTS', '123456789', 'AED', NULL, '+971 58 890 9073', 'info@elexlift.com', 'https://elexlift.com/', 'Ras Al Khor Industrial Area 1 Dubai - UAE', '1690966338.png', '1690966338.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-28 09:46:01', '2023-08-11 16:19:49');
 
 -- --------------------------------------------------------
 
@@ -79,8 +79,8 @@ INSERT INTO `companies` (`CompanyID`, `Name`, `Name2`, `TRN`, `Currency`, `Mobil
 --
 
 CREATE TABLE `company` (
-  `CompanyID` int NOT NULL,
-  `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
+  `CompanyID` int(11) NOT NULL,
+  `Name` varchar(255) CHARACTER SET utf8 DEFAULT '',
   `Name2` varchar(255) DEFAULT NULL,
   `TRN` varchar(150) DEFAULT NULL COMMENT 'tax registration no',
   `Currency` varchar(3) DEFAULT NULL,
@@ -117,13 +117,13 @@ INSERT INTO `company` (`CompanyID`, `Name`, `Name2`, `TRN`, `Currency`, `Mobile`
 --
 
 CREATE TABLE `estimate_detail` (
-  `EstimateDetailID` int NOT NULL,
-  `EstimateMasterID` int NOT NULL,
+  `EstimateDetailID` int(11) NOT NULL,
+  `EstimateMasterID` int(11) NOT NULL,
   `EstimateNo` varchar(10) DEFAULT NULL,
   `EstimateDate` date DEFAULT NULL,
-  `ItemID` int DEFAULT NULL,
+  `ItemID` int(11) DEFAULT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `Qty` int DEFAULT NULL,
+  `Qty` int(11) DEFAULT NULL,
   `Rate` double(8,2) DEFAULT NULL,
   `TaxPer` double(8,2) DEFAULT NULL,
   `Tax` double(8,2) DEFAULT NULL,
@@ -139,7 +139,6 @@ CREATE TABLE `estimate_detail` (
 --
 
 INSERT INTO `estimate_detail` (`EstimateDetailID`, `EstimateMasterID`, `EstimateNo`, `EstimateDate`, `ItemID`, `Description`, `Qty`, `Rate`, `TaxPer`, `Tax`, `Discount`, `DiscountType`, `Gross`, `Total`, `DiscountAmountItem`) VALUES
-(1, 1, 'EST-00001', '2022-09-08', 10, 'fsdfsdf', 1, 100.00, 5.00, 5.00, NULL, NULL, NULL, 105.00, NULL),
 (2, 2, 'EST-00002', '2022-09-10', 17, NULL, 25, 1017.00, 5.00, 50.85, NULL, NULL, NULL, 25475.85, NULL),
 (3, 2, 'EST-00002', '2022-09-10', 9, NULL, 1, 99.00, 5.00, 4.95, NULL, NULL, NULL, 103.95, NULL),
 (4, 2, 'EST-00002', '2022-09-10', 9, NULL, 1, 99.00, 5.00, 4.95, NULL, NULL, NULL, 103.95, NULL),
@@ -150,7 +149,9 @@ INSERT INTO `estimate_detail` (`EstimateDetailID`, `EstimateMasterID`, `Estimate
 (12, 5, 'EST-00005', NULL, 12, NULL, 1, 1012.00, 4.76, 48.17, 0.00, 1.00, 1012.00, 963.83, 0.00),
 (13, 8, 'EST-00006', '2023-04-04', 22, NULL, 1, 100.00, 0.00, 0.00, 0.00, 1.00, 100.00, 100.00, 0.00),
 (14, 9, 'EST-00007', '2023-04-04', 22, NULL, 1, 100.00, 4.76, 4.76, 0.00, 1.00, 100.00, 100.00, 0.00),
-(15, 10, 'EST-00008', '2023-04-04', 25, NULL, 1, 36.00, 0.00, 0.00, 0.00, 1.00, 36.00, 36.00, 0.00);
+(15, 10, 'EST-00008', '2023-04-04', 25, NULL, 1, 36.00, 0.00, 0.00, 0.00, 1.00, 36.00, 36.00, 0.00),
+(16, 11, 'EST-00009', '2023-08-17', 24, NULL, 1, 80.00, 4.76, 3.81, 0.00, 1.00, 80.00, 80.00, 0.00),
+(18, 12, 'EST-00010', NULL, NULL, NULL, 1, NULL, 0.00, 0.00, 0.00, 1.00, NULL, NULL, 0.00);
 
 -- --------------------------------------------------------
 
@@ -159,9 +160,9 @@ INSERT INTO `estimate_detail` (`EstimateDetailID`, `EstimateMasterID`, `Estimate
 --
 
 CREATE TABLE `estimate_master` (
-  `EstimateMasterID` int NOT NULL,
+  `EstimateMasterID` int(11) NOT NULL,
   `EstimateNo` varchar(10) DEFAULT NULL,
-  `PartyID` int DEFAULT NULL,
+  `PartyID` int(11) DEFAULT NULL,
   `WalkinCustomerName` varchar(55) DEFAULT NULL,
   `PlaceOfSupply` varchar(25) DEFAULT NULL,
   `ReferenceNo` varchar(25) DEFAULT NULL,
@@ -181,7 +182,7 @@ CREATE TABLE `estimate_master` (
   `DescriptionNotes` varchar(255) DEFAULT NULL,
   `TermAndCondition` varchar(255) DEFAULT NULL,
   `File` varchar(75) DEFAULT NULL,
-  `UserID` int DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
   `Subject` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -190,15 +191,13 @@ CREATE TABLE `estimate_master` (
 --
 
 INSERT INTO `estimate_master` (`EstimateMasterID`, `EstimateNo`, `PartyID`, `WalkinCustomerName`, `PlaceOfSupply`, `ReferenceNo`, `EstimateDate`, `Date`, `ExpiryDate`, `SubTotal`, `TaxPer`, `Tax`, `TaxType`, `Total`, `DiscountPer`, `Discount`, `Shipping`, `GrandTotal`, `CustomerNotes`, `DescriptionNotes`, `TermAndCondition`, `File`, `UserID`, `Subject`) VALUES
-(1, 'EST-00001', 1002, '0', NULL, '3434', '2022-09-08', '2022-09-08', '2022-09-08', 105.00, 0.00, 5.00, 'TaxInclusive', 105.00, 0.00, 0.00, 0.00, 105.00, 'Thanks for your business.', NULL, NULL, NULL, 1, 'sdf'),
-(2, 'EST-00002', 1002, '0', NULL, '12654', '2022-09-10', '2022-09-10', '2022-09-11', 25683.75, 0.00, 60.75, 'TaxExclusive', 25183.75, 1.95, 500.00, 0.00, 25683.75, 'Thanks for your business.', NULL, NULL, NULL, 1, 'abc'),
-(3, 'EST-00003', 1002, NULL, NULL, NULL, '2022-10-25', '2022-10-25', '2022-10-25', 52.38, NULL, 2.62, NULL, 49.38, 5.73, 3.00, 0.00, 52.00, 'Thanks for your business.', NULL, NULL, NULL, 1, NULL),
-(4, 'EST-00004', 1002, NULL, NULL, NULL, '2022-10-25', '2022-10-25', '2022-10-25', 55.00, NULL, 2.62, 'TaxExclusive', 55.00, 0.00, 0.00, 0.00, 57.62, 'Thanks for your business.', NULL, NULL, NULL, 1, NULL),
 (5, 'EST-00005', 1, NULL, NULL, NULL, '2022-10-25', '2022-10-25', '2022-10-25', 1062.83, NULL, 52.88, 'TaxInclusive', 961.33, 9.55, 101.50, 0.00, 1014.21, 'Thanks for your business.', NULL, NULL, NULL, 1, NULL),
 (6, 'EST-00006', 1002, '564', NULL, NULL, '2023-04-04', '2023-04-04', '2023-04-04', 100.00, NULL, 0.00, 'TaxExclusive', 100.00, 0.00, 0.00, 0.00, 100.00, 'Thanks for your business.', NULL, NULL, NULL, 1, ';dssdf'),
 (8, 'EST-00006', 1002, '564', NULL, NULL, '2023-04-04', '2023-04-04', '2023-04-04', 100.00, NULL, 0.00, 'TaxExclusive', 100.00, 0.00, 0.00, 0.00, 100.00, 'Thanks for your business.', NULL, NULL, NULL, 1, ';dssdf'),
 (9, 'EST-00007', 2214, NULL, NULL, NULL, '2023-04-04', '2023-04-04', '2023-04-04', 100.00, NULL, 4.76, 'TaxExclusive', 100.00, 0.00, 0.00, 0.00, 104.76, 'Thanks for your business.', NULL, NULL, NULL, 1, NULL),
-(10, 'EST-00008', 1002, NULL, NULL, NULL, '2023-04-04', '2023-04-04', '2023-04-04', 36.00, NULL, 0.00, 'TaxExclusive', 36.00, 0.00, 0.00, 0.00, 36.00, 'Thanks for your business.', NULL, NULL, NULL, 1, NULL);
+(10, 'EST-00008', 1002, NULL, NULL, NULL, '2023-04-04', '2023-04-04', '2023-04-04', 36.00, NULL, 0.00, 'TaxExclusive', 36.00, 0.00, 0.00, 0.00, 36.00, 'Thanks for your business.', NULL, NULL, NULL, 1, NULL),
+(11, 'EST-00009', 1002, 'skyfeild', NULL, NULL, '2023-08-17', '2023-08-17', '2023-08-17', 80.00, NULL, 3.81, 'TaxExclusive', 80.00, 0.00, 0.00, 0.00, 83.81, 'Thanks for your business.', NULL, NULL, NULL, 1, 'doors 700 x 2000 left'),
+(12, 'EST-00010', 1002, 'royal', NULL, NULL, '2023-08-22', '2023-08-22', '2023-08-22', NULL, NULL, NULL, 'TaxExclusive', NULL, 0.00, 0.00, 0.00, 0.00, 'Thanks for your business.', NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -207,7 +206,7 @@ INSERT INTO `estimate_master` (`EstimateMasterID`, `EstimateNo`, `PartyID`, `Wal
 --
 
 CREATE TABLE `item` (
-  `ItemID` int NOT NULL,
+  `ItemID` int(11) NOT NULL,
   `ItemType` varchar(55) DEFAULT NULL,
   `ItemCode` varchar(5) DEFAULT NULL,
   `ItemName` varchar(55) DEFAULT NULL,
@@ -215,10 +214,10 @@ CREATE TABLE `item` (
   `Taxable` varchar(10) DEFAULT NULL,
   `Percentage` double(8,2) DEFAULT NULL,
   `CostPrice` double(8,2) DEFAULT NULL,
-  `CostChartofAccountID` int DEFAULT NULL,
+  `CostChartofAccountID` int(11) DEFAULT NULL,
   `CostDescription` varchar(255) DEFAULT NULL,
   `SellingPrice` double(8,2) DEFAULT NULL,
-  `SellingChartofAccountID` int DEFAULT NULL,
+  `SellingChartofAccountID` int(11) DEFAULT NULL,
   `SellingDescription` varchar(255) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
@@ -251,7 +250,7 @@ INSERT INTO `item` (`ItemID`, `ItemType`, `ItemCode`, `ItemName`, `UnitName`, `T
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `EstimateNo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `controller_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -275,7 +274,7 @@ CREATE TABLE `jobs` (
   `additional_details` text COLLATE utf8mb4_unicode_ci,
   `status` enum('active','in-active') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `JobStatus` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -285,8 +284,14 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `EstimateNo`, `name`, `controller_type`, `no_of_steps`, `overspeed_governer_voltage`, `brake_voltage`, `moter`, `encoder_type`, `no_of_entrance`, `resue`, `cabin_model`, `doors`, `flooring`, `ropes`, `meters`, `bundle`, `delivery_date`, `door_type`, `file`, `other_materials`, `additional_details`, `status`, `JobStatus`, `created_by`, `created_at`, `updated_at`) VALUES
-(5, 'EST-00003', 'Ahsan Elahi', 'MR', '2', '48V AC', 'Brake Voltage', 'Moter', 'ECN 1313', '2', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-31', 'Fermator', '1691039469.jpg', '[\"Intercom\",\"Load sensor\",\"COP\",\"LOP\"]', 'Additional Details Additional Details Additional Details', 'active', 'In-Progress', 1, '2023-07-29 05:28:56', '2023-07-29 05:28:56'),
-(6, 'EST-00002', 'Wapda 2', 'MRL', '2', '48V AC', 'Brake Voltage', 'Moter', 'ECN 1313', '1', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-29', 'Fermator', '1691039575.png', '[\"NO sdfs\",\"2 bistable\",\"2 limit\",\"final limit\",\"4 NO\",\"1 NC\",\"2 Magnet\",\"4 round\"]', 'asfa adsfads asdfadsf', 'active', 'Pending', 1, '2023-07-29 05:58:53', '2023-07-29 05:58:53');
+(5, 'EST-00001', 'Ahsan Elahi', 'MR', '2', '48V AC', 'Brake Voltage', 'Moter', 'ECN 1313', '2', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-31', 'Fermator', '1691041544.pdf', '[\"Intercom\",\"Load sensor\"]', 'EstimateNo', 'active', 'In-Progress', 1, '2023-07-29 05:28:56', '2023-07-29 05:28:56'),
+(6, 'EST-00002', 'Meeting with Sale Team', 'MRL', '2', '48V AC', 'Brake Voltage', 'Moter', 'ECN 1313', '1', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-29', 'Fermator', '1690631067.jpg', '[\"4 NO (sdfs up,sdfs dn,RLV,DZ)\",\"1 NC (EM)\",\"2 Magnet 120cm\"]', 'Their Comments', 'active', 'Pending', 1, '2023-07-29 17:44:27', '2023-07-29 17:44:27'),
+(7, 'EST-00002', 'Move 10 Kg from Place A to B', 'MRL', '2', '48V AC', 'Brake Voltage', 'Moter', 'ECN 1313', '1', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-09', 'Fermator', '1690803711.jpg', '[\"2 limit switch (final limit)\",\"2 Magnet 120cm\"]', 'Additional Details Additional Details*', 'active', 'Pending', 1, '2023-07-31 17:41:51', '2023-07-31 17:41:51'),
+(8, 'EST-00004', 'Meeting on PMS', 'MRL', '3', '48V AC', 'Brake Voltage', 'Moter', 'ECN 1313', '1', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-07', 'Fermator', '1690889021.jpg', '[\"2 bistable (eos up,dn)\",\"2 limit switch (eos up,dn)\",\"2 limit switch (final limit)\"]', 'Additional Details Additional Details', 'active', 'Reviewed', 1, '2023-08-01 17:23:41', '2023-08-01 17:23:41'),
+(9, 'EST-00008', 'roy', 'MRL', '3', '48V AC', NULL, 'sg15', 'ECN 1313', '1', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-13', 'Fermator', NULL, '[\"Intercom\",\"Load sensor\",\"3 NO (sdfs up,sdfs dn,mgm)\",\"2 limit switch (eos up,dn)\",\"2 limit switch (final limit)\",\"4 NO (sdfs up,sdfs dn,RLV,DZ)\",\"2 Magnet 120cm\",\"COP\",\"LOP\"]', 'arrange samples', 'active', 'Completed', 1, '2023-08-11 17:14:12', '2023-08-11 17:14:12'),
+(10, 'EST-00006', 'DEMI', 'MRL', '2', '24V DC', '207', 'SGS 8', 'ECN 1313', '1', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-13', 'Fermator', NULL, '[\"Intercom\",\"Load sensor\",\"3 NO (sdfs up,sdfs dn,m...', '* doors 900 x 2100 mm hairline finish \r\n*cabin finish hairline\r\n*rails : T90 & T45', 'active', 'In-Progress', 1, '2023-08-11 18:35:50', '2023-08-11 18:35:50'),
+(11, 'EST-00006', 'DIMA', 'MRL', '3', '48V AC', NULL, NULL, 'ECN 1313', '1', 'with', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-11', 'Fermator', '1691757698.pdf', '[\"Intercom\",\"Load sensor\",\"3 NO (sdfs up,sdfs dn,m...', NULL, 'active', 'Pending', 1, '2023-08-11 18:41:38', '2023-08-11 18:41:38'),
+(12, 'EST-00010', 'royal fuji', 'MRL', '2', '48V AC', '207', 'sg15', 'ECN 1313', '1', 'with', 'other', 'centre', 'pvc', '6.5mm', NULL, NULL, '2023-08-22', 'Fermator', NULL, '[\"Intercom\",\"Load sensor\",\"3 NO (sdfs up,sdfs dn,mgm)\",\"2 limit switch (eos up,dn)\",\"2 limit switch (final limit)\",\"2 Magnet 120cm\",\"COP\",\"LOP\"]', 'motor : sgs 7\r\nosg : 230 vdc', 'active', 'Pending', 1, '2023-08-22 20:21:45', '2023-08-22 20:21:45');
 
 -- --------------------------------------------------------
 
@@ -295,23 +300,24 @@ INSERT INTO `jobs` (`id`, `EstimateNo`, `name`, `controller_type`, `no_of_steps`
 --
 
 CREATE TABLE `labels` (
-  `LabelID` int NOT NULL,
-  `OrderNumber` varchar(255) DEFAULT NULL,
-  `ClientName` varchar(255) DEFAULT NULL,
-  `Content` varchar(255) DEFAULT NULL,
+  `LabelID` int(11) NOT NULL,
+  `OrderNumber` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ClientName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CustomerOrderDate` date DEFAULT NULL,
-  `UnitNumber` varchar(255) DEFAULT NULL,
-  `Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `LabelDeails` text,
+  `UnitNumber` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  `LabelDeails` text COLLATE utf8_unicode_ci NOT NULL,
   `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `labels`
 --
 
 INSERT INTO `labels` (`LabelID`, `OrderNumber`, `ClientName`, `Content`, `CustomerOrderDate`, `UnitNumber`, `Description`, `LabelDeails`, `CreatedAt`) VALUES
-(2, '534535', 'Ahsan Elahi', 'Content', '2023-08-02', '666666666666', 'Description', '534535\nAhsan Elahi\nContent\n2023-08-02\n666666666666\nDescription', '2023-08-02 07:45:09');
+(3, '123123123', 'Ahsan Elahi', 'Content', '2023-08-11', 'xxxxxxxxxxxxxxxxxxxxx', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '123123123\r\nAhsan Elahi\r\nContent\r\n2023-08-11\r\nxxxxxxxxxxxxxxxxxxxxx\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the', '2023-08-11 10:59:31'),
+(4, 'n123456', 'ROY', 'COMPLETE LIFT 3/3', '2023-08-11', '1 X LANDING DOOR', 'S.S SILVER', 'TTYYUIUIUIUIUIUIUIUIIUI', '2023-08-11 11:19:31');
 
 -- --------------------------------------------------------
 
@@ -320,9 +326,9 @@ INSERT INTO `labels` (`LabelID`, `OrderNumber`, `ClientName`, `Content`, `Custom
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `batch` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -344,9 +350,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `notifications` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `job_id` bigint UNSIGNED DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `job_id` bigint(20) UNSIGNED DEFAULT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `read` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -358,9 +364,20 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `job_id`, `type`, `read`, `created_at`, `updated_at`) VALUES
-(9, 1, 5, 'Status Updated to In-Progress', 0, '2023-07-30 07:56:13', '2023-07-30 07:56:13'),
-(8, 2, 6, 'New Job Assigned to You', 0, '2023-07-29 05:58:53', '2023-07-29 05:58:53'),
-(7, 2, 5, 'New Job Assigned to You', 1, '2023-07-29 05:28:56', '2023-07-30 07:56:09');
+(7, 2, 5, 'New Job Assigned to You', 1, '2023-07-29 05:28:56', '2023-07-29 17:39:34'),
+(8, 1, 5, 'Status Updated to In Progress', 1, '2023-07-29 17:40:18', '2023-07-29 17:40:45'),
+(9, 2, 6, 'New Job Assigned to You', 1, '2023-07-29 17:44:27', '2023-07-29 17:45:13'),
+(10, 1, 5, 'Status Updated to In-Progress', 0, '2023-07-31 17:39:26', '2023-07-31 17:39:26'),
+(11, 3, 7, 'New Job Assigned to You', 0, '2023-07-31 17:41:51', '2023-07-31 17:41:51'),
+(12, 2, 8, 'New Job Assigned to You', 1, '2023-08-01 17:23:41', '2023-08-01 17:26:31'),
+(13, 1, 8, 'Status Updated to In-Progress', 1, '2023-08-01 17:28:41', '2023-08-01 17:29:03'),
+(14, 1, 8, 'Status Updated to Reviewed', 0, '2023-08-01 17:36:15', '2023-08-01 17:36:15'),
+(15, 2, 9, 'New Job Assigned to You', 1, '2023-08-11 17:14:12', '2023-08-11 17:16:09'),
+(16, 1, 9, 'Status Updated to Completed', 1, '2023-08-11 17:16:27', '2023-08-11 17:17:26'),
+(17, 2, 10, 'New Job Assigned to You', 1, '2023-08-11 18:35:50', '2023-08-11 18:36:22'),
+(18, 1, 10, 'Status Updated to In-Progress', 1, '2023-08-11 18:37:00', '2023-08-11 18:37:23'),
+(19, 2, 11, 'New Job Assigned to You', 1, '2023-08-11 18:41:38', '2023-08-11 18:41:53'),
+(20, 2, 12, 'New Job Assigned to You', 0, '2023-08-22 20:21:45', '2023-08-22 20:21:45');
 
 -- --------------------------------------------------------
 
@@ -369,7 +386,7 @@ INSERT INTO `notifications` (`id`, `user_id`, `job_id`, `type`, `read`, `created
 --
 
 CREATE TABLE `party` (
-  `PartyID` int NOT NULL,
+  `PartyID` int(11) NOT NULL,
   `PartyName` varchar(150) DEFAULT NULL,
   `TRN` varchar(150) DEFAULT '',
   `Address` varchar(75) DEFAULT NULL,
@@ -379,7 +396,7 @@ CREATE TABLE `party` (
   `Email` varchar(25) DEFAULT NULL,
   `Website` varchar(150) DEFAULT NULL,
   `Active` varchar(3) DEFAULT NULL,
-  `InvoiceDueDays` int DEFAULT NULL,
+  `InvoiceDueDays` int(11) DEFAULT NULL,
   `eDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -388,17 +405,7 @@ CREATE TABLE `party` (
 --
 
 INSERT INTO `party` (`PartyID`, `PartyName`, `TRN`, `Address`, `City`, `Mobile`, `Phone`, `Email`, `Website`, `Active`, `InvoiceDueDays`, `eDate`) VALUES
-(1002, 'kashif mushtaq', '6789', 'Kashif House, Khyber colony No 1, Tehkal Payan', 'Peshawar', '+923349047993', '+923349047993', 'kashif@inu.edu.pk', 'teqholic.com', 'No', 5, '2022-01-16 17:59:43'),
-(1012, 'SAJID SB PAK', '1256', 'Kashif House, Khyber colony No 1, Tehkal Payan', 'Peshawar', NULL, '+923349047993', 'kashif@inu.edu.pk', NULL, 'Yes', 90, '2022-01-16 17:59:49'),
-(1023, 'LIGHT SPEED', '1256', NULL, 'Peshawar', NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-16 17:58:58'),
-(1044, 'MALIK MAQSOOD AGENT', '1256', NULL, 'Peshawar', NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-16 17:59:20'),
-(1053, 'SADAF TRAVELS', '1256', NULL, 'Peshawar', NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-16 17:59:46'),
-(1576, 'COZMO  TRAVEL', '1256', NULL, 'Peshawar', NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-16 17:58:23'),
-(1680, 'KSA', '1256', NULL, 'Peshawar', NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-16 17:58:55'),
-(1700, 'MESSZAN TRV', '1256', NULL, 'PAF', NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-16 17:59:34'),
-(2213, 'Kamal Mehmood', '1256', 'Kashif House, Khyber colony No 1, Tehkal Payan', 'PAF', NULL, '+923349047993', 'kashif@inu.edu.pk', NULL, 'Yes', NULL, '2022-03-06 04:14:26'),
-(2214, 'ahsan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', NULL, '2023-04-04 06:38:19'),
-(2215, 'Hungry At Home DMCC', NULL, 'DXB', 'Dubai', NULL, NULL, NULL, NULL, 'Yes', NULL, '2023-05-11 11:00:07');
+(1002, 'kashif mushtaq', '6789', 'Kashif House, Khyber colony No 1, Tehkal Payan', 'Peshawar', '+923349047993', '+923349047993', 'kashif@inu.edu.pk', 'teqholic.com', 'No', 5, '2022-01-16 17:59:43');
 
 -- --------------------------------------------------------
 
@@ -407,9 +414,9 @@ INSERT INTO `party` (`PartyID`, `PartyName`, `TRN`, `Address`, `City`, `Mobile`,
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `tokenable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text COLLATE utf8mb4_unicode_ci,
@@ -426,11 +433,11 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `sticker` (
-  `stickerid` int NOT NULL,
-  `itemid` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `qty` int DEFAULT NULL,
-  `edate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+  `stickerid` int(11) NOT NULL,
+  `itemid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `edate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -439,11 +446,11 @@ CREATE TABLE `sticker` (
 --
 
 CREATE TABLE `tax` (
-  `TaxID` int NOT NULL,
-  `TaxPer` varchar(255) NOT NULL,
-  `Description` varchar(255) NOT NULL,
-  `Section` varchar(55) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `TaxID` int(11) NOT NULL,
+  `TaxPer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Section` varchar(55) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tax`
@@ -462,7 +469,7 @@ INSERT INTO `tax` (`TaxID`, `TaxPer`, `Description`, `Section`) VALUES
 --
 
 CREATE TABLE `user` (
-  `UserID` bigint UNSIGNED NOT NULL,
+  `UserID` bigint(20) UNSIGNED NOT NULL,
   `FullName` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -488,9 +495,9 @@ INSERT INTO `user` (`UserID`, `FullName`, `Email`, `Password`, `UserType`, `Acti
 --
 
 CREATE TABLE `user_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `job_id` bigint UNSIGNED DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `job_id` bigint(20) UNSIGNED DEFAULT NULL,
   `status` enum('pending','in-progress','completed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `reply` longtext COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -502,8 +509,14 @@ CREATE TABLE `user_jobs` (
 --
 
 INSERT INTO `user_jobs` (`id`, `user_id`, `job_id`, `status`, `reply`, `created_at`, `updated_at`) VALUES
+(5, 2, 5, 'pending', NULL, NULL, NULL),
 (6, 2, 6, 'pending', NULL, NULL, NULL),
-(5, 2, 5, 'pending', NULL, NULL, NULL);
+(7, 3, 7, 'pending', NULL, NULL, NULL),
+(8, 2, 8, 'pending', NULL, NULL, NULL),
+(9, 2, 9, 'pending', NULL, NULL, NULL),
+(10, 2, 10, 'pending', NULL, NULL, NULL),
+(11, 2, 11, 'pending', NULL, NULL, NULL),
+(12, 2, 12, 'pending', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -512,22 +525,27 @@ INSERT INTO `user_jobs` (`id`, `user_id`, `job_id`, `status`, `reply`, `created_
 --
 
 CREATE TABLE `user_job_reply` (
-  `ReplyID` int NOT NULL,
-  `JobID` int DEFAULT NULL,
-  `UserID` int DEFAULT NULL,
-  `UserReply` text,
-  `UserJobStatus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ReplyID` int(11) NOT NULL,
+  `JobID` int(11) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `UserReply` text COLLATE utf8mb4_unicode_ci,
+  `UserJobStatus` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user_job_reply`
 --
 
 INSERT INTO `user_job_reply` (`ReplyID`, `JobID`, `UserID`, `UserReply`, `UserJobStatus`, `CreatedAt`) VALUES
-(5, 4, 2, NULL, 'In Progress', '2023-07-29 14:24:40'),
-(4, 2, 2, NULL, 'In Progress', '2023-07-29 13:09:05'),
-(6, 5, 2, NULL, 'In-Progress', '2023-07-30 17:56:13');
+(5, 4, 2, NULL, 'In-Progress', '2023-07-29 14:24:40'),
+(4, 2, 2, NULL, 'In-Progress', '2023-07-29 13:09:05'),
+(6, 5, 2, NULL, 'In-Progress', '2023-07-29 05:40:18'),
+(7, 5, 2, NULL, 'In-Progress', '2023-07-31 05:39:26'),
+(8, 8, 2, NULL, 'In-Progress', '2023-08-01 05:28:41'),
+(9, 8, 2, NULL, 'Reviewed', '2023-08-01 05:36:15'),
+(10, 9, 2, NULL, 'Completed', '2023-08-11 05:16:27'),
+(11, 10, 2, NULL, 'In-Progress', '2023-08-11 06:37:00');
 
 -- --------------------------------------------------------
 
@@ -536,9 +554,9 @@ INSERT INTO `user_job_reply` (`ReplyID`, `JobID`, `UserID`, `UserReply`, `UserJo
 --
 
 CREATE TABLE `user_role` (
-  `RoleId` int NOT NULL,
-  `BranchID` int DEFAULT NULL,
-  `UserID` int DEFAULT NULL,
+  `RoleId` int(11) NOT NULL,
+  `BranchID` int(11) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
   `Table` varchar(55) DEFAULT NULL,
   `Action` varchar(55) DEFAULT NULL,
   `Allow` varchar(10) DEFAULT 'Y'
@@ -689,13 +707,13 @@ INSERT INTO `user_role` (`RoleId`, `BranchID`, `UserID`, `Table`, `Action`, `All
 -- (See below for the actual view)
 --
 CREATE TABLE `v_estimate_detail` (
-`EstimateDetailID` int
-,`EstimateMasterID` int
+`EstimateDetailID` int(11)
+,`EstimateMasterID` int(11)
 ,`EstimateNo` varchar(10)
 ,`EstimateDate` date
-,`ItemID` int
+,`ItemID` int(11)
 ,`ItemName` varchar(55)
-,`Qty` int
+,`Qty` int(11)
 ,`Rate` double(8,2)
 ,`Total` double(8,2)
 ,`Description` varchar(255)
@@ -710,9 +728,9 @@ CREATE TABLE `v_estimate_detail` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_estimate_master` (
-`EstimateMasterID` int
+`EstimateMasterID` int(11)
 ,`EstimateNo` varchar(10)
-,`PartyID` int
+,`PartyID` int(11)
 ,`PartyName` varchar(150)
 ,`PlaceOfSupply` varchar(25)
 ,`ReferenceNo` varchar(25)
@@ -721,7 +739,7 @@ CREATE TABLE `v_estimate_master` (
 ,`CustomerNotes` varchar(255)
 ,`TermAndCondition` varchar(255)
 ,`File` varchar(75)
-,`UserID` int
+,`UserID` int(11)
 ,`Subject` varchar(255)
 ,`Address` varchar(75)
 ,`Phone` varchar(25)
@@ -741,7 +759,7 @@ CREATE TABLE `v_estimate_master` (
 ,`Mobile` varchar(150)
 ,`Website` varchar(150)
 ,`Active` varchar(3)
-,`InvoiceDueDays` int
+,`InvoiceDueDays` int(11)
 ,`eDate` timestamp
 );
 
@@ -769,7 +787,7 @@ CREATE TABLE `v_sticker` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_users` (
-`UserID` bigint unsigned
+`UserID` bigint(20) unsigned
 ,`FullName` varchar(191)
 ,`Email` varchar(191)
 ,`Password` varchar(191)
@@ -785,7 +803,7 @@ CREATE TABLE `v_users` (
 --
 DROP TABLE IF EXISTS `v_estimate_detail`;
 
-CREATE OR REPLACE VIEW `v_estimate_detail`  AS SELECT `estimate_detail`.`EstimateDetailID` AS `EstimateDetailID`, `estimate_detail`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_detail`.`EstimateNo` AS `EstimateNo`, `estimate_detail`.`EstimateDate` AS `EstimateDate`, `estimate_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `estimate_detail`.`Qty` AS `Qty`, `estimate_detail`.`Rate` AS `Rate`, `estimate_detail`.`Total` AS `Total`, `estimate_detail`.`Description` AS `Description`, `estimate_detail`.`TaxPer` AS `TaxPer`, `estimate_detail`.`Tax` AS `Tax` FROM (`estimate_detail` join `item` on((`estimate_detail`.`ItemID` = `item`.`ItemID`)))  ;
+CREATE OR REPLACE VIEW `v_estimate_detail`  AS SELECT `estimate_detail`.`EstimateDetailID` AS `EstimateDetailID`, `estimate_detail`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_detail`.`EstimateNo` AS `EstimateNo`, `estimate_detail`.`EstimateDate` AS `EstimateDate`, `estimate_detail`.`ItemID` AS `ItemID`, `item`.`ItemName` AS `ItemName`, `estimate_detail`.`Qty` AS `Qty`, `estimate_detail`.`Rate` AS `Rate`, `estimate_detail`.`Total` AS `Total`, `estimate_detail`.`Description` AS `Description`, `estimate_detail`.`TaxPer` AS `TaxPer`, `estimate_detail`.`Tax` AS `Tax` FROM (`estimate_detail` join `item` on((`estimate_detail`.`ItemID` = `item`.`ItemID`))) ;
 
 -- --------------------------------------------------------
 
@@ -794,7 +812,7 @@ CREATE OR REPLACE VIEW `v_estimate_detail`  AS SELECT `estimate_detail`.`Estimat
 --
 DROP TABLE IF EXISTS `v_estimate_master`;
 
-CREATE OR REPLACE VIEW `v_estimate_master`  AS SELECT `estimate_master`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_master`.`EstimateNo` AS `EstimateNo`, `estimate_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `estimate_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `estimate_master`.`ReferenceNo` AS `ReferenceNo`, `estimate_master`.`EstimateDate` AS `EstimateDate`, `estimate_master`.`Total` AS `Total`, `estimate_master`.`CustomerNotes` AS `CustomerNotes`, `estimate_master`.`TermAndCondition` AS `TermAndCondition`, `estimate_master`.`File` AS `File`, `estimate_master`.`UserID` AS `UserID`, `estimate_master`.`Subject` AS `Subject`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `estimate_master`.`Date` AS `Date`, `estimate_master`.`SubTotal` AS `SubTotal`, `estimate_master`.`TaxPer` AS `TaxPer`, `estimate_master`.`Tax` AS `Tax`, `estimate_master`.`DiscountPer` AS `DiscountPer`, `estimate_master`.`Discount` AS `Discount`, `estimate_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `estimate_master`.`Shipping` AS `Shipping`, `estimate_master`.`DescriptionNotes` AS `DescriptionNotes`, `estimate_master`.`ExpiryDate` AS `ExpiryDate`, `estimate_master`.`GrandTotal` AS `GrandTotal`, `party`.`TRN` AS `TRN`, `party`.`Mobile` AS `Mobile`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate` FROM (`estimate_master` join `party` on((`estimate_master`.`PartyID` = `party`.`PartyID`)))  ;
+CREATE OR REPLACE VIEW `v_estimate_master`  AS SELECT `estimate_master`.`EstimateMasterID` AS `EstimateMasterID`, `estimate_master`.`EstimateNo` AS `EstimateNo`, `estimate_master`.`PartyID` AS `PartyID`, `party`.`PartyName` AS `PartyName`, `estimate_master`.`PlaceOfSupply` AS `PlaceOfSupply`, `estimate_master`.`ReferenceNo` AS `ReferenceNo`, `estimate_master`.`EstimateDate` AS `EstimateDate`, `estimate_master`.`Total` AS `Total`, `estimate_master`.`CustomerNotes` AS `CustomerNotes`, `estimate_master`.`TermAndCondition` AS `TermAndCondition`, `estimate_master`.`File` AS `File`, `estimate_master`.`UserID` AS `UserID`, `estimate_master`.`Subject` AS `Subject`, `party`.`Address` AS `Address`, `party`.`Phone` AS `Phone`, `party`.`Email` AS `Email`, `estimate_master`.`Date` AS `Date`, `estimate_master`.`SubTotal` AS `SubTotal`, `estimate_master`.`TaxPer` AS `TaxPer`, `estimate_master`.`Tax` AS `Tax`, `estimate_master`.`DiscountPer` AS `DiscountPer`, `estimate_master`.`Discount` AS `Discount`, `estimate_master`.`WalkinCustomerName` AS `WalkinCustomerName`, `estimate_master`.`Shipping` AS `Shipping`, `estimate_master`.`DescriptionNotes` AS `DescriptionNotes`, `estimate_master`.`ExpiryDate` AS `ExpiryDate`, `estimate_master`.`GrandTotal` AS `GrandTotal`, `party`.`TRN` AS `TRN`, `party`.`Mobile` AS `Mobile`, `party`.`Website` AS `Website`, `party`.`Active` AS `Active`, `party`.`InvoiceDueDays` AS `InvoiceDueDays`, `party`.`eDate` AS `eDate` FROM (`estimate_master` join `party` on((`estimate_master`.`PartyID` = `party`.`PartyID`))) ;
 
 -- --------------------------------------------------------
 
@@ -803,7 +821,7 @@ CREATE OR REPLACE VIEW `v_estimate_master`  AS SELECT `estimate_master`.`Estimat
 --
 DROP TABLE IF EXISTS `v_sticker`;
 
-CREATE OR REPLACE VIEW `v_sticker`  AS SELECT sum(`sticker`.`qty`) AS `qty`, `labels`.`OrderNumber` AS `OrderNumber`, `labels`.`ClientName` AS `ClientName`, `labels`.`Content` AS `Content`, `labels`.`CustomerOrderDate` AS `CustomerOrderDate`, `labels`.`UnitNumber` AS `UnitNumber`, `labels`.`Description` AS `Description`, `labels`.`LabelDeails` AS `LabelDeails` FROM (`sticker` join `labels` on((`sticker`.`itemid` = `labels`.`OrderNumber`))) GROUP BY `sticker`.`itemid`, `labels`.`LabelID`, `labels`.`OrderNumber`  ;
+CREATE OR REPLACE VIEW `v_sticker`  AS SELECT sum(`sticker`.`qty`) AS `qty`, `labels`.`OrderNumber` AS `OrderNumber`, `labels`.`ClientName` AS `ClientName`, `labels`.`Content` AS `Content`, `labels`.`CustomerOrderDate` AS `CustomerOrderDate`, `labels`.`UnitNumber` AS `UnitNumber`, `labels`.`Description` AS `Description`, `labels`.`LabelDeails` AS `LabelDeails` FROM (`sticker` join `labels` on((`sticker`.`itemid` = `labels`.`OrderNumber`))) GROUP BY `sticker`.`itemid`, `labels`.`LabelID`, `labels`.`OrderNumber` ;
 
 -- --------------------------------------------------------
 
@@ -812,7 +830,7 @@ CREATE OR REPLACE VIEW `v_sticker`  AS SELECT sum(`sticker`.`qty`) AS `qty`, `la
 --
 DROP TABLE IF EXISTS `v_users`;
 
-CREATE OR REPLACE VIEW `v_users`  AS SELECT `user`.`UserID` AS `UserID`, `user`.`FullName` AS `FullName`, `user`.`Email` AS `Email`, `user`.`Password` AS `Password`, `user`.`UserType` AS `UserType`, `user`.`eDate` AS `eDate`, `user`.`Active` AS `Active` FROM `user`  ;
+CREATE OR REPLACE VIEW `v_users`  AS SELECT `user`.`UserID` AS `UserID`, `user`.`FullName` AS `FullName`, `user`.`Email` AS `Email`, `user`.`Password` AS `Password`, `user`.`UserType` AS `UserType`, `user`.`eDate` AS `eDate`, `user`.`Active` AS `Active` FROM `user` ;
 
 --
 -- Indexes for dumped tables
@@ -942,103 +960,103 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `AttachmentID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `AttachmentID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `CompanyID` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `CompanyID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `estimate_detail`
 --
 ALTER TABLE `estimate_detail`
-  MODIFY `EstimateDetailID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `EstimateDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `estimate_master`
 --
 ALTER TABLE `estimate_master`
-  MODIFY `EstimateMasterID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `EstimateMasterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `ItemID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `labels`
 --
 ALTER TABLE `labels`
-  MODIFY `LabelID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `LabelID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `party`
 --
 ALTER TABLE `party`
-  MODIFY `PartyID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2216;
+  MODIFY `PartyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2216;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sticker`
 --
 ALTER TABLE `sticker`
-  MODIFY `stickerid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `stickerid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tax`
 --
 ALTER TABLE `tax`
-  MODIFY `TaxID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `TaxID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `UserID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_jobs`
 --
 ALTER TABLE `user_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_job_reply`
 --
 ALTER TABLE `user_job_reply`
-  MODIFY `ReplyID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ReplyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `RoleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `RoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
